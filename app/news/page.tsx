@@ -68,7 +68,9 @@ export default function NewsPage() {
                     {article.excerpt}
                   </p>
                   <div className="mt-6 flex items-center justify-between border-t border-ink-line pt-5 text-xs text-bone-faint">
-                    <span>{article.author}</span>
+                    <span className="font-semibold text-bone-dim">
+                      Read article →
+                    </span>
                     <time dateTime={article.date}>
                       {formatDate(article.date)}
                     </time>

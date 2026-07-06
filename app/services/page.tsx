@@ -4,14 +4,14 @@ import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Marketing Consulting Services",
   description:
-    "Brand strategy, growth marketing, content and thought leadership, PR and visibility, and marketing audits — five disciplines, one direction, all held to commercial numbers.",
+    "Marketing consultancy services: brand strategy, growth marketing, content, PR and marketing audits — each scoped to a commercial result, not billable hours.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services | Prisma House",
+    title: "Marketing Consulting Services | Prisma House",
     description:
-      "Five marketing consulting disciplines, one direction — brand strategy, growth, content, PR and audits.",
+      "Brand strategy, growth marketing, content, PR and marketing audits — five disciplines, one direction.",
     url: "/services",
   },
 };

@@ -4,13 +4,18 @@ import matter from "gray-matter";
 
 const NEWS_DIR = path.join(process.cwd(), "content", "news");
 
+export type FAQ = { q: string; a: string };
+
 export type Article = {
   slug: string;
   title: string;
+  metaTitle: string;
   excerpt: string;
   date: string;
-  author: string;
   category: string;
+  service?: string;
+  faqs: FAQ[];
+  related: string[];
   readingTime: string;
   content: string;
 };
@@ -32,10 +37,13 @@ export function getAllArticles(): Article[] {
     return {
       slug,
       title: data.title as string,
+      metaTitle: (data.metaTitle as string) ?? (data.title as string),
       excerpt: data.excerpt as string,
       date: data.date as string,
-      author: (data.author as string) ?? "Prisma House",
       category: (data.category as string) ?? "Insights",
+      service: data.service as string | undefined,
+      faqs: (data.faqs as FAQ[]) ?? [],
+      related: (data.related as string[]) ?? [],
       readingTime: estimateReadingTime(content),
       content,
     };

@@ -5,6 +5,7 @@ import Stats from "@/components/Stats";
 import PressMarquee from "@/components/PressMarquee";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Prisma House — Marketing that refracts into results",
@@ -19,9 +20,43 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.svg`,
+  image: `${SITE_URL}/opengraph-image`,
+  email: "info@prisma-house.com",
+  description: SITE_DESCRIPTION,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "950 Great West Rd, Suite 2, Floor 1, Profile West",
+    addressLocality: "Brentford",
+    postalCode: "TW8 9ES",
+    addressCountry: "GB",
+  },
+  sameAs: ["https://www.linkedin.com/in/gianmarco-giordaniello-6563b725a/"],
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden">
         <div
