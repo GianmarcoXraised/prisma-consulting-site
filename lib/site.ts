@@ -4,7 +4,7 @@ export const SITE_URL =
 export const SITE_NAME = "Prisma Consulting";
 
 export const SITE_DESCRIPTION =
-  "Prisma Consulting is a UK-based marketing consultancy helping ambitious brands in the UK and USA turn strategy into measurable growth.";
+  "Prisma Consulting is a marketing consultancy helping ambitious brands turn strategy into measurable growth.";
 
 export const NAV_LINKS = [
   { href: "/services", label: "Services" },

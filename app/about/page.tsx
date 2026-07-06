@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import { ButtonPrimary } from "@/components/Button";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Prisma Consulting is a London-based marketing consultancy founded by Gianmarco. Our story, our mission, and the values we refuse to compromise on.",
+    "Prisma Consulting is a marketing consultancy founded by Gianmarco Giordaniello. Our story, our mission, and the values we refuse to compromise on.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Us | Prisma Consulting",
     description:
-      "The story, mission and values behind Prisma Consulting — a London-based marketing consultancy for UK and US brands.",
+      "The story, mission and values behind Prisma Consulting — a marketing consultancy for ambitious brands.",
     url: "/about",
   },
 };
@@ -66,7 +67,7 @@ export default function AboutPage() {
           <div className="space-y-6 text-lg leading-relaxed text-bone-dim">
             <Reveal>
               <p>
-                Prisma Consulting was founded in London with a simple
+                Prisma Consulting was founded on a simple
                 observation: the marketing industry had become extraordinarily
                 good at producing activity, and extraordinarily bad at
                 producing outcomes. Dashboards multiplied. Channels multiplied.
@@ -85,7 +86,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p>
-                Today we advise ambitious companies across the UK and the USA —
+                Today we advise ambitious companies of every stripe —
                 from venture-backed challengers to established firms
                 re-finding their edge. We stay deliberately small, take on a
                 limited number of clients at a time, and work directly with
@@ -152,19 +153,48 @@ export default function AboutPage() {
       <section className="border-t border-ink-line py-24 md:py-32">
         <div className="mx-auto grid max-w-shell items-center gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
           <Reveal>
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-2xl border border-ink-line">
-              {/* Placeholder portrait — replace with a real photo of Gianmarco */}
-              <div className="absolute inset-0 bg-gradient-to-br from-prism-violet/30 via-ink-card to-prism-cyan/20" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-display text-8xl font-extrabold text-bone/10">
-                  G
-                </span>
+            <div className="mx-auto w-full max-w-md">
+              <div
+                className="rounded-3xl p-[1.5px]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #7C5CFF, #E14ECA 40%, #FFB347 75%, #4ED9E1)",
+                }}
+              >
+                <div className="overflow-hidden rounded-3xl bg-ink">
+                  <Image
+                    src="/founder/gianmarco_founder_dark.jpg"
+                    alt="Gianmarco Giordaniello, Founder & CEO of Prisma Consulting"
+                    width={800}
+                    height={800}
+                    sizes="(max-width: 1024px) 90vw, 28rem"
+                    className="h-auto w-full"
+                  />
+                </div>
               </div>
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink to-transparent p-6 pt-16">
-                <p className="font-display text-lg font-bold text-bone">
-                  Gianmarco
-                </p>
-                <p className="text-sm text-bone-dim">Founder &amp; Principal</p>
+              <div className="mt-5 flex items-center justify-between px-1">
+                <div>
+                  <p className="font-display text-lg font-bold text-bone">
+                    Gianmarco Giordaniello
+                  </p>
+                  <p className="text-sm text-bone-dim">Founder &amp; CEO</p>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/gianmarco-giordaniello-6563b725a/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Gianmarco Giordaniello on LinkedIn (opens in a new tab)"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:border-prism-violet hover:text-prism-violet"
+                >
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                  </svg>
+                </a>
               </div>
             </div>
           </Reveal>
@@ -181,32 +211,33 @@ export default function AboutPage() {
             <Reveal delay={0.2}>
               <div className="mt-6 space-y-5 leading-relaxed text-bone-dim">
                 <p>
-                  Gianmarco founded Prisma after a decade spent on both sides
-                  of the marketing divide — building brands in-house and
-                  advising them from the outside. He watched too many capable
-                  companies pour money into marketing that looked impressive
-                  and moved nothing, and decided the fix wasn&rsquo;t another
-                  agency. It was a different kind of counsel.
+                  Gianmarco Giordaniello founded Prisma after a decade spent on
+                  both sides of the marketing divide — building brands in-house
+                  and advising them from the outside. He watched too many
+                  capable companies pour money into marketing that looked
+                  impressive and moved nothing, and decided the fix
+                  wasn&rsquo;t another agency. It was a different kind of
+                  counsel.
                 </p>
                 <p>
-                  He works hands-on with every client Prisma takes on, from the
-                  first diagnostic to the board presentation. His approach is
-                  equal parts strategist and editor: find the one true thing a
-                  brand can say better than anyone, then cut everything that
-                  dilutes it.
+                  As CEO, he leads Prisma&rsquo;s team of senior strategists
+                  and stays personally close to every engagement — from the
+                  first diagnostic to the board presentation. Nothing carries
+                  the Prisma name without being shaped, and challenged, at the
+                  top.
                 </p>
                 <p>
-                  When he isn&rsquo;t working, you&rsquo;ll find him reading
-                  old advertising annuals, arguing that most marketing problems
-                  were solved in 1963, and looking for the espresso London
-                  still can&rsquo;t quite get right.
+                  His standard for the work is simple: find the one true thing
+                  a brand can say better than anyone, then cut everything that
+                  dilutes it. If a recommendation can&rsquo;t survive a
+                  board&rsquo;s scrutiny, it doesn&rsquo;t leave the building.
                 </p>
               </div>
             </Reveal>
             <Reveal delay={0.3}>
               <div className="mt-8">
                 <ButtonPrimary href="/contact">
-                  Talk to Gianmarco
+                  Talk to our team
                 </ButtonPrimary>
               </div>
             </Reveal>

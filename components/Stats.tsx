@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 
 const STATS = [
   { value: 47, suffix: "%", label: "Average uplift in qualified pipeline within six months" },
-  { value: 120, suffix: "+", label: "Brands advised across the UK and USA" },
+  { value: 120, suffix: "+", label: "Ambitious brands advised to date" },
   { value: 9.2, suffix: "x", label: "Best-recorded return on marketing investment for a client" },
   { value: 14, suffix: "", label: "Industries served, from fintech to fashion" },
 ] as const;

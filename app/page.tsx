@@ -3,19 +3,19 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Stats from "@/components/Stats";
 import Testimonials from "@/components/Testimonials";
-import LogoMarquee from "@/components/LogoMarquee";
+import PressMarquee from "@/components/PressMarquee";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Prisma Consulting — Marketing that refracts into results",
   description:
-    "A UK-based marketing consultancy for ambitious brands in the UK and USA. Brand strategy, growth marketing, thought leadership, PR and audits — held to commercial numbers.",
+    "A marketing consultancy for ambitious brands. Brand strategy, growth marketing, thought leadership, PR and audits — held to commercial numbers.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Prisma Consulting — Marketing that refracts into results",
     description:
-      "A UK-based marketing consultancy for ambitious brands in the UK and USA.",
+      "A marketing consultancy for ambitious brands. Strategy, story and pipeline — held to commercial numbers.",
     url: "/",
   },
 };
@@ -38,9 +38,7 @@ export default function HomePage() {
         />
         <div className="relative mx-auto flex min-h-screen max-w-shell flex-col justify-center px-6 pb-24 pt-40 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-8">
-              Marketing consultancy · London → UK &amp; USA
-            </p>
+            <p className="eyebrow mb-8">Independent marketing consultancy</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-5xl">
@@ -66,16 +64,16 @@ export default function HomePage() {
         <div className="beam absolute bottom-0 left-0 h-px w-full opacity-60" />
       </section>
 
-      {/* ---------- Social proof ---------- */}
+      {/* ---------- Press features ---------- */}
       <section className="border-b border-ink-line py-16">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-8 text-center">
-              Trusted by ambitious brands on both sides of the Atlantic
-            </p>
+            <h2 className="eyebrow mb-8 text-center">
+              Where our clients have been featured
+            </h2>
           </Reveal>
         </div>
-        <LogoMarquee />
+        <PressMarquee />
       </section>
 
       {/* ---------- Services preview ---------- */}

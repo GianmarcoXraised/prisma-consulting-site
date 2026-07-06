@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     "thought leadership",
     "PR",
     "marketing audit",
-    "UK marketing consultants",
   ],
   openGraph: {
     type: "website",

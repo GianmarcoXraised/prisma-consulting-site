@@ -1,6 +1,6 @@
 # Prisma Consulting
 
-Marketing consultancy website for Prisma Consulting — UK-based, serving clients across the UK and USA.
+Marketing consultancy website for Prisma Consulting.
 
 Built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS** and **Framer Motion**. Blog content is local MDX in `content/news`.
 
@@ -40,4 +40,4 @@ The project uses the standard Next.js build and start commands, and `npm start` 
 
 - **News articles** live in `content/news/*.mdx` with `title`, `excerpt`, `date`, `author`, `category` frontmatter. Drop in a new `.mdx` file and it appears automatically (list page, article page, sitemap).
 - **Services** are defined in `lib/services.tsx`.
-- The founder photo on /about is a styled placeholder — swap it for a real image when available.
+- The founder photo lives at `public/founder/gianmarco_founder_dark.jpg`.

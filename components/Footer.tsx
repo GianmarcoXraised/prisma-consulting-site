@@ -46,8 +46,8 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-bone-dim">
-              A UK-based marketing consultancy for ambitious brands in the UK
-              and USA. Strategy first, vanity metrics never.
+              A marketing consultancy working with ambitious brands worldwide.
+              Strategy first, vanity metrics never.
             </p>
           </div>
           <nav aria-label="Footer navigation">

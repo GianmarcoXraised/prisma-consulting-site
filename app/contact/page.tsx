@@ -7,7 +7,7 @@ import { CALENDLY_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Book a call or send us a message. Prisma Consulting works with ambitious brands across the UK and USA — we reply within one working day.",
+    "Book a call with our team or send us a message. We read every enquiry personally and reply within one working day.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact | Prisma Consulting",
@@ -66,7 +66,7 @@ export default function ContactPage() {
             <div>
               <h2 className="display-lg">Or book a call directly</h2>
               <p className="mt-4 text-bone-dim">
-                Thirty minutes with Gianmarco. No pitch, no obligation — just a
+                Thirty minutes with our team. No pitch, no obligation — just a
                 straight conversation about your growth.
               </p>
               <div className="mt-10">

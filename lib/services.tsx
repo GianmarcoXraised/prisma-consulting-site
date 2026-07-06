@@ -89,7 +89,7 @@ export const SERVICES: Service[] = [
     description:
       "Coverage for its own sake is decoration. We build visibility programmes that put your brand in front of the audiences that shape your revenue — trade press, podcasts, awards, speaking slots and analyst briefings. Earned attention, aimed carefully, sustained over time.",
     deliverables: [
-      "Media strategy and priority outlet map for UK and US markets",
+      "Media strategy and priority outlet map for your key markets",
       "Press office: story development, pitching and journalist relations",
       "Podcast, speaking and awards pipeline for your executives",
       "Crisis communications playbook and media training",
