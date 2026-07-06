@@ -5,7 +5,7 @@ export default function Logo({ className = "" }: { className?: string }) {
     <Link
       href="/"
       className={`group inline-flex items-center gap-2.5 ${className}`}
-      aria-label="Prisma Consulting — home"
+      aria-label="Prisma House — home"
     >
       <svg
         width="28"
@@ -37,7 +37,7 @@ export default function Logo({ className = "" }: { className?: string }) {
         />
       </svg>
       <span className="font-display text-lg font-bold tracking-tight text-bone">
-        Prisma<span className="text-bone-dim font-medium"> Consulting</span>
+        Prisma<span className="text-bone-dim font-medium"> House</span>
       </span>
     </Link>
   );

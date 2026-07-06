@@ -6,12 +6,12 @@ import { ButtonPrimary } from "@/components/Button";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Prisma Consulting is a marketing consultancy founded by Gianmarco Giordaniello. Our story, our mission, and the values we refuse to compromise on.",
+    "Prisma House is a marketing consultancy founded by Gianmarco Giordaniello. Our story, our mission, and the values we refuse to compromise on.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Us | Prisma Consulting",
+    title: "About Us | Prisma House",
     description:
-      "The story, mission and values behind Prisma Consulting — a marketing consultancy for ambitious brands.",
+      "The story, mission and values behind Prisma House — a marketing consultancy for ambitious brands.",
     url: "/about",
   },
 };
@@ -67,7 +67,7 @@ export default function AboutPage() {
           <div className="space-y-6 text-lg leading-relaxed text-bone-dim">
             <Reveal>
               <p>
-                Prisma Consulting was founded on a simple
+                Prisma House was founded on a simple
                 observation: the marketing industry had become extraordinarily
                 good at producing activity, and extraordinarily bad at
                 producing outcomes. Dashboards multiplied. Channels multiplied.
@@ -153,49 +153,56 @@ export default function AboutPage() {
       <section className="border-t border-ink-line py-24 md:py-32">
         <div className="mx-auto grid max-w-shell items-center gap-14 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
           <Reveal>
-            <div className="mx-auto w-full max-w-md">
+            <div className="flex flex-col items-center text-center">
               <div
-                className="rounded-3xl p-[1.5px]"
+                className="rounded-full p-[2px]"
                 style={{
                   background:
                     "linear-gradient(135deg, #7C5CFF, #E14ECA 40%, #FFB347 75%, #4ED9E1)",
                 }}
               >
-                <div className="overflow-hidden rounded-3xl bg-ink">
+                <div className="overflow-hidden rounded-full border-4 border-ink bg-ink">
                   <Image
                     src="/founder/gianmarco_founder_dark.jpg"
-                    alt="Gianmarco Giordaniello, Founder & CEO of Prisma Consulting"
-                    width={800}
-                    height={800}
-                    sizes="(max-width: 1024px) 90vw, 28rem"
-                    className="h-auto w-full"
+                    alt="Gianmarco Giordaniello, Founder & CEO of Prisma House"
+                    width={640}
+                    height={640}
+                    sizes="(min-width: 768px) 300px, 280px"
+                    className="h-[280px] w-[280px] rounded-full object-cover md:h-[300px] md:w-[300px]"
                   />
                 </div>
               </div>
-              <div className="mt-5 flex items-center justify-between px-1">
-                <div>
-                  <p className="font-display text-lg font-bold text-bone">
-                    Gianmarco Giordaniello
-                  </p>
-                  <p className="text-sm text-bone-dim">Founder &amp; CEO</p>
-                </div>
-                <a
-                  href="https://www.linkedin.com/in/gianmarco-giordaniello-6563b725a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Gianmarco Giordaniello on LinkedIn (opens in a new tab)"
-                  className="flex h-11 w-11 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:border-prism-violet hover:text-prism-violet"
+              <p className="mt-7 font-display text-xl font-bold text-bone">
+                Gianmarco Giordaniello
+              </p>
+              <p className="mt-1 text-sm text-bone-dim">Founder &amp; CEO</p>
+              <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-prism-amber/30 bg-prism-amber/5 px-4 py-1.5 text-xs font-semibold tracking-wide text-prism-amber/90">
+                <svg
+                  className="h-3.5 w-3.5"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden="true"
                 >
-                  <svg
-                    className="h-5 w-5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
-                  </svg>
-                </a>
-              </div>
+                  <path d="M8 1l2.06 4.17L14.66 5.84l-3.33 3.24.79 4.58L8 11.5l-4.12 2.16.79-4.58L1.34 5.84l4.6-.67L8 1z" />
+                </svg>
+                Official Member, Forbes Business Council 2026
+              </p>
+              <a
+                href="https://www.linkedin.com/in/gianmarco-giordaniello-6563b725a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Gianmarco Giordaniello on LinkedIn (opens in a new tab)"
+                className="mt-5 flex h-11 w-11 items-center justify-center rounded-full border border-ink-line text-bone-dim transition-all duration-300 hover:border-prism-violet hover:text-prism-violet"
+              >
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+                </svg>
+              </a>
             </div>
           </Reveal>
           <div>

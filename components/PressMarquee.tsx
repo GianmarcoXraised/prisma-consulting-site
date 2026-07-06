@@ -11,24 +11,26 @@ const SERIF = 'Georgia, "Times New Roman", serif';
 
 /**
  * Wordmark-style text logos — no image assets. Each entry approximates the
- * publication's masthead with type alone (case, weight, tracking, serif/sans).
+ * publication's masthead with type alone (case, weight, tracking, serif/sans),
+ * kept to a uniform size band so the marquee reads evenly.
  */
 const PRESS: PressBrand[] = [
   {
     name: "Forbes",
     display: "Forbes",
-    className: "text-[1.6rem] font-bold",
+    className: "text-2xl font-bold",
     style: { fontFamily: SERIF },
   },
   {
     name: "Business Insider",
     display: "BUSINESS INSIDER",
-    className: "text-lg font-extrabold tracking-tight",
+    className: "text-lg font-extrabold tracking-tighter",
+    style: { transform: "scaleX(0.92)" },
   },
   {
     name: "Yahoo Finance",
-    display: "yahoo!finance",
-    className: "text-xl font-extrabold tracking-tight",
+    display: "Yahoo Finance",
+    className: "text-xl font-extrabold",
   },
   {
     name: "MarketWatch",
@@ -43,7 +45,7 @@ const PRESS: PressBrand[] = [
   {
     name: "NBC",
     display: "NBC",
-    className: "text-xl font-semibold tracking-[0.3em]",
+    className: "text-xl font-semibold tracking-[0.28em]",
   },
   {
     name: "Fox News",
@@ -53,7 +55,7 @@ const PRESS: PressBrand[] = [
   {
     name: "Nikkei",
     display: "NIKKEI",
-    className: "text-xl font-bold tracking-[0.18em]",
+    className: "text-xl font-bold tracking-[0.14em]",
     style: { fontFamily: SERIF },
   },
   {
@@ -63,8 +65,8 @@ const PRESS: PressBrand[] = [
   },
   {
     name: "Street Insider",
-    display: "StreetInsider",
-    className: "text-lg font-semibold italic",
+    display: "Street Insider",
+    className: "text-xl font-semibold",
   },
   {
     name: "Bloomberg",
@@ -74,7 +76,7 @@ const PRESS: PressBrand[] = [
   {
     name: "Reuters",
     display: "REUTERS",
-    className: "text-lg font-medium tracking-[0.25em]",
+    className: "text-lg font-medium tracking-[0.22em]",
   },
   {
     name: "USA Today",
@@ -86,14 +88,14 @@ const PRESS: PressBrand[] = [
 function Row({ hidden }: { hidden?: boolean }) {
   return (
     <div
-      className="flex shrink-0 items-center gap-20 pr-20"
+      className="flex shrink-0 items-center gap-16 pr-16 md:gap-20 md:pr-20"
       aria-hidden={hidden}
     >
       {PRESS.map((brand) => (
         <span
           key={brand.name}
           title={brand.name}
-          className={`whitespace-nowrap text-bone-faint opacity-70 grayscale transition-all duration-300 hover:text-bone hover:opacity-100 ${brand.className ?? ""}`}
+          className={`inline-block whitespace-nowrap leading-none text-bone-dim opacity-60 grayscale transition-all duration-300 hover:text-bone hover:opacity-100 ${brand.className ?? ""}`}
           style={brand.style}
         >
           {brand.display}

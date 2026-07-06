@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Brand strategy, growth marketing, content and thought leadership, PR and visibility, and marketing audits — five disciplines, one direction, all held to commercial numbers.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services | Prisma Consulting",
+    title: "Services | Prisma House",
     description:
       "Five marketing consulting disciplines, one direction — brand strategy, growth, content, PR and audits.",
     url: "/services",

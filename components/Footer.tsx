@@ -70,13 +70,17 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-bone-dim">
               <li>
                 <a
-                  href="mailto:hello@prismaconsulting.co.uk"
+                  href="mailto:info@prisma-house.com"
                   className="transition-colors hover:text-bone"
                 >
-                  hello@prismaconsulting.co.uk
+                  info@prisma-house.com
                 </a>
               </li>
-              <li>London, United Kingdom</li>
+              <li>
+                950 Great West Rd, Suite 2, Floor 1,
+                <br />
+                Profile West, TW8 9ES Brentford, UK
+              </li>
             </ul>
           </div>
         </div>
@@ -85,7 +89,7 @@ export default function Footer() {
       <div className="border-t border-ink-line">
         <div className="mx-auto flex max-w-shell flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-bone-faint md:flex-row lg:px-10">
           <p>
-            &copy; {new Date().getFullYear()} Prisma Consulting Ltd. All rights
+            &copy; {new Date().getFullYear()} Prisma House. All rights
             reserved.
           </p>
           <p>Registered in England &amp; Wales.</p>

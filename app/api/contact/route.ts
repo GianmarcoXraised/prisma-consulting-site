@@ -74,7 +74,7 @@ export async function POST(request: Request) {
 
   try {
     await transporter.sendMail({
-      from: `"Prisma Consulting Website" <${SMTP_USER}>`,
+      from: `"Prisma House Website" <${SMTP_USER}>`,
       to: CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,

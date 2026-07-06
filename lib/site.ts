@@ -1,12 +1,13 @@
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://prismaconsulting.co.uk";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://prisma-house.com";
 
-export const SITE_NAME = "Prisma Consulting";
+export const SITE_NAME = "Prisma House";
 
 export const SITE_DESCRIPTION =
-  "Prisma Consulting is a marketing consultancy helping ambitious brands turn strategy into measurable growth.";
+  "Prisma House is a marketing consultancy helping ambitious brands turn strategy into measurable growth.";
 
 export const NAV_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
   { href: "/news", label: "News" },

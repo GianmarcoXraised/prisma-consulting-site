@@ -190,7 +190,7 @@ export default function ContactForm() {
         >
           {errorMsg}{" "}
           <span className="text-bone-dim">
-            You can also email us directly at hello@prismaconsulting.co.uk.
+            You can also email us directly at info@prisma-house.com.
           </span>
         </div>
       )}

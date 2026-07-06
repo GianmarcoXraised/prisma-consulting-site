@@ -2,18 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import Stats from "@/components/Stats";
-import Testimonials from "@/components/Testimonials";
 import PressMarquee from "@/components/PressMarquee";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Prisma Consulting — Marketing that refracts into results",
+  title: "Prisma House — Marketing that refracts into results",
   description:
     "A marketing consultancy for ambitious brands. Brand strategy, growth marketing, thought leadership, PR and audits — held to commercial numbers.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Prisma Consulting — Marketing that refracts into results",
+    title: "Prisma House — Marketing that refracts into results",
     description:
       "A marketing consultancy for ambitious brands. Strategy, story and pipeline — held to commercial numbers.",
     url: "/",
@@ -68,9 +67,7 @@ export default function HomePage() {
       <section className="border-b border-ink-line py-16">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
-            <h2 className="eyebrow mb-8 text-center">
-              Where our clients have been featured
-            </h2>
+            <h2 className="eyebrow mb-8 text-center">We secure coverage in</h2>
           </Reveal>
         </div>
         <PressMarquee />
@@ -175,18 +172,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- Testimonials ---------- */}
+      {/* ---------- What to expect ---------- */}
       <section className="py-28 md:py-36">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-4">In their words</p>
+            <p className="eyebrow mb-4">What to expect</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="display-xl mb-16 max-w-3xl">
-              The work speaks. <span className="text-prism">So do they.</span>
+              Your first 90 days,{" "}
+              <span className="text-prism">mapped out.</span>
             </h2>
           </Reveal>
-          <Testimonials />
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                phase: "First 30 days",
+                title: "Diagnosis",
+                copy: "We take your marketing apart — strategy, spend, channels, message — and find where growth actually comes from. You get an honest picture of what's working, what isn't, and why, presented to your leadership team.",
+              },
+              {
+                phase: "Days 30–60",
+                title: "Focus & plan",
+                copy: "Together we choose the few moves that change your trajectory, and cut the rest. Out comes a prioritised roadmap with owners, budgets and targets — sharp enough to defend in front of any board.",
+              },
+              {
+                phase: "Days 60–90",
+                title: "Execution & compounding",
+                copy: "The plan goes live. We work alongside your team to ship the first campaigns, set the measurement rhythm, and build the systems that keep getting stronger long after we've gone.",
+              },
+            ].map((step, i) => (
+              <Reveal key={step.phase} delay={i * 0.12}>
+                <div className="group relative flex h-full flex-col rounded-2xl border border-ink-line bg-ink-card p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-prism-violet/50">
+                  <span
+                    className="beam absolute inset-x-8 top-0 h-px scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                    aria-hidden="true"
+                  />
+                  <p className="eyebrow !text-prism-violet">{step.phase}</p>
+                  <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-bone">
+                    {step.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-bone-dim">
+                    {step.copy}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

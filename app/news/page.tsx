@@ -6,12 +6,12 @@ import { getAllArticles, formatDate } from "@/lib/news";
 export const metadata: Metadata = {
   title: "News & Insights",
   description:
-    "Essays and analysis on marketing, branding and growth from the Prisma Consulting team — written for leaders who make the decisions, not just the slides.",
+    "Essays and analysis on marketing, branding and growth from the Prisma House team — written for leaders who make the decisions, not just the slides.",
   alternates: { canonical: "/news" },
   openGraph: {
-    title: "News & Insights | Prisma Consulting",
+    title: "News & Insights | Prisma House",
     description:
-      "Essays and analysis on marketing, branding and growth from the Prisma Consulting team.",
+      "Essays and analysis on marketing, branding and growth from the Prisma House team.",
     url: "/news",
   },
 };

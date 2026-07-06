@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Book a call with our team or send us a message. We read every enquiry personally and reply within one working day.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact | Prisma Consulting",
+    title: "Contact | Prisma House",
     description:
       "Book a call or send us a message. We reply within one working day.",
     url: "/contact",

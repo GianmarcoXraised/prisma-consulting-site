@@ -34,7 +34,7 @@ export function getAllArticles(): Article[] {
       title: data.title as string,
       excerpt: data.excerpt as string,
       date: data.date as string,
-      author: (data.author as string) ?? "Prisma Consulting",
+      author: (data.author as string) ?? "Prisma House",
       category: (data.category as string) ?? "Insights",
       readingTime: estimateReadingTime(content),
       content,

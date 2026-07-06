@@ -47,7 +47,7 @@ export default function ArticlePage({ params }: Props) {
     description: article.excerpt,
     datePublished: article.date,
     author: { "@type": "Person", name: article.author },
-    publisher: { "@type": "Organization", name: "Prisma Consulting" },
+    publisher: { "@type": "Organization", name: "Prisma House" },
     mainEntityOfPage: `${SITE_URL}/news/${article.slug}`,
   };
 
