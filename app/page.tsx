@@ -10,12 +10,12 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Prisma House — Marketing that refracts into results",
   description:
-    "A marketing consultancy for ambitious brands. Brand strategy, growth marketing, thought leadership, PR and audits — held to commercial numbers.",
+    "A marketing consultancy that also builds. Brand strategy, growth, content and PR — plus the websites and custom systems that run them. Held to commercial numbers.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Prisma House — Marketing that refracts into results",
     description:
-      "A marketing consultancy for ambitious brands. Strategy, story and pipeline — held to commercial numbers.",
+      "A marketing consultancy that also builds: strategy, story and pipeline, plus the websites and systems that run them.",
     url: "/",
   },
 };
@@ -37,6 +37,20 @@ const organizationLd = {
     addressCountry: "GB",
   },
   sameAs: ["https://www.linkedin.com/in/gianmarco-giordaniello-6563b725a/"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Prisma House services",
+    itemListElement: SERVICES.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        description: service.tagline,
+        url: `${SITE_URL}/services#${service.slug}`,
+        provider: { "@type": "Organization", name: SITE_NAME },
+      },
+    })),
+  },
 };
 
 const websiteLd = {
@@ -118,9 +132,16 @@ export default function HomePage() {
               </Reveal>
               <Reveal delay={0.1}>
                 <h2 className="display-xl max-w-2xl">
-                  Five disciplines.{" "}
+                  Seven disciplines.{" "}
                   <span className="text-prism">One direction.</span>
                 </h2>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="mt-5 max-w-xl text-bone-dim">
+                  Two connected halves of one consultancy: the strategy that
+                  decides where growth comes from, and the digital
+                  infrastructure — websites and systems — that runs it.
+                </p>
               </Reveal>
             </div>
             <Reveal delay={0.2}>
@@ -128,12 +149,12 @@ export default function HomePage() {
             </Reveal>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink-line bg-ink-line md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((service, i) => (
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink-line bg-ink-line md:grid-cols-2 lg:grid-cols-4">
+            {SERVICES.map((service) => (
               <Link
                 key={service.slug}
                 href={`/services#${service.slug}`}
-                className="group relative bg-ink p-9 transition-colors duration-300 hover:bg-ink-card"
+                className="group relative bg-ink p-8 transition-colors duration-300 hover:bg-ink-card lg:p-7"
               >
                 <div className="text-bone-dim transition-colors duration-300 group-hover:text-prism-violet">
                   {service.icon}
@@ -164,8 +185,8 @@ export default function HomePage() {
                 <span className="beam absolute inset-x-0 top-0 h-0.5 scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
               </Link>
             ))}
-            {/* Filler CTA cell to complete the grid */}
-            <div className="relative flex flex-col justify-center bg-ink p-9">
+            {/* Filler CTA cell completes the 4×2 grid */}
+            <div className="relative flex flex-col justify-center bg-ink p-8 lg:p-7">
               <p className="font-display text-xl font-bold tracking-tight text-bone">
                 Not sure where to start?
               </p>

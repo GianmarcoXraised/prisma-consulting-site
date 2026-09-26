@@ -88,7 +88,10 @@ export default function AboutPage() {
               <p>
                 Today we advise ambitious companies of every stripe —
                 from venture-backed challengers to established firms
-                re-finding their edge. We stay deliberately small, take on a
+                re-finding their edge. And because advice that never ships is
+                just opinion, we also build what we recommend: the websites,
+                CRMs and internal systems that turn a strategy into a running
+                business. We stay deliberately small, take on a
                 limited number of clients at a time, and work directly with
                 founders and leadership teams. No account-manager relay race,
                 no juniors learning on your budget.

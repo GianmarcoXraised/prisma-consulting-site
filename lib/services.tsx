@@ -1,12 +1,36 @@
 import type { ReactNode } from "react";
 
+export type ServiceGroup = "consult" | "build";
+
+export type ServiceQuestion = { q: string; a: string };
+
 export type Service = {
   slug: string;
+  group: ServiceGroup;
   title: string;
   tagline: string;
   description: string;
   deliverables: string[];
+  questions?: ServiceQuestion[];
   icon: ReactNode;
+};
+
+export const SERVICE_GROUPS: Record<
+  ServiceGroup,
+  { eyebrow: string; title: string; blurb: string }
+> = {
+  consult: {
+    eyebrow: "Consult",
+    title: "Strategy & growth",
+    blurb:
+      "The thinking. Where your growth actually comes from, what to say, and where the money should go.",
+  },
+  build: {
+    eyebrow: "Build",
+    title: "Digital infrastructure",
+    blurb:
+      "The shipping. The websites and systems that run the strategy — designed, built and looked after by the same team that set the direction.",
+  },
 };
 
 const iconProps = {
@@ -23,6 +47,7 @@ const iconProps = {
 export const SERVICES: Service[] = [
   {
     slug: "brand-strategy",
+    group: "consult",
     title: "Brand Strategy & Positioning",
     tagline: "Own a position your competitors can't copy.",
     description:
@@ -44,6 +69,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "growth-marketing",
+    group: "consult",
     title: "Growth Marketing",
     tagline: "Full-funnel programmes engineered for pipeline, not applause.",
     description:
@@ -64,6 +90,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "content-thought-leadership",
+    group: "consult",
     title: "Content & Thought Leadership",
     tagline: "Turn your expertise into the reason clients choose you.",
     description:
@@ -84,6 +111,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "pr-visibility",
+    group: "consult",
     title: "PR & Visibility",
     tagline: "Be seen in the rooms where your buyers make decisions.",
     description:
@@ -103,6 +131,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "marketing-audits",
+    group: "consult",
     title: "Marketing Audits & Advisory",
     tagline: "An honest, board-ready answer to 'is our marketing working?'",
     description:
@@ -119,6 +148,82 @@ export const SERVICES: Service[] = [
         <circle cx="11" cy="11" r="7" />
         <path d="M21 21l-4.35-4.35" />
         <path d="M8 11h6M11 8v6" />
+      </svg>
+    ),
+  },
+  {
+    slug: "web-design-development",
+    group: "build",
+    title: "Web Design & Development",
+    tagline:
+      "Your website is your hardest-working salesperson. Most companies treat it as a brochure.",
+    description:
+      "A website should do the job of your best salesperson: qualify, persuade and convert while you sleep. We design and build premium websites from scratch, and redesign sites that look dated or quietly underperform — always starting from the strategy, never from a template. The result is fast, distinctive, built to rank, and built to be looked after.",
+    deliverables: [
+      "Strategy-led design rooted in your positioning and buyer journey",
+      "Fast, modern build on a stack your team can actually manage",
+      "SEO- and AEO-ready structure, metadata and performance from day one",
+      "Content migration, launch and analytics set up properly",
+      "Hosting and ongoing care plans, so the site keeps improving after launch",
+    ],
+    questions: [
+      {
+        q: "How do I know if my website needs a redesign?",
+        a: "If it looks dated next to competitors, loads slowly on mobile, or brings in enquiries that don't match the clients you want, it is already costing you more than a redesign would. The clearest signal is a site your own team is reluctant to send people to.",
+      },
+      {
+        q: "Do you redesign existing websites or only build new ones?",
+        a: "Both. Where the platform is sound we redesign on top of it; where it is slow, insecure or impossible to extend, we rebuild from scratch. We tell you which honestly before any design work starts.",
+      },
+      {
+        q: "How long does a website project take?",
+        a: "A focused redesign typically takes six to ten weeks; a full strategy-led build for a larger company, three to five months. Content and decision speed on your side move the timeline more than anything we do.",
+      },
+    ],
+    icon: (
+      <svg {...iconProps}>
+        <rect x="3" y="4" width="18" height="16" rx="2" />
+        <path d="M3 9h18" />
+        <path d="M7 6.5h.01M10 6.5h.01" />
+        <path d="M7 13h5M7 16h9" />
+      </svg>
+    ),
+  },
+  {
+    slug: "custom-systems-crm",
+    group: "build",
+    title: "Custom Systems & CRM",
+    tagline:
+      "Software built around how your business actually works — not the other way round.",
+    description:
+      "Growing companies run on spreadsheets, workarounds and off-the-shelf software they've bent out of shape. We build bespoke internal tools, CRMs, client portals and management systems shaped around your real processes: clients, jobs, quotes, approvals and reporting in one place. Less admin, cleaner data, and a system that grows with you instead of charging you per seat to stand still.",
+    deliverables: [
+      "Process mapping: how work actually flows today, and how it should",
+      "Custom build of CRMs, client portals, dashboards and management systems",
+      "Integration with the tools you keep — email, accounting, calendars, marketing",
+      "Team onboarding and documentation, so the system is used, not ignored",
+      "Ongoing evolution as your business changes, on a plan you control",
+    ],
+    questions: [
+      {
+        q: "When should a business build a custom CRM instead of using HubSpot or Salesforce?",
+        a: "When your process is genuinely unusual, when per-seat licences are outgrowing the value, or when the team lives in spreadsheets around the tool rather than in it. If a standard CRM fits your sales motion, use it — we will say so.",
+      },
+      {
+        q: "What is a bespoke business management system?",
+        a: "Custom software that runs your operation the way you run it — clients, projects, quotes, approvals and reporting in one place — instead of a patchwork of disconnected tools. In Italy it would be called a gestionale; the idea is the same anywhere.",
+      },
+      {
+        q: "Who owns the system once it is built?",
+        a: "You do. Code, data and hosting sit under your control, with documentation and a care plan so it keeps evolving whether or not we are still involved.",
+      },
+    ],
+    icon: (
+      <svg {...iconProps}>
+        <rect x="3" y="3" width="7" height="7" rx="1.5" />
+        <rect x="14" y="3" width="7" height="7" rx="1.5" />
+        <rect x="3" y="14" width="7" height="7" rx="1.5" />
+        <path d="M17.5 14v7M14 17.5h7" />
       </svg>
     ),
   },
