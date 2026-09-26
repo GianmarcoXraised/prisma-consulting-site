@@ -37,7 +37,7 @@ export default function NewsPage() {
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
-              What we&rsquo;re seeing across the brands we advise — written for
+              What we&rsquo;re seeing across the market — written for
               the people who make the decisions, not just the slides.
             </p>
           </Reveal>

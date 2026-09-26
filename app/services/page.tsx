@@ -187,7 +187,7 @@ export default function ServicesPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-4 max-w-lg text-bone-dim">
-                Plenty of our best work started as &ldquo;we&rsquo;re not sure
+                The best briefs often start as &ldquo;we&rsquo;re not sure
                 this is a marketing problem&rdquo;. Tell us what&rsquo;s keeping
                 growth flat — we&rsquo;ll tell you honestly whether we can help,
                 and whether the answer is a strategy, a website, a system, or

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import Stats from "@/components/Stats";
+import Commitments from "@/components/Commitments";
 import PressMarquee from "@/components/PressMarquee";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
@@ -214,7 +214,7 @@ export default function HomePage() {
         />
         <div className="relative mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-4">Proof, not promises</p>
+            <p className="eyebrow mb-4">How we keep score</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="display-xl mb-16 max-w-3xl">
@@ -223,7 +223,7 @@ export default function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <Stats />
+            <Commitments />
           </Reveal>
         </div>
       </section>

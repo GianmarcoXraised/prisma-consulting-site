@@ -86,7 +86,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p>
-                Today we advise ambitious companies of every stripe —
+                We are built for ambitious companies of every stripe —
                 from venture-backed challengers to established firms
                 re-finding their edge. And because advice that never ships is
                 just opinion, we also build what we recommend: the websites,
@@ -221,9 +221,9 @@ export default function AboutPage() {
             <Reveal delay={0.2}>
               <div className="mt-6 space-y-5 leading-relaxed text-bone-dim">
                 <p>
-                  Gianmarco Giordaniello founded Prisma after a decade spent on
-                  both sides of the marketing divide — building brands in-house
-                  and advising them from the outside. He watched too many
+                  Gianmarco Giordaniello founded Prisma having worked on both
+                  sides of the marketing divide — building brands in-house and
+                  advising them from the outside. He watched too many
                   capable companies pour money into marketing that looked
                   impressive and moved nothing, and decided the fix
                   wasn&rsquo;t another agency. It was a different kind of
