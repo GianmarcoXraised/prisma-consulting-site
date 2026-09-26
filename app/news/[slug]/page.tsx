@@ -199,7 +199,7 @@ export default function ArticlePage({ params }: Props) {
             <div>
               <p className="font-display text-xl font-bold text-bone">
                 {service
-                  ? `Want this handled properly? See our ${service.title.toLowerCase()} service.`
+                  ? `Want this handled properly? See our ${service.title} service.`
                   : "Prefer to talk it through?"}
               </p>
               <p className="mt-2 text-sm text-bone-dim">

@@ -110,22 +110,39 @@ export const SERVICES: Service[] = [
     ),
   },
   {
-    slug: "pr-visibility",
+    slug: "media-pitching",
     group: "consult",
-    title: "PR & Visibility",
-    tagline: "Be seen in the rooms where your buyers make decisions.",
+    title: "TV, Radio, Press & Podcast Pitching",
+    tagline:
+      "Be the expert voice buyers hear and read — not another ad they scroll past.",
     description:
-      "Coverage for its own sake is decoration. We build visibility programmes that put your brand in front of the audiences that shape your revenue — trade press, podcasts, awards, speaking slots and analyst briefings. Earned attention, aimed carefully, sustained over time.",
+      "Editorial coverage is earned, not bought. We pitch you as an expert guest and source to the TV programmes, radio shows, newspapers, magazines and podcasts your buyers already trust — then prepare you to make the most of every interview. No paid placements, no advertorials: just the right story, put in front of the right producer or journalist, and a client who is ready when they say yes.",
     deliverables: [
-      "Media strategy and priority outlet map for your key markets",
-      "Press office: story development, pitching and journalist relations",
-      "Podcast, speaking and awards pipeline for your executives",
-      "Crisis communications playbook and media training",
-      "Quarterly share-of-voice reporting against named competitors",
+      "Story angle development: the opinions, data and timely hooks that make you worth booking",
+      "Media and producer research: the programmes, titles and shows your buyers actually follow",
+      "Targeted pitching to journalists, editors and producers — one relevant contact at a time",
+      "Interview and on-air preparation, from key messages to camera and microphone practice",
+      "Coverage tracking and follow-up, so every appearance is captured and reused",
+    ],
+    questions: [
+      {
+        q: "Can you guarantee coverage in a specific outlet?",
+        a: "No — and be wary of anyone who says they can. Editorial coverage is decided by journalists and producers on merit and timing. What we control is the quality of the story, the relevance of the pitch and how well prepared you are when an opportunity comes.",
+      },
+      {
+        q: "What is the difference between editorial pitching and paid media?",
+        a: "Paid media — advertising, sponsored content, advertorials — buys the space and is labelled as such. Editorial pitching earns a place as a guest or source because a producer or journalist judges you worth their audience's time. The second carries a trust the first never can.",
+      },
+      {
+        q: "What makes someone worth booking as an expert guest?",
+        a: "A clear point of view on something the audience cares about right now, evidence to back it, and the ability to say it plainly in under a minute. Job titles matter less than having something genuinely useful to say.",
+      },
     ],
     icon: (
       <svg {...iconProps}>
-        <path d="M3 11l18-7-7 18-2.5-7.5L3 11z" />
+        <rect x="9" y="3" width="6" height="11" rx="3" />
+        <path d="M5 11a7 7 0 0014 0" />
+        <path d="M12 18v3M8 21h8" />
       </svg>
     ),
   },

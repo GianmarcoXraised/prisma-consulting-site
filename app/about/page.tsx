@@ -81,7 +81,7 @@ export default function AboutPage() {
                 it&rsquo;s made of. That&rsquo;s our job. Every brand we work
                 with already has something true and valuable at its core. Our
                 work is to refract that single beam of ambition into its full
-                spectrum: positioning, story, content, visibility, demand.
+                spectrum: positioning, story, content, media presence, demand.
               </p>
             </Reveal>
             <Reveal delay={0.1}>

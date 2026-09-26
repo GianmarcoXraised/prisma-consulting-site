@@ -10,7 +10,7 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Prisma House — Marketing that refracts into results",
   description:
-    "A marketing consultancy that also builds. Brand strategy, growth, content and PR — plus the websites and custom systems that run them. Held to commercial numbers.",
+    "A marketing consultancy that also builds. Brand strategy, growth, content and editorial media pitching — plus the websites and custom systems that run them.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Prisma House — Marketing that refracts into results",
@@ -116,7 +116,7 @@ export default function HomePage() {
       <section className="border-b border-ink-line py-16">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
-            <h2 className="eyebrow mb-8 text-center">We secure coverage in</h2>
+            <h2 className="eyebrow mb-8 text-center">Outlets we pitch to</h2>
           </Reveal>
         </div>
         <PressMarquee />

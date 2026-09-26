@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/services";
+import LegacyAnchorRedirect from "@/components/LegacyAnchorRedirect";
 
 export const metadata: Metadata = {
-  title: "Marketing Consultancy, Web Design & CRM Services",
+  title: "Marketing Consultancy, Media Pitching, Web & CRM Services",
   description:
-    "Marketing consultancy services plus the build side: website design and redesign, custom CRM development and bespoke business management systems, UK-based.",
+    "UK marketing consultancy: brand strategy, growth, TV, radio, press and podcast pitching for expert guests, website redesign and custom CRM development.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Marketing Consultancy, Web Design & CRM Services | Prisma House",
+    title: "Marketing Consultancy, Media Pitching, Web & CRM Services | Prisma House",
     description:
-      "Brand strategy, growth, content, PR and audits — plus the websites and custom systems that run them. Seven disciplines, one direction.",
+      "Brand strategy, growth, content, editorial media pitching and audits — plus the websites and custom systems that run them. Seven disciplines, one direction.",
     url: "/services",
   },
 };
@@ -35,6 +36,7 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
+      <LegacyAnchorRedirect />
 
       {/* ---------- Header ---------- */}
       <section className="relative overflow-hidden">
@@ -56,7 +58,7 @@ export default function ServicesPage() {
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
               Prisma House is one consultancy with two connected halves. The
               first works out where your growth comes from — brand, demand,
-              content, visibility, the honest audit. The second builds the
+              content, media pitching, the honest audit. The second builds the
               digital infrastructure that runs it: the website that sells and
               the systems that keep the business moving. Every service is
               scoped around the commercial result it must produce, and the
