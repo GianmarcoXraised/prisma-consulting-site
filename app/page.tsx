@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import Commitments from "@/components/Commitments";
 import PressMarquee from "@/components/PressMarquee";
@@ -8,6 +7,7 @@ import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/services";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 import { getPublishedWork, resolveImage } from "@/lib/work";
+import WorkRows from "@/components/WorkRows";
 
 export const metadata: Metadata = {
   title: "Prisma House — We shape the strategy. Then we build it.",
@@ -293,46 +293,20 @@ export default function HomePage() {
               <ButtonGhost href="/work">All work + portfolio PDF</ButtonGhost>
             </Reveal>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {featured.map((p, i) => {
-              const img = resolveImage(p.heroImage, "desktop");
-              return (
-                <Reveal key={p.slug} delay={i * 0.1}>
-                  <Link
-                    href={`/work/${p.slug}`}
-                    className="group block h-full overflow-hidden rounded-2xl border border-ink-line bg-ink-card transition-all duration-300 hover:-translate-y-1.5 hover:border-prism-violet/50"
-                  >
-                    <div className="relative aspect-[16/10] overflow-hidden border-b border-ink-line bg-ink">
-                      {img ? (
-                        <Image
-                          src={img.src}
-                          alt=""
-                          width={img.width}
-                          height={img.height}
-                          sizes="(min-width: 768px) 26rem, 100vw"
-                          className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
-                        />
-                      ) : (
-                        <div className="h-full w-full bg-gradient-to-br from-prism-violet/20 via-ink-card to-prism-cyan/10" />
-                      )}
-                    </div>
-                    <div className="p-7">
-                      <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
-                        {p.clientLabel} · {p.category}
-                      </p>
-                      <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-bone transition-colors duration-300 group-hover:text-prism-violet">
-                        {p.name}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-bone-dim">
-                        {p.tagline}
-                      </p>
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
         </div>
+        <WorkRows
+          items={featured.map((p) => ({
+            slug: p.slug,
+            name: p.name,
+            clientLabel: p.clientLabel,
+            category: p.category,
+            tagline: p.tagline,
+            components: p.components,
+            statusNote: p.liveUrl ? undefined : p.statusNote,
+            hero: resolveImage(p.heroImage),
+            heroAlt: p.heroAlt ?? `${p.name} screenshot`,
+          }))}
+        />
       </section>
 
       {/* ---------- 4. How we work ---------- */}

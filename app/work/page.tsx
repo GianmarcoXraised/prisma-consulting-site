@@ -26,7 +26,7 @@ export default function WorkPage() {
     category: p.category,
     tagline: p.tagline,
     statusNote: p.liveUrl ? undefined : p.statusNote,
-    image: resolveImage(p.heroImage, "desktop"),
+    image: resolveImage(p.heroImage),
   }));
 
   const listLd = {

@@ -1,373 +1,212 @@
 [
   {
     "project": "bookspert",
-    "file": "bookspert/compare-desktop.webp",
-    "width": 1600,
-    "height": 3376,
-    "kb": 163
+    "file": "bookspert/book.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 67
   },
   {
     "project": "bookspert",
-    "file": "bookspert/compare-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 92
+    "file": "bookspert/books.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 216
   },
   {
     "project": "bookspert",
-    "file": "bookspert/contact-desktop.webp",
-    "width": 1600,
-    "height": 1748,
-    "kb": 80
+    "file": "bookspert/hero-what-we-do.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 88
   },
   {
     "project": "bookspert",
-    "file": "bookspert/contact-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 76
+    "file": "bookspert/how-it-works.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 124
   },
   {
     "project": "bookspert",
-    "file": "bookspert/faq-desktop.webp",
-    "width": 1600,
-    "height": 2346,
-    "kb": 71
-  },
-  {
-    "project": "bookspert",
-    "file": "bookspert/faq-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 54
-  },
-  {
-    "project": "bookspert",
-    "file": "bookspert/how-it-works-desktop.webp",
-    "width": 1600,
-    "height": 4200,
-    "kb": 131
-  },
-  {
-    "project": "bookspert",
-    "file": "bookspert/how-it-works-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 70
-  },
-  {
-    "project": "bookspert",
-    "file": "bookspert/services-desktop.webp",
-    "width": 1600,
-    "height": 3616,
-    "kb": 143
-  },
-  {
-    "project": "bookspert",
-    "file": "bookspert/services-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 75
-  },
-  {
-    "project": "crm",
-    "file": "crm/cold-desktop.webp",
-    "width": 1600,
-    "height": 1000,
-    "kb": 42
-  },
-  {
-    "project": "crm",
-    "file": "crm/cold-mobile.webp",
-    "width": 780,
-    "height": 1688,
-    "kb": 43
-  },
-  {
-    "project": "crm",
-    "file": "crm/contacts-desktop.webp",
-    "width": 1600,
-    "height": 1000,
-    "kb": 64
-  },
-  {
-    "project": "crm",
-    "file": "crm/contacts-mobile.webp",
-    "width": 780,
-    "height": 1688,
-    "kb": 70
-  },
-  {
-    "project": "crm",
-    "file": "crm/deals-desktop.webp",
-    "width": 1600,
-    "height": 1000,
-    "kb": 42
-  },
-  {
-    "project": "crm",
-    "file": "crm/deals-mobile.webp",
-    "width": 780,
-    "height": 1688,
-    "kb": 33
-  },
-  {
-    "project": "crm",
-    "file": "crm/inbox-desktop.webp",
-    "width": 1600,
-    "height": 1000,
-    "kb": 71
-  },
-  {
-    "project": "crm",
-    "file": "crm/inbox-mobile.webp",
-    "width": 780,
-    "height": 1688,
-    "kb": 60
-  },
-  {
-    "project": "crm",
-    "file": "crm/invoices-desktop.webp",
-    "width": 1600,
-    "height": 1000,
-    "kb": 37
-  },
-  {
-    "project": "crm",
-    "file": "crm/invoices-mobile.webp",
-    "width": 780,
-    "height": 1688,
-    "kb": 44
-  },
-  {
-    "project": "crm",
-    "file": "crm/tasks-desktop.webp",
-    "width": 1600,
-    "height": 1000,
-    "kb": 38
-  },
-  {
-    "project": "crm",
-    "file": "crm/tasks-mobile.webp",
-    "width": 780,
-    "height": 1688,
-    "kb": 27
+    "file": "bookspert/languages.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 170
   },
   {
     "project": "leland",
     "file": "leland/contact-desktop.webp",
+    "kind": "feature",
     "width": 1600,
     "height": 1476,
+    "cssWidth": 800,
+    "cssHeight": 738,
     "kb": 35
   },
   {
     "project": "leland",
     "file": "leland/contact-mobile.webp",
+    "kind": "feature",
     "width": 780,
     "height": 2400,
+    "cssWidth": 390,
+    "cssHeight": 1200,
     "kb": 35
   },
   {
     "project": "leland",
     "file": "leland/criteria-desktop.webp",
+    "kind": "feature",
     "width": 1600,
     "height": 2217,
+    "cssWidth": 800,
+    "cssHeight": 1109,
     "kb": 67
   },
   {
     "project": "leland",
     "file": "leland/criteria-mobile.webp",
+    "kind": "feature",
     "width": 780,
     "height": 2400,
+    "cssWidth": 390,
+    "cssHeight": 1200,
     "kb": 58
   },
   {
     "project": "leland",
     "file": "leland/home-desktop.webp",
+    "kind": "hero",
     "width": 1600,
     "height": 2599,
+    "cssWidth": 800,
+    "cssHeight": 1300,
     "kb": 89
   },
   {
     "project": "leland",
     "file": "leland/home-mobile.webp",
+    "kind": "feature",
     "width": 780,
     "height": 2400,
+    "cssWidth": 390,
+    "cssHeight": 1200,
     "kb": 65
   },
   {
-    "project": "visibility-intel",
-    "file": "visibility-intel/audit-desktop.webp",
-    "width": 1600,
-    "height": 3940,
-    "kb": 126
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/audit-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 59
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/home-desktop.webp",
-    "width": 1600,
-    "height": 4200,
-    "kb": 183
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/home-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 74
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/insight-report-desktop.webp",
-    "width": 1600,
-    "height": 4200,
-    "kb": 175
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/insight-report-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 84
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/pricing-desktop.webp",
-    "width": 1600,
-    "height": 1867,
-    "kb": 69
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/pricing-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 56
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/services-desktop.webp",
-    "width": 1600,
-    "height": 4200,
-    "kb": 192
-  },
-  {
-    "project": "visibility-intel",
-    "file": "visibility-intel/services-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 70
+    "project": "xraised",
+    "file": "xraised/hero-tools.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 114
   },
   {
     "project": "xraised",
-    "file": "xraised/apply-desktop.webp",
-    "width": 1600,
-    "height": 2946,
-    "kb": 124
+    "file": "xraised/interview.webp",
+    "kind": "feature",
+    "width": 2200,
+    "height": 1650,
+    "cssWidth": 1100,
+    "cssHeight": 825,
+    "kb": 97
   },
   {
     "project": "xraised",
-    "file": "xraised/apply-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 78
+    "file": "xraised/interviews.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 125
   },
   {
     "project": "xraised",
-    "file": "xraised/home-desktop.webp",
-    "width": 1600,
-    "height": 1611,
-    "kb": 76
+    "file": "xraised/magazine.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 196
   },
   {
     "project": "xraised",
-    "file": "xraised/magazine-apply-desktop.webp",
-    "width": 1600,
-    "height": 3856,
-    "kb": 130
+    "file": "xraised/services.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 129
   },
   {
-    "project": "xraised",
-    "file": "xraised/magazine-apply-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 70
+    "project": "xraised-crm",
+    "file": "xraised-crm/followups.webp",
+    "kind": "feature",
+    "width": 2368,
+    "height": 1776,
+    "cssWidth": 1184,
+    "cssHeight": 888,
+    "kb": 134
   },
   {
-    "project": "xraised",
-    "file": "xraised/magazine-desktop.webp",
-    "width": 1600,
-    "height": 556,
-    "kb": 27
+    "project": "xraised-crm",
+    "file": "xraised-crm/hero-inbox.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 200
   },
   {
-    "project": "xraised",
-    "file": "xraised/news-desktop.webp",
-    "width": 1600,
-    "height": 972,
-    "kb": 41
+    "project": "xraised-crm",
+    "file": "xraised-crm/invoices.webp",
+    "kind": "feature",
+    "width": 2368,
+    "height": 1776,
+    "cssWidth": 1184,
+    "cssHeight": 888,
+    "kb": 137
   },
   {
-    "project": "xraised",
-    "file": "xraised/pricing-desktop.webp",
-    "width": 1600,
-    "height": 4200,
-    "kb": 184
+    "project": "xraised-crm",
+    "file": "xraised-crm/pipeline.webp",
+    "kind": "feature",
+    "width": 2100,
+    "height": 1574,
+    "cssWidth": 1050,
+    "cssHeight": 787,
+    "kb": 172
   },
   {
-    "project": "xraised",
-    "file": "xraised/pricing-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 70
-  },
-  {
-    "project": "xraised",
-    "file": "xraised/services-desktop.webp",
-    "width": 1600,
-    "height": 2500,
-    "kb": 153
-  },
-  {
-    "project": "xraised",
-    "file": "xraised/services-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 79
-  },
-  {
-    "project": "xraised",
-    "file": "xraised/tool-ai-visibility-desktop.webp",
-    "width": 1600,
-    "height": 1361,
-    "kb": 69
-  },
-  {
-    "project": "xraised",
-    "file": "xraised/tool-ai-visibility-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 67
-  },
-  {
-    "project": "xraised",
-    "file": "xraised/tools-desktop.webp",
-    "width": 1600,
-    "height": 1942,
-    "kb": 99
-  },
-  {
-    "project": "xraised",
-    "file": "xraised/tools-mobile.webp",
-    "width": 780,
-    "height": 2400,
-    "kb": 83
+    "project": "xraised-crm",
+    "file": "xraised-crm/pr-campaign.webp",
+    "kind": "feature",
+    "width": 2368,
+    "height": 1776,
+    "cssWidth": 1184,
+    "cssHeight": 888,
+    "kb": 150
   }
 ]

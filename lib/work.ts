@@ -4,13 +4,22 @@ import path from "path";
 export type WorkCategory = "Websites" | "Systems & products";
 
 export type WorkImage = {
-  /** "<project>/<name>" — resolves to public/work/<project>/<name>-{desktop,mobile}.webp */
+  /** "<project>/<name>" — resolves to public/work/<project>/<name>.webp (a real-scale crop, never a whole page). */
   key: string;
   alt: string;
   caption?: string;
 };
 
 export type FeatureGroup = { title: string; items: string[] };
+
+/** One block of the "What's inside" section: a title, two lines, and a 4:3 crop of that screen. */
+export type WorkFeature = {
+  title: string;
+  text: string;
+  /** Image key ("<project>/<name>"), or null when no capture exists yet. */
+  image: string | null;
+  alt?: string;
+};
 
 export type WorkProject = {
   slug: string;
@@ -26,6 +35,12 @@ export type WorkProject = {
   statusNote?: string;
   tagline: string;
   summary: string;
+  /** One sentence on the problem solved — the case-study subtitle. */
+  problem: string;
+  /** Three or four components we built, shown as chips (home rows and case-study header). */
+  components: string[];
+  /** The "What's inside" blocks, in order. */
+  features: WorkFeature[];
   brief: string[];
   built: string[];
   featureGroups: FeatureGroup[];
@@ -33,7 +48,9 @@ export type WorkProject = {
   integrations?: string[];
   /** Slug of the matching service in lib/services.tsx. */
   service: string;
-  heroImage: string;
+  /** Key of the 16:10 hero crop, or null while the project has no capture (e.g. "launching soon"). */
+  heroImage: string | null;
+  heroAlt?: string;
   images: WorkImage[];
   /** A short, honest note on provenance (e.g. an existing codebase we tailored). */
   provenance?: string;
@@ -50,6 +67,35 @@ export const WORK: WorkProject[] = [
     tagline: "A media platform, a client portal and a content factory — behind one website.",
     summary:
       "The public site, lead-generation assessment tools, Xraised Magazine pipeline, client portal and the automations that run the editorial operation.",
+    problem:
+      "A press and interview brand needed one website that sells its services, qualifies leads on its own and runs the editorial production behind it.",
+    components: ["Assessment tools", "Interview library", "Magazine pipeline", "Client portal"],
+    features: [
+      {
+        title: "An interview library that works like a channel",
+        text: "Every episode has its own page with the video, the guest and an industry category. The home page surfaces the week's conversations automatically.",
+        image: "xraised/interviews",
+        alt: "The \"This week on xraised\" section of the home page: a featured interview and four more in a list",
+      },
+      {
+        title: "Xraised Magazine",
+        text: "A paid application that turns a founder's answers and photo into an eight-page issue, with AI-assisted research, automated layout and a human approval step.",
+        image: "xraised/magazine",
+        alt: "Three issues of Xraised Magazine on the magazine page",
+      },
+      {
+        title: "Services, prices and checkout",
+        text: "Curated and direct services on one page, each with its own detail page, a price list and Stripe checkout in GBP and USD.",
+        image: "xraised/services",
+        alt: "The services page: the curated services and the start of the direct services",
+      },
+      {
+        title: "One page per interview",
+        text: "Player, category, title and guest, followed by an article written from the conversation and the links the guest wants shared.",
+        image: "xraised/interview",
+        alt: "An interview page with the video player, category and title",
+      },
+    ],
     brief: [
       "Xraised is a sister brand in our group: an interview and press platform for founders and executives. The site had to do three jobs at once — sell a catalogue of editorial services, give clients a place to follow their work, and run the production behind it without a large team.",
       "The brief was to build all three as one platform rather than a brochure site with tools bolted on.",
@@ -109,18 +155,9 @@ export const WORK: WorkProject[] = [
     stack: ["Python", "FastAPI", "Jinja2", "PostgreSQL", "SQLAlchemy", "APScheduler", "Playwright", "ffmpeg", "Railway", "Cloudflare"],
     integrations: ["Stripe", "Calendly", "Asana", "Anthropic Claude", "ElevenLabs", "Buffer", "Resend", "Mailchimp", "Azure Blob Storage", "Google Drive", "Cloudflare Turnstile"],
     service: "web-design-development",
-    heroImage: "xraised/tools",
-    images: [
-      { key: "xraised/home", alt: "Xraised home page hero with the outlets clients are published in" },
-      { key: "xraised/tools", alt: "The four free self-assessment tools on Xraised" },
-      { key: "xraised/tool-ai-visibility", alt: "The AI Visibility Check assessment start form" },
-      { key: "xraised/services", alt: "Xraised services page: curated and direct services" },
-      { key: "xraised/pricing", alt: "Xraised pricing page with one-off and monthly plans" },
-      { key: "xraised/magazine", alt: "Xraised Magazine landing section" },
-      { key: "xraised/magazine-apply", alt: "Xraised Magazine application form" },
-      { key: "xraised/apply", alt: "Apply to be featured page with the four-step process" },
-      { key: "xraised/news", alt: "Press coverage section with outlet cover art" },
-    ],
+    heroImage: "xraised/hero-tools",
+    heroAlt: "The free self-assessment tools on xraised.com: the heading and the first two assessment cards",
+    images: [],
   },
   {
     slug: "xraised-crm",
@@ -133,6 +170,35 @@ export const WORK: WorkProject[] = [
     tagline: "One place for inbox, follow-ups, pipeline, PR campaigns and invoices.",
     summary:
       "A tailored CRM that replaced a patchwork of mailboxes, spreadsheets and off-the-shelf tools with a system shaped around how the team actually sells and delivers.",
+    problem:
+      "Sales and client email lived across shared mailboxes, a generic CRM and spreadsheets; nobody had one view of a client from first reply to paid invoice.",
+    components: ["Shared inbox", "Follow-up engine", "Deal pipeline", "PR campaigns", "Invoices"],
+    features: [
+      {
+        title: "A pipeline the team can read at a glance",
+        text: "Deals move through named stages on a board or in a list. Each card carries the contact, the product and who owns it; a won deal becomes a production task.",
+        image: "xraised-crm/pipeline",
+        alt: "The deals board with the Proposed, Interested, Meeting proposed and Meeting booked columns",
+      },
+      {
+        title: "Follow-ups that wait for a human",
+        text: "The engine notices when the client has not written back, drafts the next nudge and queues it for approval. Nothing is sent on its own.",
+        image: "xraised-crm/followups",
+        alt: "The follow-ups page with two drafts to approve and the list of open follow-ups",
+      },
+      {
+        title: "PR campaigns, pitch by pitch",
+        text: "One campaign per client with the journalists to reach, the status of every pitch, the dates and the published link when a story lands.",
+        image: "xraised-crm/pr-campaign",
+        alt: "A PR campaign with its client, angle and eight journalist pitches at different stages",
+      },
+      {
+        title: "Invoices and what is still owed",
+        text: "Invoices from a deal or by hand, with status, totals for issued, received and outstanding, and a print-ready PDF.",
+        image: "xraised-crm/invoices",
+        alt: "The invoices list with totals and paid, unpaid and draft statuses",
+      },
+    ],
     brief: [
       "The Xraised team ran sales and client communication across shared mailboxes, cold-outreach tooling, a generic CRM and spreadsheets. Replies were missed, follow-ups depended on memory, and nobody had one view of a client from first email to paid invoice.",
       "The brief: a single internal system the whole team could live in, built around their real process rather than a vendor's — and owned outright, with no per-seat licence.",
@@ -207,17 +273,11 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "TanStack Query", "Recharts", "Railway"],
     integrations: ["Microsoft 365", "Gmail", "Google Calendar", "IMAP/SMTP", "Stripe", "Calendly", "Asana", "HubSpot", "Snov.io", "Apollo", "OpenAI", "Azure Blob Storage"],
     service: "custom-systems-crm",
-    heroImage: "crm/inbox",
+    heroImage: "xraised-crm/hero-inbox",
+    heroAlt: "The shared inbox with the conversation list and an open email in the reading pane (fictional demo data)",
     provenance:
-      "Built on an existing in-house CRM codebase and heavily tailored for Xraised. Screens shown with fictional demo data.",
-    images: [
-      { key: "crm/inbox", alt: "Shared inbox with conversations and reading pane (demo data)" },
-      { key: "crm/tasks", alt: "Team tasks with urgency and deadlines (demo data)" },
-      { key: "crm/deals", alt: "Deals pipeline board by stage (demo data)" },
-      { key: "crm/contacts", alt: "Contacts list (demo data)" },
-      { key: "crm/cold", alt: "Cold outreach replies section (demo data)" },
-      { key: "crm/invoices", alt: "Invoices list (demo data)" },
-    ],
+      "Built on an existing in-house CRM codebase and heavily tailored for Xraised. Every screen is shown with fictional demo data: the people, companies, outlets and amounts are invented.",
+    images: [],
   },
   {
     slug: "bookspert",
@@ -229,6 +289,35 @@ export const WORK: WorkProject[] = [
     tagline: "A six-language publishing website with an author dashboard and a sales back office.",
     summary:
       "Marketing site, author accounts, billing and an admin area for a ghostwriting and publishing brand — one codebase, six languages.",
+    problem:
+      "A high-ticket publishing service had to be explained to leaders in six languages, capture consultations reliably and give authors and the sales team a place to work after the sale.",
+    components: ["Six languages", "Books catalogue", "Author dashboard", "Sales back office"],
+    features: [
+      {
+        title: "Six languages from one codebase",
+        text: "The language comes from a cookie or the browser and can be switched in the header; every page, form and email exists in all six, with a currency switcher alongside.",
+        image: "bookspert/languages",
+        alt: "The Bookspert home page in Italian, with the language selector in the header set to Italiano",
+      },
+      {
+        title: "A books catalogue with structured data",
+        text: "Covers, subtitles, authors and Amazon links, each book marked up with Book schema so it can be found as a book, not just as a page.",
+        image: "bookspert/books",
+        alt: "The books page with three book covers and their descriptions",
+      },
+      {
+        title: "A page for every author and book",
+        text: "Author profiles merge the built-in data with the author's own public account; each book gets its cover, subtitle and buying link.",
+        image: "bookspert/book",
+        alt: "The book section of an author page: the cover, the title, the subtitle and the Amazon link",
+      },
+      {
+        title: "How it works, in five steps",
+        text: "The service is explained as a path from discovery call to launch, so a considered purchase feels concrete before the first conversation.",
+        image: "bookspert/how-it-works",
+        alt: "The five-step \"From idea to a published book\" section",
+      },
+    ],
     brief: [
       "Bookspert is the book-publishing brand in our group. It needed a site that could explain a considered, high-ticket service to leaders in several languages, capture consultations reliably, and give both authors and the sales team somewhere to work after the sale.",
     ],
@@ -272,14 +361,9 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Vercel"],
     integrations: ["Stripe", "Resend", "Google Calendar"],
     service: "web-design-development",
-    heroImage: "bookspert/services",
-    images: [
-      { key: "bookspert/services", alt: "Bookspert services page" },
-      { key: "bookspert/how-it-works", alt: "Bookspert how-it-works page with the five-step process" },
-      { key: "bookspert/compare", alt: "Bookspert comparison page against another publisher" },
-      { key: "bookspert/faq", alt: "Bookspert FAQ page" },
-      { key: "bookspert/contact", alt: "Bookspert free-consultation form" },
-    ],
+    heroImage: "bookspert/hero-what-we-do",
+    heroAlt: "The \"Everything between your expertise and a finished book\" section of bookspert.com with the first two service cards",
+    images: [],
   },
   {
     slug: "visibility-intelligence",
@@ -292,6 +376,26 @@ export const WORK: WorkProject[] = [
     tagline: "A free AI audit of how a leader reads from the outside — and the work that closes the gaps.",
     summary:
       "Our own product: an audit engine that scores a founder's public presence, a report that explains the gaps, a marketplace of done-for-you services and subscription plans.",
+    problem:
+      "Accomplished leaders are under-described online, and nothing measured that honestly or connected each gap to the work that would close it.",
+    components: ["Audit engine", "Report and PDF", "Services marketplace", "Plans on Stripe"],
+    features: [
+      {
+        title: "A free audit with a structured report",
+        text: "The engine researches the person with web search and returns a score out of 100, a band, a summary and prioritised findings across six dimensions.",
+        image: null,
+      },
+      {
+        title: "A report that explains the gaps",
+        text: "Where the missing points sit, what closing each gap is worth and a recommended service for each finding, with progress tracked across audits.",
+        image: null,
+      },
+      {
+        title: "Services and plans",
+        text: "A marketplace of done-for-you services with a request flow and an internal queue; Base and Pro plans on Stripe with entitlement gating.",
+        image: null,
+      },
+    ],
     brief: [
       "Most accomplished leaders are under-described online: the record is real, but it is scattered, dated or inconsistent. We wanted a product that measures that honestly, explains it plainly, and connects each gap to the work that would close it.",
     ],
@@ -339,15 +443,8 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Railway"],
     integrations: ["Anthropic Claude with web search", "Stripe", "Resend"],
     service: "custom-systems-crm",
-    heroImage: "visibility-intel/home",
-    provenance: "Report shown is the product's own illustrative example with an invented person and company.",
-    images: [
-      { key: "visibility-intel/home", alt: "Visibility Intelligence landing page" },
-      { key: "visibility-intel/audit", alt: "The free audit form, filled with fictional example details" },
-      { key: "visibility-intel/insight-report", alt: "Illustrative audit report with score, gaps and findings (invented example)" },
-      { key: "visibility-intel/services", alt: "Services marketplace path" },
-      { key: "visibility-intel/pricing", alt: "Base and Pro plans" },
-    ],
+    heroImage: null,
+    images: [],
   },
   {
     slug: "leland-investments",
@@ -360,6 +457,14 @@ export const WORK: WorkProject[] = [
     tagline: "A calm, credible site for an investment firm — with an editor the firm controls.",
     summary:
       "A focused site for a private investment firm: positioning, investment criteria, a protected contact flow, and an admin editor so the firm can change its own copy and fact sheet.",
+    problem:
+      "A private investment firm needed a site that reads as considered and trustworthy to founders weighing a sale, and that the firm can keep current without a developer.",
+    components: ["Public site", "Content editor", "Contact flow", "Fact sheet"],
+    features: [
+      { title: "A calm public site", text: "Home, investment criteria, contact and privacy pages, a branded 404 and a dynamic share image.", image: "leland/home-desktop" },
+      { title: "An editor the firm controls", text: "Password-protected, with signed sessions and field-by-field validation for every piece of copy on the site.", image: "leland/criteria-desktop" },
+      { title: "Contact and fact sheet", text: "A protected contact flow that emails the firm, and a fact-sheet module with PDF upload and a visibility switch.", image: "leland/contact-desktop" },
+    ],
     brief: [
       "A private investment firm needed a site that reads as considered and trustworthy to founders weighing a sale — short, precise, and easy for the firm to keep current without a developer.",
     ],
@@ -396,12 +501,9 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Railway"],
     integrations: ["Resend"],
     service: "web-design-development",
-    heroImage: "leland/home",
-    images: [
-      { key: "leland/home", alt: "Leland Investments home page" },
-      { key: "leland/criteria", alt: "Investment criteria page" },
-      { key: "leland/contact", alt: "Contact page with form" },
-    ],
+    heroImage: "leland/home-desktop",
+    heroAlt: "Leland Investments home page",
+    images: [],
   },
 ];
 
@@ -419,10 +521,25 @@ export function getWorkByService(serviceSlug: string): WorkProject[] {
   return getPublishedWork().filter((p) => p.service === serviceSlug);
 }
 
-/* ---------- Screenshot manifest (generated into public/work/manifest.json) ---------- */
+/* ---------- Crop manifest (public/work/manifest.json, written by the capture script) ---------- */
 
-type ManifestEntry = { project: string; file: string; width: number; height: number };
-export type ResolvedImage = { src: string; width: number; height: number };
+type ManifestEntry = {
+  project: string;
+  file: string;
+  width: number;
+  height: number;
+  /** CSS pixels of the captured region (the file is 2× that: deviceScaleFactor 2). */
+  cssWidth?: number;
+  cssHeight?: number;
+};
+export type ResolvedImage = {
+  src: string;
+  width: number;
+  height: number;
+  /** The width at which the crop is shown at its real capture scale (1 CSS px = 1 captured px). */
+  cssWidth: number;
+  cssHeight: number;
+};
 
 let manifestCache: ManifestEntry[] | null = null;
 function manifest(): ManifestEntry[] {
@@ -436,8 +553,16 @@ function manifest(): ManifestEntry[] {
   return manifestCache;
 }
 
-export function resolveImage(key: string, variant: "desktop" | "mobile"): ResolvedImage | null {
+export function resolveImage(key: string | null | undefined): ResolvedImage | null {
+  if (!key) return null;
   const [project, name] = key.split("/");
-  const hit = manifest().find((m) => m.project === project && m.file === `${project}/${name}-${variant}.webp`);
-  return hit ? { src: `/work/${hit.file}`, width: hit.width, height: hit.height } : null;
+  const hit = manifest().find((m) => m.project === project && m.file === `${project}/${name}.webp`);
+  if (!hit) return null;
+  return {
+    src: `/work/${hit.file}`,
+    width: hit.width,
+    height: hit.height,
+    cssWidth: hit.cssWidth ?? Math.round(hit.width / 2),
+    cssHeight: hit.cssHeight ?? Math.round(hit.height / 2),
+  };
 }

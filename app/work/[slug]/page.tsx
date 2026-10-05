@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
+import ClientLogo from "@/components/ClientLogo";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
-import { WORK, getWork, resolveImage } from "@/lib/work";
+import { WORK, getWork, resolveImage, type WorkFeature } from "@/lib/work";
 import { SERVICES } from "@/lib/services";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
@@ -30,7 +31,7 @@ function getVisibleWork(slug: string) {
 export function generateMetadata({ params }: Props): Metadata {
   const p = getVisibleWork(params.slug);
   if (!p) return {};
-  const hero = resolveImage(p.heroImage, "desktop");
+  const hero = resolveImage(p.heroImage);
   return {
     title: `${p.name} — ${p.category === "Websites" ? "Website" : "System"} Case Study`,
     description: p.summary,
@@ -45,17 +46,51 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
+/** One "What's inside" block: title, two lines and the 4:3 crop, alternating left/right. */
+function FeatureBlock({ feature, index }: { feature: WorkFeature; index: number }) {
+  const img = resolveImage(feature.image);
+  const reverse = index % 2 === 1;
+  const number = String(index + 1).padStart(2, "0");
+  return (
+    <article className="grid items-center gap-8 md:grid-cols-5 md:gap-6">
+      {img && (
+        <div className={`md:col-span-3 ${reverse ? "md:order-2" : ""}`}>
+          <Reveal>
+            <div
+              className="overflow-hidden rounded-[2rem] border border-ink-line bg-ink-card shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]"
+              style={{ maxWidth: img.cssWidth, marginInline: reverse ? "0 auto" : "auto 0" }}
+            >
+              <Image
+                src={img.src}
+                alt={feature.alt ?? feature.title}
+                width={img.width}
+                height={img.height}
+                sizes="(min-width: 768px) 60vw, 100vw"
+                className="h-auto w-full"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+        </div>
+      )}
+      <div className={`${img ? "md:col-span-2" : "md:col-span-5 max-w-2xl"} ${reverse ? "md:order-1 md:pr-6 lg:pr-10" : "md:pl-6 lg:pl-10"}`}>
+        <Reveal delay={0.1}>
+          <p className="font-display text-sm font-bold text-prism-violet">{number}</p>
+          <h3 className="mt-3 font-display text-2xl font-bold leading-snug tracking-tight text-bone md:text-3xl">{feature.title}</h3>
+          <p className="mt-4 leading-relaxed text-bone-dim">{feature.text}</p>
+        </Reveal>
+      </div>
+    </article>
+  );
+}
+
 export default function CaseStudyPage({ params }: Props) {
   const p = getVisibleWork(params.slug);
   if (!p) notFound();
 
   const url = `${SITE_URL}/work/${p.slug}`;
   const service = SERVICES.find((s) => s.slug === p.service);
-  const hero = resolveImage(p.heroImage, "desktop");
-  const gallery = p.images
-    .map((img) => ({ ...img, desktop: resolveImage(img.key, "desktop"), mobile: resolveImage(img.key, "mobile") }))
-    .filter((img) => img.desktop || img.mobile);
-  const related = WORK.filter((w) => w.published && w.slug !== p.slug).slice(0, 2);
+  const hero = resolveImage(p.heroImage);
 
   const creativeWorkLd = {
     "@context": "https://schema.org",
@@ -93,15 +128,15 @@ export default function CaseStudyPage({ params }: Props) {
         </div>
       )}
 
-      {/* ---------- Header ---------- */}
+      {/* ---------- Hero: title, the problem, components, full-width crop ---------- */}
       <section className="relative overflow-hidden">
         <div
           className="prism-orb -left-32 top-24 h-[24rem] w-[24rem] animate-prism-drift"
           style={{ background: "linear-gradient(135deg, #7C5CFF, #4ED9E1)" }}
         />
-        <div className="relative mx-auto max-w-shell px-6 pb-16 pt-44 lg:px-10">
+        <div className="relative mx-auto max-w-shell px-6 pb-12 pt-44 lg:px-10">
           <Reveal>
-            <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-xs text-bone-faint">
+            <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-xs text-bone-faint">
               <Link href="/" className="transition-colors hover:text-bone">Home</Link>
               <span aria-hidden="true">/</span>
               <Link href="/work" className="transition-colors hover:text-bone">Work</Link>
@@ -110,240 +145,133 @@ export default function CaseStudyPage({ params }: Props) {
             </nav>
           </Reveal>
           <Reveal delay={0.05}>
-            <div className="mb-5 flex flex-wrap items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
-              <span className="rounded-full border border-ink-line px-3 py-1 text-bone-dim">{p.clientLabel}</span>
-              <span className="rounded-full border border-ink-line px-3 py-1 text-bone-dim">{p.category}</span>
-              {!p.liveUrl && p.statusNote && (
-                <span className="rounded-full border border-prism-amber/30 px-3 py-1 text-prism-amber/90">{p.statusNote}</span>
-              )}
+            <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <ClientLogo name={p.slug} className="text-bone" />
+              <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
+                {p.clientLabel} · {p.category}
+                {!p.liveUrl && p.statusNote ? <span className="text-prism-amber/90"> · {p.statusNote}</span> : null}
+              </p>
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-4xl">{p.name}</h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-6 max-w-2xl font-display text-xl font-semibold text-prism-violet md:text-2xl">{p.tagline}</p>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-bone-dim md:text-xl">{p.problem}</p>
           </Reveal>
-          <Reveal delay={0.3}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              {p.liveUrl ? (
-                <a
-                  href={p.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full border border-ink-line px-6 py-3 text-sm font-semibold text-bone transition-all duration-300 hover:border-prism-violet hover:text-prism-violet"
-                >
-                  Visit the live site
-                  <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
-                </a>
-              ) : null}
-              {service && <ButtonGhost href={`/services#${service.slug}`}>See the service: {service.title}</ButtonGhost>}
-            </div>
+          <Reveal delay={0.25}>
+            <ul className="mt-8 flex flex-wrap gap-2" aria-label="Components">
+              {p.components.map((c) => (
+                <li key={c} className="rounded-full border border-ink-line px-3 py-1 text-xs font-semibold text-bone-dim">{c}</li>
+              ))}
+            </ul>
           </Reveal>
+          {p.liveUrl && (
+            <Reveal delay={0.3}>
+              <a
+                href={p.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-bone transition-colors hover:text-prism-violet"
+              >
+                Visit the live site
+                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+              </a>
+            </Reveal>
+          )}
         </div>
-        <div className="beam absolute bottom-0 left-0 h-px w-full opacity-60" />
       </section>
 
-      {/* ---------- Hero image ---------- */}
-      {hero && (
-        <section className="mx-auto max-w-shell px-6 pt-16 lg:px-10">
+      {hero ? (
+        <section className="mx-auto max-w-[1440px] px-5 pt-4">
           <Reveal>
-            <div className="overflow-hidden rounded-2xl border border-ink-line bg-ink-card">
+            <div className="mx-auto overflow-hidden rounded-[2rem] border border-ink-line bg-ink-card shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]" style={{ maxWidth: hero.cssWidth }}>
               <Image
                 src={hero.src}
-                alt={p.images.find((i) => i.key === p.heroImage)?.alt ?? `${p.name} screenshot`}
+                alt={p.heroAlt ?? `${p.name} screenshot`}
                 width={hero.width}
-                height={Math.min(hero.height, Math.round(hero.width * 0.62))}
-                sizes="(min-width: 1280px) 80rem, 100vw"
-                className="h-auto w-full object-cover object-top"
-                style={{ maxHeight: "40rem" }}
+                height={hero.height}
+                sizes="(min-width: 1200px) 1176px, 100vw"
+                className="h-auto w-full"
                 priority
               />
             </div>
           </Reveal>
+          {p.provenance && (
+            <Reveal delay={0.1}>
+              <p className="mx-auto mt-5 max-w-3xl text-center text-xs leading-relaxed text-bone-faint">{p.provenance}</p>
+            </Reveal>
+          )}
+        </section>
+      ) : (
+        <section className="mx-auto max-w-shell px-6 pt-4 lg:px-10">
+          <Reveal>
+            <div className="flex aspect-[16/7] items-center justify-center rounded-[2rem] border border-ink-line bg-gradient-to-br from-prism-violet/15 via-ink-card to-prism-cyan/10">
+              <span className="rounded-full border border-prism-amber/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-prism-amber">
+                {p.statusNote ?? "Coming soon"}
+              </span>
+            </div>
+          </Reveal>
         </section>
       )}
 
-      {/* ---------- Brief & what we built ---------- */}
+      {/* ---------- What's inside ---------- */}
       <section className="py-24 md:py-32">
-        <div className="mx-auto grid max-w-shell gap-16 px-6 lg:grid-cols-[1fr_1.3fr] lg:px-10">
-          <div>
-            <Reveal>
-              <p className="eyebrow mb-4">The brief</p>
-            </Reveal>
-            <div className="space-y-5 leading-relaxed text-bone-dim">
-              {p.brief.map((para) => (
-                <Reveal key={para.slice(0, 32)}>
-                  <p>{para}</p>
-                </Reveal>
-              ))}
-            </div>
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <Reveal>
+            <p className="eyebrow mb-4">What&apos;s inside</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="display-xl max-w-3xl">
+              The parts that <span className="text-prism">do the work.</span>
+            </h2>
+          </Reveal>
+        </div>
+        <div className="mx-auto mt-16 max-w-[1440px] space-y-20 px-5 md:mt-20 md:space-y-28">
+          {p.features.map((f, i) => (
+            <FeatureBlock key={f.title} feature={f} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* ---------- Built with + CTA ---------- */}
+      <section className="border-t border-ink-line bg-ink-soft py-20">
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <Reveal>
+            <p className="eyebrow mb-4">Built with</p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <p className="font-display text-lg font-semibold leading-relaxed text-bone md:text-xl">
+              {p.stack.join(" · ")}
+            </p>
+          </Reveal>
+          {p.integrations && p.integrations.length > 0 && (
             <Reveal delay={0.1}>
-              <div className="mt-10 rounded-2xl border border-ink-line bg-ink-card p-6">
-                <p className="eyebrow mb-4">Stack</p>
-                <div className="flex flex-wrap gap-2">
-                  {p.stack.map((t) => (
-                    <span key={t} className="rounded-full border border-ink-line px-3 py-1 text-xs font-semibold text-bone-dim">{t}</span>
-                  ))}
-                </div>
-                {p.integrations && p.integrations.length > 0 && (
-                  <>
-                    <p className="eyebrow mb-4 mt-8">Integrations</p>
-                    <p className="text-sm leading-relaxed text-bone-dim">{p.integrations.join(" · ")}</p>
-                  </>
-                )}
+              <p className="mt-3 text-sm leading-relaxed text-bone-dim">Integrations: {p.integrations.join(", ")}.</p>
+            </Reveal>
+          )}
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-8 border-t border-ink-line pt-14">
+            <div>
+              <Reveal>
+                <h2 className="display-lg max-w-xl">
+                  {service ? `Need ${service.title.toLowerCase().replace("&", "and")} like this?` : "Need something like this?"}
+                </h2>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="mt-4 max-w-lg text-bone-dim">
+                  {service ? service.tagline : "Tell us what you are trying to build."}
+                </p>
+              </Reveal>
+            </div>
+            <Reveal delay={0.2}>
+              <div className="flex flex-wrap gap-4">
+                <ButtonPrimary href="/contact">Book a call</ButtonPrimary>
+                {service && <ButtonGhost href={`/services#${service.slug}`}>See the service</ButtonGhost>}
               </div>
             </Reveal>
           </div>
-          <div>
-            <Reveal>
-              <p className="eyebrow mb-4">What we built</p>
-            </Reveal>
-            <div className="space-y-5 text-lg leading-relaxed text-bone-dim">
-              {p.built.map((para) => (
-                <Reveal key={para.slice(0, 32)}>
-                  <p>{para}</p>
-                </Reveal>
-              ))}
-            </div>
-            {p.provenance && (
-              <Reveal delay={0.1}>
-                <p className="mt-8 border-l-2 border-prism-amber/60 pl-5 text-sm text-bone-faint">{p.provenance}</p>
-              </Reveal>
-            )}
-          </div>
         </div>
       </section>
-
-      {/* ---------- Features ---------- */}
-      <section className="border-y border-ink-line bg-ink-soft py-24 md:py-32">
-        <div className="mx-auto max-w-shell px-6 lg:px-10">
-          <Reveal>
-            <p className="eyebrow mb-4">Features, by area</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="display-xl mb-14 max-w-3xl">
-              What it <span className="text-prism">actually does.</span>
-            </h2>
-          </Reveal>
-          <div className="grid gap-6 md:grid-cols-2">
-            {p.featureGroups.map((g, i) => (
-              <Reveal key={g.title} delay={(i % 2) * 0.08}>
-                <div className="h-full rounded-2xl border border-ink-line bg-ink-card p-8">
-                  <h3 className="font-display text-xl font-bold tracking-tight text-bone">{g.title}</h3>
-                  <ul className="mt-5 space-y-3">
-                    {g.items.map((item) => (
-                      <li key={item} className="flex gap-3 text-sm leading-relaxed text-bone-dim">
-                        <svg className="mt-1 h-4 w-4 shrink-0 text-prism-violet" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                          <path d="M2.5 8.5l3.5 3.5 7.5-8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Gallery ---------- */}
-      {gallery.length > 0 && (
-        <section className="py-24 md:py-32">
-          <div className="mx-auto max-w-shell px-6 lg:px-10">
-            <Reveal>
-              <p className="eyebrow mb-4">Screens</p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2 className="display-xl mb-14 max-w-3xl">
-                Desktop and <span className="text-prism">mobile.</span>
-              </h2>
-            </Reveal>
-            <div className="space-y-10">
-              {gallery.map((img, i) => (
-                <Reveal key={img.key} delay={0.05}>
-                  <figure className={`grid gap-6 ${img.mobile ? "lg:grid-cols-[1fr_minmax(14rem,22rem)]" : ""}`}>
-                    {img.desktop && (
-                      <div className="overflow-hidden rounded-2xl border border-ink-line bg-ink-card">
-                        <Image
-                          src={img.desktop.src}
-                          alt={img.alt}
-                          width={img.desktop.width}
-                          height={img.desktop.height}
-                          sizes="(min-width: 1024px) 56rem, 100vw"
-                          className="h-auto w-full"
-                          loading={i < 2 ? "eager" : "lazy"}
-                        />
-                      </div>
-                    )}
-                    {img.mobile && (
-                      <div className="mx-auto w-full max-w-[22rem] overflow-hidden rounded-2xl border border-ink-line bg-ink-card">
-                        <Image
-                          src={img.mobile.src}
-                          alt={`${img.alt} — mobile`}
-                          width={img.mobile.width}
-                          height={img.mobile.height}
-                          sizes="22rem"
-                          className="h-auto w-full"
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
-                    <figcaption className="text-xs text-bone-faint lg:col-span-full">{img.caption ?? img.alt}</figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ---------- CTA ---------- */}
-      <section className="border-t border-ink-line bg-ink-soft py-20">
-        <div className="mx-auto flex max-w-shell flex-wrap items-center justify-between gap-8 px-6 lg:px-10">
-          <div>
-            <Reveal>
-              <h2 className="display-lg max-w-xl">
-                {service ? `Need ${service.title.toLowerCase().replace("&", "and")} like this?` : "Need something like this?"}
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="mt-4 max-w-lg text-bone-dim">
-                {service ? service.tagline : "Tell us what you are trying to build."}
-              </p>
-            </Reveal>
-          </div>
-          <Reveal delay={0.2}>
-            <div className="flex flex-wrap gap-4">
-              {service && <ButtonPrimary href={`/services#${service.slug}`}>View the service</ButtonPrimary>}
-              <ButtonGhost href="/contact">Book a call</ButtonGhost>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- More work ---------- */}
-      {related.length > 0 && (
-        <section className="py-20">
-          <div className="mx-auto max-w-shell px-6 lg:px-10">
-            <h2 className="eyebrow mb-6">More work</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {related.map((w) => (
-                <Link
-                  key={w.slug}
-                  href={`/work/${w.slug}`}
-                  className="group rounded-2xl border border-ink-line bg-ink-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-prism-violet/50"
-                >
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">{w.clientLabel} · {w.category}</p>
-                  <p className="mt-2 font-display text-lg font-bold leading-snug tracking-tight text-bone transition-colors duration-300 group-hover:text-prism-violet">{w.name}</p>
-                  <p className="mt-2 text-sm text-bone-dim">{w.tagline}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </>
   );
 }
