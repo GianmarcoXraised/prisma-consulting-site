@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
 
-export type WorkCategory = "Websites" | "Systems & products";
+/** The kind of thing it is — a small uppercase label next to the category. */
+export type WorkKind = "Website" | "System" | "SaaS";
 
 export type WorkImage = {
   /** "<project>/<name>" — resolves to public/work/<project>/<name>.webp (a real-scale crop, never a whole page). */
@@ -23,16 +24,16 @@ export type WorkFeature = {
 
 export type WorkProject = {
   slug: string;
+  /** Used only in the slug and, through siteUrl, in "Live at <domain> →". Never shown as a title. */
   name: string;
-  /** Honest relationship label, e.g. "Built for Xraised" (sister brand), "Our own product". */
-  clientLabel: string;
-  category: WorkCategory;
+  /** The visible title everywhere: home row, /work card, case study, PDF, metadata. */
+  category: string;
+  kind: WorkKind;
   /** Unpublished projects are reachable at their URL for review but excluded from /work, the home strip, the sitemap and search indexes. */
   published: boolean;
-  /** Public URL, or null when the project must not be linked yet. */
-  liveUrl: string | null;
-  /** Shown in place of a live link when liveUrl is null. */
-  statusNote?: string;
+  /** The live site, or null for a private system (then privateNote is shown instead). */
+  siteUrl: string | null;
+  privateNote?: string;
   tagline: string;
   summary: string;
   /** One sentence on the problem solved — the case-study subtitle. */
@@ -48,7 +49,7 @@ export type WorkProject = {
   integrations?: string[];
   /** Slug of the matching service in lib/services.tsx. */
   service: string;
-  /** Key of the 16:10 hero crop, or null while the project has no capture (e.g. "launching soon"). */
+  /** Key of the 16:10 hero crop, or null while the project has no capture. */
   heroImage: string | null;
   heroAlt?: string;
   images: WorkImage[];
@@ -58,12 +59,12 @@ export type WorkProject = {
 
 export const WORK: WorkProject[] = [
   {
-    slug: "xraised",
+    slug: "video-platform",
     name: "Xraised",
-    clientLabel: "Built for Xraised",
-    category: "Websites",
+    category: "Video interview platform",
+    kind: "Website",
     published: true,
-    liveUrl: "https://xraised.com",
+    siteUrl: "https://xraised.com",
     tagline: "A media platform, a client portal and a content factory — behind one website.",
     summary:
       "The public site, lead-generation assessment tools, Xraised Magazine pipeline, client portal and the automations that run the editorial operation.",
@@ -74,25 +75,25 @@ export const WORK: WorkProject[] = [
       {
         title: "An interview library that works like a channel",
         text: "Every episode has its own page with the video, the guest and an industry category. The home page surfaces the week's conversations automatically.",
-        image: "xraised/interviews",
+        image: "video-platform/interviews",
         alt: "The \"This week on xraised\" section of the home page: a featured interview and four more in a list",
       },
       {
         title: "Xraised Magazine",
         text: "A paid application that turns a founder's answers and photo into an eight-page issue, with AI-assisted research, automated layout and a human approval step.",
-        image: "xraised/magazine",
+        image: "video-platform/magazine",
         alt: "Three issues of Xraised Magazine on the magazine page",
       },
       {
         title: "Services, prices and checkout",
         text: "Curated and direct services on one page, each with its own detail page, a price list and Stripe checkout in GBP and USD.",
-        image: "xraised/services",
+        image: "video-platform/services",
         alt: "The services page: the curated services and the start of the direct services",
       },
       {
         title: "One page per interview",
         text: "Player, category, title and guest, followed by an article written from the conversation and the links the guest wants shared.",
-        image: "xraised/interview",
+        image: "video-platform/interview",
         alt: "An interview page with the video player, category and title",
       },
     ],
@@ -155,18 +156,18 @@ export const WORK: WorkProject[] = [
     stack: ["Python", "FastAPI", "Jinja2", "PostgreSQL", "SQLAlchemy", "APScheduler", "Playwright", "ffmpeg", "Railway", "Cloudflare"],
     integrations: ["Stripe", "Calendly", "Asana", "Anthropic Claude", "ElevenLabs", "Buffer", "Resend", "Mailchimp", "Azure Blob Storage", "Google Drive", "Cloudflare Turnstile"],
     service: "web-design-development",
-    heroImage: "xraised/hero-tools",
-    heroAlt: "The free self-assessment tools on xraised.com: the heading and the first two assessment cards",
+    heroImage: "video-platform/hero-interviews",
+    heroAlt: "The interview archive on xraised.com: category filters and the first row of interview cards",
     images: [],
   },
   {
-    slug: "xraised-crm",
+    slug: "crm",
     name: "Xraised CRM",
-    clientLabel: "Built for Xraised",
-    category: "Systems & products",
+    category: "CRM & back office",
+    kind: "System",
     published: true,
-    liveUrl: null,
-    statusNote: "Internal system — not publicly accessible",
+    siteUrl: null,
+    privateNote: "Private system, demo on request",
     tagline: "One place for inbox, follow-ups, pipeline, PR campaigns and invoices.",
     summary:
       "A tailored CRM that replaced a patchwork of mailboxes, spreadsheets and off-the-shelf tools with a system shaped around how the team actually sells and delivers.",
@@ -177,25 +178,25 @@ export const WORK: WorkProject[] = [
       {
         title: "A pipeline the team can read at a glance",
         text: "Deals move through named stages on a board or in a list. Each card carries the contact, the product and who owns it; a won deal becomes a production task.",
-        image: "xraised-crm/pipeline",
+        image: "crm/pipeline",
         alt: "The deals board with the Proposed, Interested, Meeting proposed and Meeting booked columns",
       },
       {
         title: "Follow-ups that wait for a human",
         text: "The engine notices when the client has not written back, drafts the next nudge and queues it for approval. Nothing is sent on its own.",
-        image: "xraised-crm/followups",
+        image: "crm/followups",
         alt: "The follow-ups page with two drafts to approve and the list of open follow-ups",
       },
       {
         title: "PR campaigns, pitch by pitch",
         text: "One campaign per client with the journalists to reach, the status of every pitch, the dates and the published link when a story lands.",
-        image: "xraised-crm/pr-campaign",
+        image: "crm/pr-campaign",
         alt: "A PR campaign with its client, angle and eight journalist pitches at different stages",
       },
       {
         title: "Invoices and what is still owed",
         text: "Invoices from a deal or by hand, with status, totals for issued, received and outstanding, and a print-ready PDF.",
-        image: "xraised-crm/invoices",
+        image: "crm/invoices",
         alt: "The invoices list with totals and paid, unpaid and draft statuses",
       },
     ],
@@ -273,19 +274,19 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "TanStack Query", "Recharts", "Railway"],
     integrations: ["Microsoft 365", "Gmail", "Google Calendar", "IMAP/SMTP", "Stripe", "Calendly", "Asana", "HubSpot", "Snov.io", "Apollo", "OpenAI", "Azure Blob Storage"],
     service: "custom-systems-crm",
-    heroImage: "xraised-crm/hero-inbox",
+    heroImage: "crm/hero-inbox",
     heroAlt: "The shared inbox with the conversation list and an open email in the reading pane (fictional demo data)",
     provenance:
       "Built on an existing in-house CRM codebase and heavily tailored for Xraised. Every screen is shown with fictional demo data: the people, companies, outlets and amounts are invented.",
     images: [],
   },
   {
-    slug: "bookspert",
+    slug: "book-store",
     name: "Bookspert",
-    clientLabel: "Built for Bookspert",
-    category: "Websites",
+    category: "Publishing site & book store",
+    kind: "Website",
     published: true,
-    liveUrl: "https://bookspert.com",
+    siteUrl: "https://bookspert.com",
     tagline: "A six-language publishing website with an author dashboard and a sales back office.",
     summary:
       "Marketing site, author accounts, billing and an admin area for a ghostwriting and publishing brand — one codebase, six languages.",
@@ -296,25 +297,25 @@ export const WORK: WorkProject[] = [
       {
         title: "Six languages from one codebase",
         text: "The language comes from a cookie or the browser and can be switched in the header; every page, form and email exists in all six, with a currency switcher alongside.",
-        image: "bookspert/languages",
+        image: "book-store/languages",
         alt: "The Bookspert home page in Italian, with the language selector in the header set to Italiano",
       },
       {
         title: "A books catalogue with structured data",
         text: "Covers, subtitles, authors and Amazon links, each book marked up with Book schema so it can be found as a book, not just as a page.",
-        image: "bookspert/books",
+        image: "book-store/books",
         alt: "The books page with three book covers and their descriptions",
       },
       {
         title: "A page for every author and book",
         text: "Author profiles merge the built-in data with the author's own public account; each book gets its cover, subtitle and buying link.",
-        image: "bookspert/book",
+        image: "book-store/book",
         alt: "The book section of an author page: the cover, the title, the subtitle and the Amazon link",
       },
       {
         title: "How it works, in five steps",
         text: "The service is explained as a path from discovery call to launch, so a considered purchase feels concrete before the first conversation.",
-        image: "bookspert/how-it-works",
+        image: "book-store/how-it-works",
         alt: "The five-step \"From idea to a published book\" section",
       },
     ],
@@ -361,39 +362,47 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "PostgreSQL", "Vercel"],
     integrations: ["Stripe", "Resend", "Google Calendar"],
     service: "web-design-development",
-    heroImage: "bookspert/hero-what-we-do",
+    heroImage: "book-store/hero-what-we-do",
     heroAlt: "The \"Everything between your expertise and a finished book\" section of bookspert.com with the first two service cards",
     images: [],
   },
   {
-    slug: "visibility-intelligence",
+    slug: "saas",
     name: "Visibility Intelligence",
-    clientLabel: "Our own product",
-    category: "Systems & products",
+    category: "SaaS: AI audit with subscriptions",
+    kind: "SaaS",
     published: true,
-    liveUrl: null,
-    statusNote: "Launching soon",
+    siteUrl: "https://visibility-intel-production.up.railway.app",
     tagline: "A free AI audit of how a leader reads from the outside — and the work that closes the gaps.",
     summary:
-      "Our own product: an audit engine that scores a founder's public presence, a report that explains the gaps, a marketplace of done-for-you services and subscription plans.",
+      "An audit engine that scores a founder's public presence, a report that explains the gaps, a marketplace of done-for-you services and subscription plans.",
     problem:
       "Accomplished leaders are under-described online, and nothing measured that honestly or connected each gap to the work that would close it.",
-    components: ["Audit engine", "Report and PDF", "Services marketplace", "Plans on Stripe"],
+    components: ["AI audit engine", "Report PDF", "Subscriptions with Stripe", "Client area", "Services marketplace"],
     features: [
       {
-        title: "A free audit with a structured report",
-        text: "The engine researches the person with web search and returns a score out of 100, a band, a summary and prioritised findings across six dimensions.",
-        image: null,
+        title: "Two plans on Stripe",
+        text: "Base and Pro subscriptions with Stripe Checkout, automatic tax and a customer portal; entitlements decide what each plan unlocks, with a grace period.",
+        image: "saas/pricing",
+        alt: "The pricing page with the Base and Pro plans side by side",
       },
       {
-        title: "A report that explains the gaps",
-        text: "Where the missing points sit, what closing each gap is worth and a recommended service for each finding, with progress tracked across audits.",
-        image: null,
+        title: "A marketplace of services behind each gap",
+        text: "Every finding is matched to the work that closes it, in five stages from website to book, each with its deliverables and timeline.",
+        image: "saas/services",
+        alt: "The services page: stage one, Website & Digital Presence, with what it includes",
       },
       {
-        title: "Services and plans",
-        text: "A marketplace of done-for-you services with a request flow and an internal queue; Base and Pro plans on Stripe with entitlement gating.",
-        image: null,
+        title: "The free audit, in one form",
+        text: "Name, email, a password and the public links to read. The engine does the rest with web search and returns a structured report.",
+        image: "saas/audit",
+        alt: "The free audit form with the two steps: who we are reading and where to look",
+      },
+      {
+        title: "Illustrative case studies",
+        text: "Three invented leaders, each rendered with the real report components, so a visitor sees what a score and its findings look like before running their own.",
+        image: "saas/insights",
+        alt: "The Insights page with three illustrative example cases",
       },
     ],
     brief: [
@@ -443,17 +452,19 @@ export const WORK: WorkProject[] = [
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Railway"],
     integrations: ["Anthropic Claude with web search", "Stripe", "Resend"],
     service: "custom-systems-crm",
-    heroImage: null,
+    heroImage: "saas/hero-home",
+    heroAlt: "The Visibility Intelligence home page with the sample report preview: a score gauge and a finding",
+    provenance: "The report preview and the case studies are the product's own illustrative examples with invented people and companies.",
     images: [],
   },
   {
     slug: "leland-investments",
     name: "Leland Investments",
-    clientLabel: "Built for Leland Investments",
-    category: "Websites",
+    category: "Investment firm website",
+    kind: "Website",
     published: false,
-    liveUrl: null,
-    statusNote: "Awaiting client approval",
+    siteUrl: null,
+    privateNote: "Awaiting client approval",
     tagline: "A calm, credible site for an investment firm — with an editor the firm controls.",
     summary:
       "A focused site for a private investment firm: positioning, investment criteria, a protected contact flow, and an admin editor so the firm can change its own copy and fact sheet.",
@@ -506,8 +517,6 @@ export const WORK: WorkProject[] = [
     images: [],
   },
 ];
-
-export const WORK_CATEGORIES: WorkCategory[] = ["Websites", "Systems & products"];
 
 export function getPublishedWork(): WorkProject[] {
   return WORK.filter((p) => p.published);

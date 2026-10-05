@@ -8,7 +8,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Work — Websites, Systems & Products We Built",
   description:
-    "Selected work by Prisma House: websites, a tailored CRM and our own AI visibility product. Real features and real screens, no invented results.",
+    "Selected work by Prisma House: a video interview platform, a CRM and back office, a publishing site with a book store and a SaaS with subscriptions. Real features and real screens, no invented results.",
   alternates: { canonical: "/work" },
   openGraph: {
     title: "Work | Prisma House",
@@ -21,11 +21,9 @@ export default function WorkPage() {
   const projects = getPublishedWork();
   const items = projects.map((p) => ({
     slug: p.slug,
-    name: p.name,
-    clientLabel: p.clientLabel,
     category: p.category,
+    kind: p.kind,
     tagline: p.tagline,
-    statusNote: p.liveUrl ? undefined : p.statusNote,
     image: resolveImage(p.heroImage),
   }));
 
@@ -37,7 +35,7 @@ export default function WorkPage() {
       "@type": "ListItem",
       position: i + 1,
       url: `${SITE_URL}/work/${p.slug}`,
-      name: p.name,
+      name: p.category,
     })),
   };
 

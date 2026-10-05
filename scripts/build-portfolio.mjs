@@ -23,39 +23,30 @@ const PRISM = `<svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/200
 const logo = (size = 22) => `<span class="logo" style="--s:${size}px"><span class="mark">${PRISM}</span><span class="word">Prisma<span class="dim"> House</span></span></span>`;
 const img = (key) => { const r = resolveImage(key); return r ? { src: file("public" + r.src), w: r.width, h: r.height } : null; };
 
-// Monochrome client wordmarks — the same shapes as components/ClientLogo.tsx, in white.
-const XMARK = `<g fill="none" stroke="#F4F2EE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4l9 10-9 10"/><path d="M23 4l-9 10 9 10"/></g>`;
-const BOOK = `<g fill="none" stroke="#F4F2EE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h7.5a3 3 0 0 1 3 3v15.5a2.5 2.5 0 0 0-2.5-2.5H4z"/><path d="M25 5.5h-7.5a3 3 0 0 0-3 3v15.5a2.5 2.5 0 0 1 2.5-2.5H25z"/></g>`;
-const SIGNAL = `<g transform="scale(0.39)" fill="none" stroke="#F4F2EE" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 22 L26 54 L42 22"/><path d="M54 54 L54 30"/><circle cx="54" cy="17" r="5" fill="#F4F2EE" stroke="none"/></g>`;
-const word = (x, text, size = 21, weight = 800, extra = "") => `<text x="${x}" y="21" font-family="Display" font-weight="${weight}" font-size="${size}" letter-spacing="-0.02em" fill="#F4F2EE" ${extra}>${esc(text)}</text>`;
-const CLIENT_LOGOS = {
-  xraised: `<svg viewBox="0 0 118 28" height="7mm">${XMARK}${word(32, "xraised")}</svg>`,
-  "xraised-crm": `<svg viewBox="0 0 172 28" height="7mm">${XMARK}${word(32, "xraised")}${word(112, "CRM", 13, 600, 'opacity="0.7" letter-spacing="0.16em"')}</svg>`,
-  bookspert: `<svg viewBox="0 0 150 28" height="7mm">${BOOK}${word(33, "Bookspert")}</svg>`,
-  "visibility-intelligence": `<svg viewBox="0 0 232 28" height="7mm">${SIGNAL}${word(32, "Visibility Intelligence", 18, 700)}</svg>`,
-};
 
+const domain = (u) => u.replace(/^https?:\/\//, "").replace(/\/$/, "");
 function projectPage(p) {
   const hero = img(p.heroImage);
   const feats = p.features.filter((f) => img(f.image)).slice(0, 3);
   const chips = p.components.map((c) => `<span class="chip">${esc(c)}</span>`).join("");
-  const status = !p.liveUrl && p.statusNote ? `<span class="chip amber">${esc(p.statusNote)}</span>` : "";
-  const live = p.liveUrl ? `<p class="live">${esc(p.liveUrl.replace(/^https?:\/\//, ""))}</p>` : "";
+  const status = "";
+  const live = "";
+  const footLink = p.siteUrl ? `<a class="flink" href="${esc(p.siteUrl)}">Live at ${esc(domain(p.siteUrl))} →</a>` : `<span class="flink muted">${esc(p.privateNote ?? "Private system, demo on request")}</span>`;
   const heroFig = hero
     ? `<figure class="hero"><img src="${hero.src}" alt=""></figure>`
-    : `<figure class="hero empty"><span class="chip amber">${esc(p.statusNote ?? "Coming soon")}</span></figure>`;
+    : `<figure class="hero empty"></figure>`;
   const featFigs = feats.length
     ? `<div class="feats">${feats.map((f) => { const d = img(f.image); return `<figure class="feat"><img src="${d.src}" alt=""><figcaption><b>${esc(f.title)}</b>${esc(f.text)}</figcaption></figure>`; }).join("")}</div>`
     : `<div class="feats text">${p.features.slice(0, 3).map((f) => `<div class="feat"><figcaption><b>${esc(f.title)}</b>${esc(f.text)}</figcaption></div>`).join("")}</div>`;
   return `
   <section class="page project">
-    <header class="ph">${logo(14)}<span class="crumb">Selected work · ${esc(p.name)}</span></header>
+    <header class="ph">${logo(14)}<span class="crumb">Selected work · ${esc(p.category)}</span></header>
     <div class="top">
       ${heroFig}
       <div class="text">
-        <div class="clogo">${CLIENT_LOGOS[p.slug] ?? ""}</div>
-        <p class="label">${esc(p.clientLabel)} · ${esc(p.category)}</p>
-        <h2>${esc(p.tagline)}</h2>
+        <p class="label">${esc(p.kind)}</p>
+        <h2>${esc(p.category)}</h2>
+        <p class="tagline">${esc(p.tagline)}</p>
         <p class="problem">${esc(p.problem)}</p>
         <div class="chips">${chips}${status}</div>
         <p class="stack"><span>Built with</span> ${esc(p.stack.join(" · "))}</p>
@@ -64,7 +55,7 @@ function projectPage(p) {
     </div>
     ${featFigs}
     ${p.provenance ? `<p class="prov">${esc(p.provenance)}</p>` : ""}
-    <footer class="pf"><span>prisma-house.com</span><span class="beam"></span></footer>
+    <footer class="pf"><span>prisma-house.com</span><span class="beam"></span>${footLink}</footer>
   </section>`;
 }
 
@@ -94,20 +85,20 @@ h1,h2,h3,h4,.word{font-family:"Display",sans-serif;letter-spacing:-0.02em;line-h
 .intro .cols{display:grid;grid-template-columns:1.1fr 1fr;gap:16mm;align-items:start}.intro h2{font-size:30pt;margin-bottom:6mm}.intro p{color:#A7A5A0;font-size:11pt;margin-bottom:4mm;max-width:130mm}
 .svc{border:1px solid #232329;border-radius:4mm;padding:6mm 7mm;background:#141419;margin-bottom:5mm}.svc h3{font-size:12pt;margin-bottom:3mm}.svc .eyebrow{display:block;margin-bottom:2mm;color:#7C5CFF}.svc li{list-style:none;padding:1.4mm 0;border-top:1px solid #232329;font-size:10pt}.svc li:first-child{border-top:0}
 /* project: hero + text on top, three features below */
-.project .top{display:grid;grid-template-columns:140mm 1fr;gap:8mm;align-items:start;margin-bottom:5mm}
+.project .top{display:grid;grid-template-columns:136mm 1fr;gap:8mm;align-items:start;margin-bottom:4mm;max-height:86mm;overflow:hidden}
 figure{border:1px solid #232329;border-radius:3mm;overflow:hidden;background:#141419}figure img{width:100%;display:block}
 figure.hero{box-shadow:0 10mm 20mm -8mm rgba(0,0,0,.8)}figure.hero.empty{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(124,92,255,.15),#141419 50%,rgba(78,217,225,.1))}
-.clogo svg{display:block;margin-bottom:3mm}
-.label{font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:#6E6C68;margin-bottom:2.5mm}
-.project h2{font-size:15pt;line-height:1.15;margin-bottom:3mm}.problem{color:#A7A5A0;font-size:9pt;margin-bottom:3.5mm}
+.label{font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:#7C5CFF;margin-bottom:2.5mm}
+.project h2{font-size:15pt;line-height:1.1;margin-bottom:2mm}.tagline{font-family:"Display";font-size:9pt;line-height:1.3;margin-bottom:2mm}.problem{color:#A7A5A0;font-size:8pt;margin-bottom:3mm}
+.flink{color:#4ED9E1;text-decoration:none;font-size:7.5pt}.flink.muted{color:#A7A5A0}
 .chips{display:flex;gap:1.5mm;flex-wrap:wrap;margin-bottom:4mm}.chip{font-size:7pt;border:1px solid #232329;border-radius:99px;padding:1mm 2.6mm;color:#A7A5A0}.chip.amber{border-color:rgba(255,179,71,.4);color:#FFB347}
 .stack{font-size:8pt;color:#A7A5A0;border-top:1px solid #232329;padding-top:2.5mm;line-height:1.4}.stack span{font-family:"Display";color:#F4F2EE;margin-right:2mm}
 .live{font-size:8pt;color:#4ED9E1;margin-top:2.5mm}
 .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
 .feat{border:1px solid #232329;border-radius:3mm;overflow:hidden;background:#141419}.feat img{width:100%;display:block;border-bottom:1px solid #232329}
-figcaption,.feats.text figcaption{display:block;padding:2.5mm 3mm;font-size:7.5pt;color:#A7A5A0;line-height:1.35}figcaption b{display:block;font-family:"Display";color:#F4F2EE;font-size:8.5pt;margin-bottom:1mm;letter-spacing:-0.01em}
+figcaption,.feats.text figcaption{display:block;padding:2mm 3mm;font-size:7pt;color:#A7A5A0;line-height:1.3}figcaption b{display:block;font-family:"Display";color:#F4F2EE;font-size:8pt;margin-bottom:.8mm;letter-spacing:-0.01em}
 .feats.text .feat{padding:0}.feats.text figcaption{padding:4mm}
-.prov{font-size:7pt;color:#6E6C68;margin-top:3mm}
+.prov{font-size:6.5pt;color:#6E6C68;margin-top:2mm}
 /* closing */
 .closing{justify-content:center}.closing h2{font-size:44pt;margin:6mm 0}.closing p{font-size:12pt;color:#A7A5A0;max-width:150mm}.closing .contact{margin-top:10mm;display:grid;grid-template-columns:auto auto auto;gap:14mm;font-size:10pt}.closing .contact b{display:block;font-family:"Display";color:#F4F2EE;font-size:9pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5mm}.closing .contact span{color:#A7A5A0}
 </style></head><body>
@@ -178,6 +169,8 @@ await page.evaluate(async () => {
   }
   await Promise.all(imgs.map((im) => im.complete ? null : new Promise((r) => { im.onload = r; im.onerror = r; })));
 });
+const overflow = await page.evaluate(() => [...document.querySelectorAll("section.page.project")].map((sec) => { const f = sec.querySelector("footer"); return Math.round(f.getBoundingClientRect().bottom - sec.getBoundingClientRect().bottom) }));
+console.log("footer overflow per project page (px, must be <= 0):", overflow.join(", "));
 // Optional: PORTFOLIO_PREVIEW_DIR=<dir> also writes one PNG per page for visual checks.
 if (process.env.PORTFOLIO_PREVIEW_DIR) {
   fs.mkdirSync(process.env.PORTFOLIO_PREVIEW_DIR, { recursive: true });

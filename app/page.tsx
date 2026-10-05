@@ -87,7 +87,7 @@ export default function HomePage() {
   const build = SERVICES.filter((s) => s.group === "build");
   const consult = SERVICES.filter((s) => s.group === "consult");
   const featured = getPublishedWork().filter((p) =>
-    ["xraised", "xraised-crm", "bookspert"].includes(p.slug),
+    ["video-platform", "crm", "book-store", "saas"].includes(p.slug),
   );
 
   return (
@@ -297,14 +297,12 @@ export default function HomePage() {
         <WorkRows
           items={featured.map((p) => ({
             slug: p.slug,
-            name: p.name,
-            clientLabel: p.clientLabel,
             category: p.category,
+            kind: p.kind,
             tagline: p.tagline,
             components: p.components,
-            statusNote: p.liveUrl ? undefined : p.statusNote,
             hero: resolveImage(p.heroImage),
-            heroAlt: p.heroAlt ?? `${p.name} screenshot`,
+            heroAlt: p.heroAlt ?? `${p.category} screenshot`,
           }))}
         />
       </section>

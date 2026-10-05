@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
-import ClientLogo from "@/components/ClientLogo";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { WORK, getWork, resolveImage, type WorkFeature } from "@/lib/work";
 import { SERVICES } from "@/lib/services";
@@ -33,12 +32,12 @@ export function generateMetadata({ params }: Props): Metadata {
   if (!p) return {};
   const hero = resolveImage(p.heroImage);
   return {
-    title: `${p.name} — ${p.category === "Websites" ? "Website" : "System"} Case Study`,
+    title: `${p.category} — Case Study`,
     description: p.summary,
     alternates: { canonical: `/work/${p.slug}` },
     robots: p.published ? undefined : { index: false, follow: false },
     openGraph: {
-      title: `${p.name} | Work | ${SITE_NAME}`,
+      title: `${p.category} | Work | ${SITE_NAME}`,
       description: p.summary,
       url: `/work/${p.slug}`,
       images: hero ? [{ url: hero.src, width: hero.width, height: hero.height }] : undefined,
@@ -95,17 +94,17 @@ export default function CaseStudyPage({ params }: Props) {
   const creativeWorkLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    name: p.name,
+    name: p.category,
     headline: p.tagline,
     description: p.summary,
     url,
     inLanguage: "en-GB",
     creator: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
     publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-    genre: p.category,
+    genre: p.kind,
     keywords: p.stack.join(", "),
     image: hero ? `${SITE_URL}${hero.src}` : undefined,
-    ...(p.liveUrl ? { sameAs: p.liveUrl } : {}),
+    ...(p.siteUrl ? { sameAs: p.siteUrl } : {}),
   };
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -113,7 +112,7 @@ export default function CaseStudyPage({ params }: Props) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/work` },
-      { "@type": "ListItem", position: 3, name: p.name, item: url },
+      { "@type": "ListItem", position: 3, name: p.category, item: url },
     ],
   };
 
@@ -141,20 +140,14 @@ export default function CaseStudyPage({ params }: Props) {
               <span aria-hidden="true">/</span>
               <Link href="/work" className="transition-colors hover:text-bone">Work</Link>
               <span aria-hidden="true">/</span>
-              <span className="text-bone-dim">{p.name}</span>
+              <span className="text-bone-dim">{p.category}</span>
             </nav>
           </Reveal>
           <Reveal delay={0.05}>
-            <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <ClientLogo name={p.slug} className="text-bone" />
-              <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
-                {p.clientLabel} · {p.category}
-                {!p.liveUrl && p.statusNote ? <span className="text-prism-amber/90"> · {p.statusNote}</span> : null}
-              </p>
-            </div>
+            <p className="mb-6 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-prism-violet">{p.kind}</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="display-hero max-w-4xl">{p.name}</h1>
+            <h1 className="display-hero max-w-5xl">{p.category}</h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-bone-dim md:text-xl">{p.problem}</p>
@@ -166,19 +159,21 @@ export default function CaseStudyPage({ params }: Props) {
               ))}
             </ul>
           </Reveal>
-          {p.liveUrl && (
-            <Reveal delay={0.3}>
+          <Reveal delay={0.3}>
+            {p.siteUrl ? (
               <a
-                href={p.liveUrl}
+                href={p.siteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-bone transition-colors hover:text-prism-violet"
               >
-                Visit the live site
-                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                Live at {p.siteUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
-            </Reveal>
-          )}
+            ) : (
+              <p className="mt-8 text-sm font-semibold text-bone-dim">{p.privateNote ?? "Private system, demo on request"}</p>
+            )}
+          </Reveal>
         </div>
       </section>
 
@@ -188,7 +183,7 @@ export default function CaseStudyPage({ params }: Props) {
             <div className="mx-auto overflow-hidden rounded-[2rem] border border-ink-line bg-ink-card shadow-[0_40px_90px_-30px_rgba(0,0,0,0.85)]" style={{ maxWidth: hero.cssWidth }}>
               <Image
                 src={hero.src}
-                alt={p.heroAlt ?? `${p.name} screenshot`}
+                alt={p.heroAlt ?? `${p.category} screenshot`}
                 width={hero.width}
                 height={hero.height}
                 sizes="(min-width: 1200px) 1176px, 100vw"
@@ -206,11 +201,7 @@ export default function CaseStudyPage({ params }: Props) {
       ) : (
         <section className="mx-auto max-w-shell px-6 pt-4 lg:px-10">
           <Reveal>
-            <div className="flex aspect-[16/7] items-center justify-center rounded-[2rem] border border-ink-line bg-gradient-to-br from-prism-violet/15 via-ink-card to-prism-cyan/10">
-              <span className="rounded-full border border-prism-amber/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-prism-amber">
-                {p.statusNote ?? "Coming soon"}
-              </span>
-            </div>
+            <div className="aspect-[16/7] rounded-[2rem] border border-ink-line bg-gradient-to-br from-prism-violet/15 via-ink-card to-prism-cyan/10" />
           </Reveal>
         </section>
       )}

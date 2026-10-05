@@ -6,28 +6,36 @@ whole page. Files are WebP ≤ 250 KB. `manifest.json` records the pixel size an
 the captured region; the site never shows a crop wider than its CSS width (1 CSS px = 1 captured px).
 
 Hero crops are 16:10, feature crops are 4:3. Coordinates are CSS px at 1440 (x, y, width, height).
+Projects are named by category (slug = category), never by the client's name.
 
 | File | Page | Clip | Min. text at source |
 |---|---|---|---|
-| xraised/hero-tools | xraised.com/tools | 132, 18, 1176 × 735 | 11.5 px |
-| xraised/interviews | xraised.com/ ("This week on xraised") | 132, 1450, 1176 × 882 | 10.5 px |
-| xraised/interview | xraised.com/videos/… (one interview) | 170, 115, 1100 × 825 | 11 px |
-| xraised/magazine | xraised.com/magazine | 132, 468, 1176 × 882 | 11.5 px |
-| xraised/services | xraised.com/services | 132, 176, 1176 × 882 | 10.5 px |
-| bookspert/hero-what-we-do | bookspert.com/ | 132, 765, 1176 × 735 | 12 px |
-| bookspert/languages | bookspert.com/ with cookie `bookspert_language=it` | 132, 0, 1176 × 882 | 12 px |
-| bookspert/books | bookspert.com/books | 132, 570, 1176 × 882 | 11 px |
-| bookspert/book | bookspert.com/authors/… ("The book" section; no standalone book page exists) | 132, 600, 1176 × 882 | 11 px |
-| bookspert/how-it-works | bookspert.com/ | 132, 1975, 1176 × 882 | 12 px |
-| xraised-crm/hero-inbox | local CRM, /inbox with a conversation open | 244, 2, 1176 × 735 | 10 px |
-| xraised-crm/pipeline | local CRM, /deals?view=board | 232, 88, 1050 × 787 | 10 px |
-| xraised-crm/followups | local CRM, /followups | 240, 0, 1184 × 888 | 10 px |
-| xraised-crm/pr-campaign | local CRM, /pr-campaigns/1 | 240, 0, 1184 × 888 | 10 px |
-| xraised-crm/invoices | local CRM, /accounting/invoices | 240, 0, 1184 × 888 | 10 px |
+| video-platform/hero-interviews | xraised.com/videos (filters + first row of the grid) | 132, 454, 1176 × 735 | 10.5 px |
+| video-platform/interviews | xraised.com/ ("This week on xraised") | 132, 1450, 1176 × 882 | 10.5 px |
+| video-platform/interview | xraised.com/videos/… (one interview) | 170, 115, 1100 × 825 | 11 px |
+| video-platform/magazine | xraised.com/magazine | 132, 468, 1176 × 882 | 11.5 px |
+| video-platform/services | xraised.com/services | 132, 176, 1176 × 882 | 10.5 px |
+| video-platform/hero-tools | xraised.com/tools (kept, not shown) | 132, 18, 1176 × 735 | 11.5 px |
+| book-store/hero-what-we-do | bookspert.com/ | 132, 765, 1176 × 735 | 12 px |
+| book-store/languages | bookspert.com/ with cookie `bookspert_language=it` | 132, 0, 1176 × 882 | 12 px |
+| book-store/books | bookspert.com/books | 132, 570, 1176 × 882 | 11 px |
+| book-store/book | bookspert.com/authors/… ("The book" section; no standalone book page exists) | 132, 600, 1176 × 882 | 11 px |
+| book-store/how-it-works | bookspert.com/ | 132, 1975, 1176 × 882 | 12 px |
+| crm/hero-inbox | local CRM, /inbox with a conversation open | 244, 2, 1176 × 735 | 10 px |
+| crm/pipeline | local CRM, /deals?view=board | 232, 88, 1050 × 787 | 10 px |
+| crm/followups | local CRM, /followups | 240, 0, 1184 × 888 | 10 px |
+| crm/pr-campaign | local CRM, /pr-campaigns/1 | 240, 0, 1184 × 888 | 10 px |
+| crm/invoices | local CRM, /accounting/invoices | 240, 0, 1184 × 888 | 10 px |
+| saas/hero-home | Visibility Intelligence home (hero with the sample report preview) | 132, 92, 1176 × 735 | 9 px (band labels inside the preview) |
+| saas/pricing | /pricing (Base and Pro plans) | 140, 448, 1160 × 870 | 12 px |
+| saas/services | /services (stage 01) | 132, 1399, 1176 × 882 | 12 px |
+| saas/audit | /audit (the free-audit form, never submitted) | 132, 356, 1053 × 790 | 12 px |
+| saas/insights | /insights (three illustrative cases) | 132, 130, 1176 × 882 | 12 px |
 
 The CRM screens come from a throwaway local database (PGlite, outside this repo) seeded only with
 invented people, companies, outlets, emails (`.example` domains) and amounts; no production data
-is involved. Visibility Intelligence has no capture yet ("launching soon").
+is involved. The SaaS crops are public pages only: no login, no audit run, and the report preview
+and case studies are the product's own illustrative examples with invented people.
 
 On the home page the hero sits in the 60% column of a 1440px-wide row: 1176px crops are shown at
 ~828px (70%). On `/work/[slug]` the hero is shown at 100% and the feature crops at 70–79%.

@@ -1,7 +1,7 @@
 [
   {
-    "project": "bookspert",
-    "file": "bookspert/book.webp",
+    "project": "book-store",
+    "file": "book-store/book.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
@@ -10,8 +10,8 @@
     "kb": 67
   },
   {
-    "project": "bookspert",
-    "file": "bookspert/books.webp",
+    "project": "book-store",
+    "file": "book-store/books.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
@@ -20,8 +20,8 @@
     "kb": 216
   },
   {
-    "project": "bookspert",
-    "file": "bookspert/hero-what-we-do.webp",
+    "project": "book-store",
+    "file": "book-store/hero-what-we-do.webp",
     "kind": "hero",
     "width": 2352,
     "height": 1470,
@@ -30,8 +30,8 @@
     "kb": 88
   },
   {
-    "project": "bookspert",
-    "file": "bookspert/how-it-works.webp",
+    "project": "book-store",
+    "file": "book-store/how-it-works.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
@@ -40,14 +40,64 @@
     "kb": 124
   },
   {
-    "project": "bookspert",
-    "file": "bookspert/languages.webp",
+    "project": "book-store",
+    "file": "book-store/languages.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
     "cssWidth": 1176,
     "cssHeight": 882,
     "kb": 170
+  },
+  {
+    "project": "crm",
+    "file": "crm/followups.webp",
+    "kind": "feature",
+    "width": 2368,
+    "height": 1776,
+    "cssWidth": 1184,
+    "cssHeight": 888,
+    "kb": 134
+  },
+  {
+    "project": "crm",
+    "file": "crm/hero-inbox.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 200
+  },
+  {
+    "project": "crm",
+    "file": "crm/invoices.webp",
+    "kind": "feature",
+    "width": 2368,
+    "height": 1776,
+    "cssWidth": 1184,
+    "cssHeight": 888,
+    "kb": 137
+  },
+  {
+    "project": "crm",
+    "file": "crm/pipeline.webp",
+    "kind": "feature",
+    "width": 2100,
+    "height": 1574,
+    "cssWidth": 1050,
+    "cssHeight": 787,
+    "kb": 172
+  },
+  {
+    "project": "crm",
+    "file": "crm/pr-campaign.webp",
+    "kind": "feature",
+    "width": 2368,
+    "height": 1776,
+    "cssWidth": 1184,
+    "cssHeight": 888,
+    "kb": 150
   },
   {
     "project": "leland",
@@ -110,8 +160,68 @@
     "kb": 65
   },
   {
-    "project": "xraised",
-    "file": "xraised/hero-tools.webp",
+    "project": "saas",
+    "file": "saas/audit.webp",
+    "kind": "feature",
+    "width": 2106,
+    "height": 1580,
+    "cssWidth": 1053,
+    "cssHeight": 790,
+    "kb": 65
+  },
+  {
+    "project": "saas",
+    "file": "saas/hero-home.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 87
+  },
+  {
+    "project": "saas",
+    "file": "saas/insights.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 111
+  },
+  {
+    "project": "saas",
+    "file": "saas/pricing.webp",
+    "kind": "feature",
+    "width": 2320,
+    "height": 1740,
+    "cssWidth": 1160,
+    "cssHeight": 870,
+    "kb": 81
+  },
+  {
+    "project": "saas",
+    "file": "saas/services.webp",
+    "kind": "feature",
+    "width": 2352,
+    "height": 1764,
+    "cssWidth": 1176,
+    "cssHeight": 882,
+    "kb": 91
+  },
+  {
+    "project": "video-platform",
+    "file": "video-platform/hero-interviews.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 130
+  },
+  {
+    "project": "video-platform",
+    "file": "video-platform/hero-tools.webp",
     "kind": "hero",
     "width": 2352,
     "height": 1470,
@@ -120,8 +230,8 @@
     "kb": 114
   },
   {
-    "project": "xraised",
-    "file": "xraised/interview.webp",
+    "project": "video-platform",
+    "file": "video-platform/interview.webp",
     "kind": "feature",
     "width": 2200,
     "height": 1650,
@@ -130,8 +240,8 @@
     "kb": 97
   },
   {
-    "project": "xraised",
-    "file": "xraised/interviews.webp",
+    "project": "video-platform",
+    "file": "video-platform/interviews.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
@@ -140,8 +250,8 @@
     "kb": 125
   },
   {
-    "project": "xraised",
-    "file": "xraised/magazine.webp",
+    "project": "video-platform",
+    "file": "video-platform/magazine.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
@@ -150,63 +260,13 @@
     "kb": 196
   },
   {
-    "project": "xraised",
-    "file": "xraised/services.webp",
+    "project": "video-platform",
+    "file": "video-platform/services.webp",
     "kind": "feature",
     "width": 2352,
     "height": 1764,
     "cssWidth": 1176,
     "cssHeight": 882,
     "kb": 129
-  },
-  {
-    "project": "xraised-crm",
-    "file": "xraised-crm/followups.webp",
-    "kind": "feature",
-    "width": 2368,
-    "height": 1776,
-    "cssWidth": 1184,
-    "cssHeight": 888,
-    "kb": 134
-  },
-  {
-    "project": "xraised-crm",
-    "file": "xraised-crm/hero-inbox.webp",
-    "kind": "hero",
-    "width": 2352,
-    "height": 1470,
-    "cssWidth": 1176,
-    "cssHeight": 735,
-    "kb": 200
-  },
-  {
-    "project": "xraised-crm",
-    "file": "xraised-crm/invoices.webp",
-    "kind": "feature",
-    "width": 2368,
-    "height": 1776,
-    "cssWidth": 1184,
-    "cssHeight": 888,
-    "kb": 137
-  },
-  {
-    "project": "xraised-crm",
-    "file": "xraised-crm/pipeline.webp",
-    "kind": "feature",
-    "width": 2100,
-    "height": 1574,
-    "cssWidth": 1050,
-    "cssHeight": 787,
-    "kb": 172
-  },
-  {
-    "project": "xraised-crm",
-    "file": "xraised-crm/pr-campaign.webp",
-    "kind": "feature",
-    "width": 2368,
-    "height": 1776,
-    "cssWidth": 1184,
-    "cssHeight": 888,
-    "kb": 150
   }
 ]

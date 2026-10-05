@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import ClientLogo from "@/components/ClientLogo";
-import type { ResolvedImage } from "@/lib/work";
+import type { ResolvedImage, WorkKind } from "@/lib/work";
 
 export type WorkRowItem = {
   slug: string;
-  name: string;
-  clientLabel: string;
+  /** The visible title of the row. */
   category: string;
+  kind: WorkKind;
+  /** One sentence on what the product does. */
   tagline: string;
   components: string[];
-  statusNote?: string;
   hero: ResolvedImage | null;
   heroAlt: string;
 };
@@ -19,7 +18,7 @@ export type WorkRowItem = {
 /**
  * Full-width, alternating rows. The image sits in a 60% column and is never shown wider than
  * its capture width (1 CSS px = 1 captured px), so a crop stays at real scale instead of being
- * stretched; on a 1440px viewport the 60% column is ~826px, i.e. ≥70% of a 1176px crop.
+ * stretched; on a 1440px viewport the 60% column is ~828px, i.e. 70% of a 1176px crop.
  */
 export function WorkRow({ item, index, eager = false }: { item: WorkRowItem; index: number; eager?: boolean }) {
   const reverse = index % 2 === 1;
@@ -42,11 +41,7 @@ export function WorkRow({ item, index, eager = false }: { item: WorkRowItem; ind
               loading={eager ? "eager" : "lazy"}
             />
           ) : (
-            <div className="flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-prism-violet/15 via-ink-card to-prism-cyan/10">
-              <span className="rounded-full border border-prism-amber/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-prism-amber">
-                {item.statusNote ?? "Coming soon"}
-              </span>
-            </div>
+            <div className="aspect-[16/10] bg-gradient-to-br from-prism-violet/15 via-ink-card to-prism-cyan/10" />
           )}
         </div>
       </Reveal>
@@ -56,13 +51,11 @@ export function WorkRow({ item, index, eager = false }: { item: WorkRowItem; ind
   const text = (
     <div className={`md:col-span-2 ${reverse ? "md:order-1 md:pr-6 lg:pr-10" : "md:pl-6 lg:pl-10"}`}>
       <Reveal delay={0.1}>
-        <ClientLogo name={item.slug} className="text-bone" />
-        <p className="mt-6 text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
-          {item.clientLabel} · {item.category}
-        </p>
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-prism-violet">{item.kind}</p>
         <h3 className="mt-4 font-display text-2xl font-bold leading-snug tracking-tight text-bone md:text-3xl">
-          {item.tagline}
+          {item.category}
         </h3>
+        <p className="mt-4 leading-relaxed text-bone-dim">{item.tagline}</p>
         <ul className="mt-6 flex flex-wrap gap-2" aria-label="Components">
           {item.components.map((c) => (
             <li key={c} className="rounded-full border border-ink-line px-3 py-1 text-xs font-semibold text-bone-dim">

@@ -3,23 +3,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import type { WorkCategory } from "@/lib/work";
+import type { WorkKind } from "@/lib/work";
 
 export type WorkCard = {
   slug: string;
-  name: string;
-  clientLabel: string;
-  category: WorkCategory;
+  /** The visible title. */
+  category: string;
+  kind: WorkKind;
   tagline: string;
-  statusNote?: string;
   image: { src: string; width: number; height: number } | null;
 };
 
-const FILTERS: ("All" | WorkCategory)[] = ["All", "Websites", "Systems & products"];
+const FILTERS: ("All" | WorkKind)[] = ["All", "Website", "System", "SaaS"];
 
 export default function WorkGrid({ items }: { items: WorkCard[] }) {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
-  const visible = filter === "All" ? items : items.filter((i) => i.category === filter);
+  const visible = filter === "All" ? items : items.filter((i) => i.kind === filter);
 
   return (
     <div>
@@ -64,18 +63,9 @@ export default function WorkGrid({ items }: { items: WorkCard[] }) {
               )}
             </div>
             <div className="p-7">
-              <div className="flex flex-wrap items-center gap-2 text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
-                <span>{item.clientLabel}</span>
-                <span aria-hidden="true">·</span>
-                <span>{item.category}</span>
-                {item.statusNote && (
-                  <span className="rounded-full border border-prism-amber/30 px-2 py-0.5 normal-case tracking-normal text-prism-amber/90">
-                    {item.statusNote}
-                  </span>
-                )}
-              </div>
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-prism-violet">{item.kind}</p>
               <h2 className="mt-3 font-display text-2xl font-bold tracking-tight text-bone transition-colors duration-300 group-hover:text-prism-violet">
-                {item.name}
+                {item.category}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-bone-dim">{item.tagline}</p>
             </div>
