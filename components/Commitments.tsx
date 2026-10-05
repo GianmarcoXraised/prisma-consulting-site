@@ -13,8 +13,8 @@ const COMMITMENTS = [
     copy: "Reporting a finance director can interrogate: what was spent, what it produced, and what we would do next.",
   },
   {
-    label: "No vanity",
-    copy: "Impressions, followers and traffic are inputs. We report on what they turned into.",
+    label: "You own it",
+    copy: "You own what we build — code, data, hosting and documentation stay with you.",
   },
 ] as const;
 

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { contactNeedLabel, isContactNeed } from "@/lib/contact-needs";
 
 export const runtime = "nodejs";
 
@@ -8,6 +9,7 @@ type ContactPayload = {
   email?: string;
   company?: string;
   message?: string;
+  need?: string;
 };
 
 function escapeHtml(value: string): string {
@@ -33,6 +35,15 @@ export async function POST(request: Request) {
   const email = payload.email?.trim() ?? "";
   const company = payload.company?.trim() ?? "";
   const message = payload.message?.trim() ?? "";
+  const need = payload.need?.trim() ?? "";
+
+  if (!isContactNeed(need)) {
+    return NextResponse.json(
+      { error: "Please tell us what you need." },
+      { status: 400 },
+    );
+  }
+  const needLabel = contactNeedLabel(need);
 
   if (!name || name.length > 200) {
     return NextResponse.json(
@@ -77,8 +88,9 @@ export async function POST(request: Request) {
       from: `"Prisma House Website" <${SMTP_USER}>`,
       to: CONTACT_TO_EMAIL,
       replyTo: email,
-      subject: `New enquiry from ${name}${company ? ` (${company})` : ""}`,
+      subject: `New enquiry — ${needLabel} — from ${name}${company ? ` (${company})` : ""}`,
       text: [
+        `Need: ${needLabel}`,
         `Name: ${name}`,
         `Email: ${email}`,
         `Company: ${company || "—"}`,
@@ -89,6 +101,7 @@ export async function POST(request: Request) {
       html: `
         <h2 style="font-family:sans-serif">New website enquiry</h2>
         <table style="font-family:sans-serif;font-size:14px" cellpadding="6">
+          <tr><td><strong>Need</strong></td><td>${escapeHtml(needLabel)}</td></tr>
           <tr><td><strong>Name</strong></td><td>${escapeHtml(name)}</td></tr>
           <tr><td><strong>Email</strong></td><td>${escapeHtml(email)}</td></tr>
           <tr><td><strong>Company</strong></td><td>${escapeHtml(company) || "—"}</td></tr>

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Marketing Consultancy, Media Pitching, Web & CRM Services | Prisma House",
     description:
-      "Brand strategy, growth, content, editorial media pitching and audits — plus the websites and custom systems that run them. Seven disciplines, one direction.",
+      "Brand strategy, growth, content, editorial media pitching and audits — plus the websites and custom systems that run them.",
     url: "/services",
   },
 };

@@ -237,6 +237,15 @@ export default function AboutPage() {
                   top.
                 </p>
                 <p>
+                  He also leads the build side. The platforms and internal
+                  systems shown in our work — a media platform with its own
+                  client portal, a tailored CRM, a multilingual publishing site
+                  and our own AI visibility product — were designed and shipped
+                  under his direction. It is why Prisma can recommend a system
+                  and then build it, rather than hand the brief to someone
+                  else.
+                </p>
+                <p>
                   His standard for the work is simple: find the one true thing
                   a brand can say better than anyone, then cut everything that
                   dilutes it. If a recommendation can&rsquo;t survive a

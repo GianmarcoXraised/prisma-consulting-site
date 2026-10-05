@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import CalendlyEmbed from "@/components/CalendlyEmbed";
@@ -57,7 +58,9 @@ export default function ContactPage() {
                 day.
               </p>
               <div className="mt-10">
-                <ContactForm />
+                <Suspense fallback={null}>
+                  <ContactForm />
+                </Suspense>
               </div>
             </div>
           </Reveal>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 import Reveal from "./Reveal";
-import { ButtonPrimary } from "./Button";
+import { ButtonPrimary, ButtonGhost } from "./Button";
 import { NAV_LINKS } from "@/lib/site";
 
 export default function Footer() {
@@ -33,8 +33,13 @@ export default function Footer() {
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="mt-10">
-              <ButtonPrimary href="/contact">Book a call</ButtonPrimary>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <ButtonPrimary href="/contact?need=build">
+                I need a website or system
+              </ButtonPrimary>
+              <ButtonGhost href="/contact?need=consult">
+                I need marketing strategy
+              </ButtonGhost>
             </div>
           </Reveal>
         </div>

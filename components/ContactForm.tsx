@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
+import { CONTACT_NEEDS, isContactNeed } from "@/lib/contact-needs";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -11,6 +13,14 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [need, setNeed] = useState("");
+  const searchParams = useSearchParams();
+
+  // Pre-select from /contact?need=build|system|consult|media|unsure
+  useEffect(() => {
+    const fromUrl = searchParams.get("need");
+    if (isContactNeed(fromUrl)) setNeed(fromUrl);
+  }, [searchParams]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,6 +32,7 @@ export default function ContactForm() {
 
     const errors: Record<string, string> = {};
     if (!data.name?.trim()) errors.name = "Please tell us your name.";
+    if (!isContactNeed(data.need)) errors.need = "Please tell us what you need.";
     if (!data.email?.trim() || !/^\S+@\S+\.\S+$/.test(data.email)) {
       errors.email = "Please enter a valid email address.";
     }
@@ -45,6 +56,7 @@ export default function ContactForm() {
       }
       setStatus("success");
       form.reset();
+      setNeed("");
     } catch (err) {
       setStatus("error");
       setErrorMsg(
@@ -142,6 +154,38 @@ export default function ContactForm() {
             </p>
           )}
         </div>
+      </div>
+
+      <div>
+        <label
+          htmlFor="need"
+          className="mb-2 block text-xs font-semibold uppercase tracking-wider text-bone-dim"
+        >
+          What do you need? *
+        </label>
+        <select
+          id="need"
+          name="need"
+          required
+          value={need}
+          onChange={(e) => setNeed(e.target.value)}
+          className={`${inputClasses} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 fill=%22none%22><path d=%22M4 6l4 4 4-4%22 stroke=%22%23A7A5A0%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>')] bg-[length:16px_16px] bg-[right_1rem_center] bg-no-repeat pr-10 ${need ? "text-bone" : "text-bone-faint"}`}
+          aria-invalid={!!fieldErrors.need}
+        >
+          <option value="" disabled>
+            Choose one
+          </option>
+          {CONTACT_NEEDS.map((n) => (
+            <option key={n.key} value={n.key} className="bg-ink-card text-bone">
+              {n.label}
+            </option>
+          ))}
+        </select>
+        {fieldErrors.need && (
+          <p className="mt-1.5 text-xs text-prism-magenta">
+            {fieldErrors.need}
+          </p>
+        )}
       </div>
 
       <div>
