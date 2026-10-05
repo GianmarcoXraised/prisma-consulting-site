@@ -9,6 +9,7 @@ export const SITE_DESCRIPTION =
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/news", label: "News" },
   { href: "/contact", label: "Contact" },

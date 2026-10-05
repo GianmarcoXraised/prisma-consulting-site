@@ -6,6 +6,8 @@ import PressMarquee from "@/components/PressMarquee";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+import Image from "next/image";
+import { getPublishedWork, resolveImage } from "@/lib/work";
 
 export const metadata: Metadata = {
   title: "Prisma House — Marketing that refracts into results",
@@ -225,6 +227,66 @@ export default function HomePage() {
           <Reveal delay={0.2}>
             <Commitments />
           </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- Selected work ---------- */}
+      <section className="border-t border-ink-line py-28 md:py-36">
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Reveal>
+                <p className="eyebrow mb-4">Selected work</p>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <h2 className="display-xl max-w-2xl">
+                  Built, shipped, <span className="text-prism">in use.</span>
+                </h2>
+              </Reveal>
+            </div>
+            <Reveal delay={0.2}>
+              <ButtonGhost href="/work">All work</ButtonGhost>
+            </Reveal>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {getPublishedWork()
+              .filter((p) => ["xraised", "xraised-crm", "bookspert"].includes(p.slug))
+              .map((p, i) => {
+                const img = resolveImage(p.heroImage, "desktop");
+                return (
+                  <Reveal key={p.slug} delay={i * 0.1}>
+                    <Link
+                      href={`/work/${p.slug}`}
+                      className="group block h-full overflow-hidden rounded-2xl border border-ink-line bg-ink-card transition-all duration-300 hover:-translate-y-1.5 hover:border-prism-violet/50"
+                    >
+                      <div className="relative aspect-[16/10] overflow-hidden border-b border-ink-line bg-ink">
+                        {img ? (
+                          <Image
+                            src={img.src}
+                            alt=""
+                            width={img.width}
+                            height={img.height}
+                            sizes="(min-width: 768px) 26rem, 100vw"
+                            className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                          />
+                        ) : (
+                          <div className="h-full w-full bg-gradient-to-br from-prism-violet/20 via-ink-card to-prism-cyan/10" />
+                        )}
+                      </div>
+                      <div className="p-7">
+                        <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-bone-faint">
+                          {p.clientLabel} · {p.category}
+                        </p>
+                        <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-bone transition-colors duration-300 group-hover:text-prism-violet">
+                          {p.name}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-bone-dim">{p.tagline}</p>
+                      </div>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+          </div>
         </div>
       </section>
 

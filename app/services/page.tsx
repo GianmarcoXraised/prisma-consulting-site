@@ -3,6 +3,8 @@ import Reveal from "@/components/Reveal";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/services";
 import LegacyAnchorRedirect from "@/components/LegacyAnchorRedirect";
+import Link from "next/link";
+import { getWorkByService } from "@/lib/work";
 
 export const metadata: Metadata = {
   title: "Marketing Consultancy, Media Pitching, Web & CRM Services",
@@ -129,6 +131,24 @@ export default function ServicesPage() {
                               </p>
                             </div>
                           ))}
+                        </div>
+                      )}
+
+                      {getWorkByService(service.slug).length > 0 && (
+                        <div className="mt-8 border-t border-ink-line pt-6">
+                          <p className="eyebrow mb-3">See it in practice</p>
+                          <ul className="flex flex-wrap gap-2">
+                            {getWorkByService(service.slug).map((w) => (
+                              <li key={w.slug}>
+                                <Link
+                                  href={`/work/${w.slug}`}
+                                  className="inline-flex items-center gap-1.5 rounded-full border border-ink-line px-4 py-1.5 text-sm font-semibold text-bone-dim transition-all duration-300 hover:border-prism-violet hover:text-bone"
+                                >
+                                  {w.name} <span aria-hidden="true">→</span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       )}
 
