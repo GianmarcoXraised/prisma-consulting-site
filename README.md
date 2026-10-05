@@ -36,6 +36,11 @@ The project uses the standard Next.js build and start commands, and `npm start` 
 2. Railway auto-detects Node and runs `npm install && npm run build`, then `npm start`.
 3. Add the environment variables above in the Railway dashboard (set `NEXT_PUBLIC_SITE_URL` to your production domain).
 
+## Work section and portfolio PDF
+
+- Case studies live in `lib/work.ts`; screenshots in `public/work/<project>/` with a `manifest.json` of sizes. A project with `published: false` renders only in `next dev` (with a preview banner) and returns 404 in production.
+- `public/prisma-house-portfolio.pdf` is generated from the same data: run `npx playwright install chromium` once, then `npm run portfolio` whenever projects or screenshots change. Published projects only.
+
 ## Content
 
 - **News articles** live in `content/news/*.mdx` with `title`, `excerpt`, `date`, `author`, `category` frontmatter. Drop in a new `.mdx` file and it appears automatically (list page, article page, sitemap).

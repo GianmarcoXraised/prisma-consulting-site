@@ -65,6 +65,18 @@ export default function WorkPage() {
               — no invented numbers, no borrowed testimonials.
             </p>
           </Reveal>
+          <Reveal delay={0.35}>
+            <a
+              href="/prisma-house-portfolio.pdf"
+              download="Prisma-House-Selected-Work.pdf"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full border border-ink-line px-6 py-3 text-sm font-semibold text-bone transition-all duration-300 hover:border-prism-violet hover:text-prism-violet"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M8 2v8m0 0L5 7m3 3l3-3M3 12.5h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Download our portfolio (PDF)
+            </a>
+          </Reveal>
         </div>
         <div className="beam absolute bottom-0 left-0 h-px w-full opacity-60" />
       </section>

@@ -10,14 +10,25 @@ import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
-// Unpublished projects still build so they can be reviewed at their URL; they are
-// simply not listed, not in the sitemap, and marked noindex.
+// Unpublished projects (published: false) exist only in development, where they
+// render with a preview banner for review. In production they are not generated
+// and any request for them is a 404.
+const IS_PROD = process.env.NODE_ENV === "production";
+
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return WORK.map((p) => ({ slug: p.slug }));
+  return WORK.filter((p) => !IS_PROD || p.published).map((p) => ({ slug: p.slug }));
+}
+
+function getVisibleWork(slug: string) {
+  const p = getWork(slug);
+  if (!p || (IS_PROD && !p.published)) return undefined;
+  return p;
 }
 
 export function generateMetadata({ params }: Props): Metadata {
-  const p = getWork(params.slug);
+  const p = getVisibleWork(params.slug);
   if (!p) return {};
   const hero = resolveImage(p.heroImage, "desktop");
   return {
@@ -35,7 +46,7 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 export default function CaseStudyPage({ params }: Props) {
-  const p = getWork(params.slug);
+  const p = getVisibleWork(params.slug);
   if (!p) notFound();
 
   const url = `${SITE_URL}/work/${p.slug}`;
