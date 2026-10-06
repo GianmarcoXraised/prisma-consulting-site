@@ -49,3 +49,9 @@ social slides are HTML stored inside jobs, the distribution report has no web ro
 their panels and pages show text-only features; `ai-agents` reuses `crm/followups`. Image keys
 reserved: `cms/hero-calendar`, `cms/interviews`, `cms/calendar`, `cms/editor`, `cms/social`,
 `ai-agents/hero-article`, `ai-agents/article`, `ai-agents/distribution`, `ai-agents/slides`.
+
+Update 2026-10-06: `cms` and `ai-agents` now use public outputs instead of team screens.
+| cms/hero-interview | xraised.com/videos/… (player, category, title) | 140, 177, 1160 × 725 | 11 px |
+| ai-agents/hero-article | fwnbc.marketminute.com (the distributed article: outlet header, title, opening paragraphs) | 112, 0, 1216 × 760 | 12.8 px |
+| ai-agents/social | linkedin.com/company/xraised (a post with the generated slides; cookie banner rejected, login overlays removed; clip anchored to the post's measured top) | 90, post top − 4, 1120 × 840 | 12 px |
+The other CMS/AI Agents features reuse `video-platform/*` and `crm/followups`. AP News and Barchart block automated capture (403).

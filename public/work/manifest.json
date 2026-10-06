@@ -1,5 +1,25 @@
 [
   {
+    "project": "ai-agents",
+    "file": "ai-agents/hero-article.webp",
+    "kind": "hero",
+    "width": 2432,
+    "height": 1520,
+    "cssWidth": 1216,
+    "cssHeight": 760,
+    "kb": 240
+  },
+  {
+    "project": "ai-agents",
+    "file": "ai-agents/social.webp",
+    "kind": "feature",
+    "width": 2240,
+    "height": 1680,
+    "cssWidth": 1120,
+    "cssHeight": 840,
+    "kb": 123
+  },
+  {
     "project": "book-store",
     "file": "book-store/book.webp",
     "kind": "feature",
@@ -48,6 +68,16 @@
     "cssWidth": 1176,
     "cssHeight": 882,
     "kb": 170
+  },
+  {
+    "project": "cms",
+    "file": "cms/hero-interview.webp",
+    "kind": "hero",
+    "width": 2320,
+    "height": 1450,
+    "cssWidth": 1160,
+    "cssHeight": 725,
+    "kb": 85
   },
   {
     "project": "crm",
@@ -197,7 +227,7 @@
     "height": 1740,
     "cssWidth": 1160,
     "cssHeight": 870,
-    "kb": 81
+    "kb": 90
   },
   {
     "project": "saas",
@@ -217,7 +247,7 @@
     "height": 1470,
     "cssWidth": 1176,
     "cssHeight": 735,
-    "kb": 130
+    "kb": 141
   },
   {
     "project": "video-platform",
