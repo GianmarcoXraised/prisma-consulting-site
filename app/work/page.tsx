@@ -1,31 +1,46 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import WorkGrid from "@/components/WorkGrid";
+import WorkExplorer, { type ExplorerExample } from "@/components/WorkExplorer";
 import { ButtonGhost } from "@/components/Button";
-import { getPublishedWork, resolveImage } from "@/lib/work";
+import { CATEGORIES } from "@/lib/categories";
+import { getPublishedWork, getWork, resolveImage } from "@/lib/work";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Work — Websites, Systems & Products We Built",
+  title: "Work — What We Build: Websites, CRM, CMS, SaaS, AI Agents",
   description:
-    "Selected work by Prisma House: a video interview platform, a CRM and back office, a publishing site with a book store and a SaaS with subscriptions. Real features and real screens, no invented results.",
+    "Five things we build, each with a real example: websites, a CRM and back office, a publishing CMS, a SaaS with subscriptions and AI agents. Real screens, no invented results.",
   alternates: { canonical: "/work" },
   openGraph: {
     title: "Work | Prisma House",
-    description: "Websites, systems and products we have designed and built.",
+    description: "What we build, with real examples.",
     url: "/work",
   },
 };
 
 export default function WorkPage() {
   const projects = getPublishedWork();
-  const items = projects.map((p) => ({
-    slug: p.slug,
-    category: p.category,
-    kind: p.kind,
-    tagline: p.tagline,
-    image: resolveImage(p.heroImage),
-  }));
+  const examples: Record<string, ExplorerExample> = {};
+  for (const c of CATEGORIES) {
+    for (const slug of c.examples) {
+      const p = getWork(slug);
+      if (!p || !p.published) continue;
+      examples[slug] = {
+        slug: p.slug,
+        title: p.category,
+        kind: p.kind,
+        tagline: p.tagline,
+        problem: p.problem,
+        components: p.components,
+        siteUrl: p.siteUrl,
+        privateNote: p.privateNote,
+        hero: resolveImage(p.heroImage),
+        heroAlt: p.heroAlt ?? `${p.category} screenshot`,
+        features: p.features.map((f) => ({ title: f.title, text: f.text, alt: f.alt, image: resolveImage(f.image) })),
+        provenance: p.provenance,
+      };
+    }
+  }
 
   const listLd = {
     "@context": "https://schema.org",
@@ -47,20 +62,19 @@ export default function WorkPage() {
           className="prism-orb -right-32 top-10 h-[24rem] w-[24rem] animate-prism-drift"
           style={{ background: "linear-gradient(135deg, #4ED9E1, #7C5CFF)" }}
         />
-        <div className="relative mx-auto max-w-shell px-6 pb-20 pt-44 lg:px-10">
+        <div className="relative mx-auto max-w-shell px-6 pb-16 pt-44 lg:px-10">
           <Reveal>
             <p className="eyebrow mb-6">Work</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-4xl">
-              Things we have <span className="text-prism">actually built.</span>
+              What we <span className="text-prism">build.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
-              Websites, internal systems and a product of our own. Every case study
-              below lists real features taken from the code and shows real screens
-              — no invented numbers, no borrowed testimonials.
+              Five kinds of thing, each with a real example underneath: pick one to see the
+              screens. No invented numbers, no borrowed testimonials.
             </p>
           </Reveal>
           <Reveal delay={0.35}>
@@ -79,9 +93,9 @@ export default function WorkPage() {
         <div className="beam absolute bottom-0 left-0 h-px w-full opacity-60" />
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="pb-20 pt-4 md:pb-28">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
-          <WorkGrid items={items} />
+          <WorkExplorer categories={CATEGORIES} examples={examples} />
         </div>
       </section>
 
@@ -99,7 +113,7 @@ export default function WorkPage() {
             </Reveal>
           </div>
           <Reveal delay={0.2}>
-            <ButtonGhost href="/contact">Start the conversation</ButtonGhost>
+            <ButtonGhost href="/contact">Book a call</ButtonGhost>
           </Reveal>
         </div>
       </section>

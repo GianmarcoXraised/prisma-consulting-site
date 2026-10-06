@@ -39,3 +39,13 @@ and case studies are the product's own illustrative examples with invented peopl
 
 On the home page the hero sits in the 60% column of a 1440px-wide row: 1176px crops are shown at
 ~828px (70%). On `/work/[slug]` the hero is shown at 100% and the feature crops at 70–79%.
+
+## Still to capture (2026-10-06)
+
+The `cms` and `ai-agents` examples (Xraised interview publishing system and its editorial agents)
+have no crops yet: their screens need a local xraised-agent with fictional data (Postgres via
+PGlite boots fine; the content calendar and client brand config live only in Azure Blob, the
+social slides are HTML stored inside jobs, the distribution report has no web route). Until then
+their panels and pages show text-only features; `ai-agents` reuses `crm/followups`. Image keys
+reserved: `cms/hero-calendar`, `cms/interviews`, `cms/calendar`, `cms/editor`, `cms/social`,
+`ai-agents/hero-article`, `ai-agents/article`, `ai-agents/distribution`, `ai-agents/slides`.

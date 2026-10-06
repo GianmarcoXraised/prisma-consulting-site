@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 /** The kind of thing it is — a small uppercase label next to the category. */
-export type WorkKind = "Website" | "System" | "SaaS";
+export type WorkKind = "Website" | "System" | "SaaS" | "AI agents";
 
 export type WorkImage = {
   /** "<project>/<name>" — resolves to public/work/<project>/<name>.webp (a real-scale crop, never a whole page). */
@@ -455,6 +455,116 @@ export const WORK: WorkProject[] = [
     heroImage: "saas/hero-home",
     heroAlt: "The Visibility Intelligence home page with the sample report preview: a score gauge and a finding",
     provenance: "The report preview and the case studies are the product's own illustrative examples with invented people and companies.",
+    images: [],
+  },
+  {
+    slug: "cms",
+    name: "Xraised interview publishing",
+    category: "Interview publishing system",
+    kind: "System",
+    published: true,
+    siteUrl: null,
+    privateNote: "Private system, demo on request",
+    tagline: "One editorial system from a recorded interview to a page, a calendar and social posts.",
+    summary:
+      "The team side of the Xraised platform: the interview CMS, the per-client content calendar, the editor and the social slides, all feeding the public site.",
+    problem:
+      "Hundreds of interviews a year had to become pages, articles and social posts on a schedule, with a small team and no copy-paste between tools.",
+    components: ["Interview CMS", "Content calendar", "Editor with approval", "Social slides"],
+    features: [
+      {
+        title: "A page for every interview, generated",
+        text: "The CMS holds the video, the guest, the cover and the article; publishing builds the public page, the category listings and the feeds.",
+        image: "cms/interviews",
+        alt: "The interviews list in the CMS with cover, guest, category and status (fictional demo data)",
+      },
+      {
+        title: "A publication calendar per client",
+        text: "A rolling three-month plan per client and placement, with topics proposed by the engine and a status for every entry.",
+        image: "cms/calendar",
+        alt: "A client's content calendar with planned, drafted and published entries (fictional demo data)",
+      },
+      {
+        title: "An editor built around approval",
+        text: "Title, summary and body are edited in place; the piece moves from draft to ready to published, and the client can approve or request changes.",
+        image: "cms/editor",
+        alt: "The article editor with title, body and the publish actions (fictional demo data)",
+      },
+      {
+        title: "Social slides from the same source",
+        text: "Carousels, captions and reels are produced from the interview and queued per channel, so one recording becomes a week of posts.",
+        image: "cms/social",
+        alt: "A social package with its slides and captions (fictional demo data)",
+      },
+    ],
+    brief: [
+      "Xraised publishes interviews at a pace no editorial team could sustain by hand. The system had to turn one recording into everything downstream: the page, the article, the calendar entry and the social posts, with a human approving at the right points.",
+    ],
+    built: [
+      "An interview CMS with cover generation, video configuration and a rebuild queue; a per-client content calendar with AI-proposed topics; an editor with approval states; and a social studio for carousels, captions and reels.",
+    ],
+    featureGroups: [],
+    stack: ["Python", "FastAPI", "Jinja2", "PostgreSQL", "SQLAlchemy", "Playwright", "ffmpeg", "Railway"],
+    integrations: ["Asana", "Anthropic Claude", "Azure Blob Storage", "Buffer"],
+    service: "custom-systems-crm",
+    heroImage: "cms/hero-calendar",
+    heroAlt: "The content calendar of a client in the CMS (fictional demo data)",
+    provenance: "Screens shown with fictional demo data: clients, guests and topics are invented.",
+    images: [],
+  },
+  {
+    slug: "ai-agents",
+    name: "Xraised editorial agents",
+    category: "Editorial agents",
+    kind: "AI agents",
+    published: true,
+    siteUrl: null,
+    privateNote: "Private system, demo on request",
+    tagline: "Agents that write the article, distribute it, build the slides and chase the reply.",
+    summary:
+      "The automations behind the same publishing pipeline: article generation from the interview, distribution to outlets, social slide generation and follow-up emails from the CRM.",
+    problem:
+      "Each interview needed an article, a distribution round, a set of slides and a follow-up; done by hand, that work set the ceiling on how many interviews could ship.",
+    components: ["Article agent", "Distribution", "Slide generation", "CRM follow-ups"],
+    features: [
+      {
+        title: "The article, drafted from the interview",
+        text: "An agent reads the transcript and the guest's material, drafts the article with its summary and images, and leaves it in the editor for a human to approve.",
+        image: "ai-agents/article",
+        alt: "A generated article in the editor, waiting for approval (fictional demo data)",
+      },
+      {
+        title: "Distribution to outlets, with a report",
+        text: "The approved piece is sent to the newswire and the outlets in the plan; the client gets a distribution report with every placement.",
+        image: "ai-agents/distribution",
+        alt: "The PR distribution screen with sends and their status (fictional demo data)",
+      },
+      {
+        title: "Slides and captions, generated",
+        text: "Carousels, captions and a 9:16 reel with auto-highlight come out of the same source and wait in the queue for their channel.",
+        image: "ai-agents/slides",
+        alt: "Generated social slides for an interview (fictional demo data)",
+      },
+      {
+        title: "Follow-ups that wait for a human",
+        text: "In the CRM, an agent notices when the client has not written back, drafts the next nudge and queues it for approval. Nothing is sent on its own.",
+        image: "crm/followups",
+        alt: "The follow-ups page with drafts to approve (fictional demo data)",
+      },
+    ],
+    brief: [
+      "The publishing system removed the copy-paste; the agents removed the waiting. Every step that used to need a person to start it now starts on its own and stops where a person must decide.",
+    ],
+    built: [
+      "Scheduled agents for article generation, newswire and outlet distribution, social slide and reel generation, and the follow-up engine of the CRM, each with a human approval step and a record of every run.",
+    ],
+    featureGroups: [],
+    stack: ["Python", "FastAPI", "PostgreSQL", "APScheduler", "Playwright", "ffmpeg", "Next.js", "Railway"],
+    integrations: ["Anthropic Claude", "ElevenLabs", "Newswire API", "Buffer", "Microsoft 365"],
+    service: "custom-systems-crm",
+    heroImage: "ai-agents/hero-article",
+    heroAlt: "A generated article in the editor (fictional demo data)",
+    provenance: "Screens shown with fictional demo data: clients, guests, outlets and topics are invented.",
     images: [],
   },
   {

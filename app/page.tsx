@@ -6,8 +6,8 @@ import PressMarquee from "@/components/PressMarquee";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/services";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
-import { getPublishedWork, resolveImage } from "@/lib/work";
-import WorkRows from "@/components/WorkRows";
+import { CATEGORIES } from "@/lib/categories";
+import CategoryTile, { CategoryGrid } from "@/components/CategoryTile";
 
 export const metadata: Metadata = {
   title: "Prisma House — We shape the strategy. Then we build it.",
@@ -86,9 +86,6 @@ const STEPS = [
 export default function HomePage() {
   const build = SERVICES.filter((s) => s.group === "build");
   const consult = SERVICES.filter((s) => s.group === "consult");
-  const featured = getPublishedWork().filter((p) =>
-    ["video-platform", "crm", "book-store", "saas"].includes(p.slug),
-  );
 
   return (
     <>
@@ -275,13 +272,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- 3. Selected work ---------- */}
+      {/* ---------- 3. What we build ---------- */}
       <section className="border-t border-ink-line py-28 md:py-36">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
-          <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <div>
               <Reveal>
-                <p className="eyebrow mb-4">Selected work</p>
+                <p className="eyebrow mb-4">What we build</p>
               </Reveal>
               <Reveal delay={0.1}>
                 <h2 className="display-xl max-w-2xl">
@@ -290,21 +287,17 @@ export default function HomePage() {
               </Reveal>
             </div>
             <Reveal delay={0.2}>
-              <ButtonGhost href="/work">All work + portfolio PDF</ButtonGhost>
+              <ButtonGhost href="/work">See the examples + portfolio PDF</ButtonGhost>
             </Reveal>
           </div>
+          <Reveal delay={0.15}>
+            <CategoryGrid>
+              {CATEGORIES.map((c) => (
+                <CategoryTile key={c.slug} category={c} href={`/work#${c.slug}`} />
+              ))}
+            </CategoryGrid>
+          </Reveal>
         </div>
-        <WorkRows
-          items={featured.map((p) => ({
-            slug: p.slug,
-            category: p.category,
-            kind: p.kind,
-            tagline: p.tagline,
-            components: p.components,
-            hero: resolveImage(p.heroImage),
-            heroAlt: p.heroAlt ?? `${p.category} screenshot`,
-          }))}
-        />
       </section>
 
       {/* ---------- 4. How we work ---------- */}
