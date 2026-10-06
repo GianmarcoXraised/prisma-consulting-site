@@ -79,12 +79,6 @@ export const WORK: WorkProject[] = [
         alt: "The \"This week on xraised\" section of the home page: a featured interview and four more in a list",
       },
       {
-        title: "A premium product, sold online",
-        text: "Customers apply and pay on the site; research and layout are automated, and a person approves the result before it goes live.",
-        image: "video-platform/magazine",
-        alt: "Three issues of Xraised Magazine on the magazine page",
-      },
-      {
         title: "Services, prices and checkout",
         text: "Every service on one page, each with its own detail page, a price list and card checkout in more than one currency.",
         image: "video-platform/services",
@@ -483,12 +477,6 @@ export const WORK: WorkProject[] = [
         text: "A rolling plan decides what goes out and when; the home page and the feeds update on their own.",
         image: "video-platform/interviews",
         alt: "The \"This week on xraised\" section of the home page, filled by the publishing schedule",
-      },
-      {
-        title: "Premium formats from the same content",
-        text: "The same material is laid out as a designed issue with its own cover, automatically, and approved by a person before it goes live.",
-        image: "video-platform/magazine",
-        alt: "Three issues of Xraised Magazine, each produced from an interview",
       },
     ],
     brief: [

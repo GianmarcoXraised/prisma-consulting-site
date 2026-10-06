@@ -281,16 +281,6 @@
   },
   {
     "project": "video-platform",
-    "file": "video-platform/magazine.webp",
-    "kind": "feature",
-    "width": 2352,
-    "height": 1764,
-    "cssWidth": 1176,
-    "cssHeight": 882,
-    "kb": 196
-  },
-  {
-    "project": "video-platform",
     "file": "video-platform/services.webp",
     "kind": "feature",
     "width": 2352,

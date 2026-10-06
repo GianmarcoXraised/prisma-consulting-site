@@ -13,7 +13,6 @@ Projects are named by category (slug = category), never by the client's name.
 | video-platform/hero-interviews | xraised.com/videos (filters + first row of the grid) | 132, 454, 1176 × 735 | 10.5 px |
 | video-platform/interviews | xraised.com/ ("This week on xraised") | 132, 1450, 1176 × 882 | 10.5 px |
 | video-platform/interview | xraised.com/videos/… (one interview) | 170, 115, 1100 × 825 | 11 px |
-| video-platform/magazine | xraised.com/magazine | 132, 468, 1176 × 882 | 11.5 px |
 | video-platform/services | xraised.com/services | 132, 176, 1176 × 882 | 10.5 px |
 | video-platform/hero-tools | xraised.com/tools (kept, not shown) | 132, 18, 1176 × 735 | 11.5 px |
 | book-store/hero-what-we-do | bookspert.com/ | 132, 765, 1176 × 735 | 12 px |

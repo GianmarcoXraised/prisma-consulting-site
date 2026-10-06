@@ -111,7 +111,7 @@ h1,h2,h3,h4,.word{font-family:"Display",sans-serif;letter-spacing:-0.02em;line-h
 .tile .code{position:relative;font-family:"Display";font-size:52pt;letter-spacing:-0.04em;line-height:1}.tile .cname{position:relative;margin-top:4mm;font-size:10pt;color:#A7A5A0}
 .category h2{font-size:30pt;margin:4mm 0 5mm}.category .blurb{font-size:12pt;color:#A7A5A0;max-width:110mm;margin-bottom:6mm}.category .examples{font-size:9pt;color:#6E6C68;margin-top:8mm}
 /* project: hero + text on top, three features below */
-.project .top{display:grid;grid-template-columns:136mm 1fr;gap:8mm;align-items:start;margin-bottom:4mm;max-height:86mm;overflow:hidden}
+.project .top{display:grid;grid-template-columns:136mm 1fr;gap:8mm;align-items:start;margin-bottom:4mm;max-height:89mm;overflow:hidden}
 figure{border:1px solid #232329;border-radius:3mm;overflow:hidden;background:#141419}figure img{width:100%;display:block}
 figure.hero{box-shadow:0 10mm 20mm -8mm rgba(0,0,0,.8)}figure.hero.empty{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(124,92,255,.15),#141419 50%,rgba(78,217,225,.1))}
 .label{font-size:7pt;letter-spacing:.2em;text-transform:uppercase;color:#7C5CFF;margin-bottom:2.5mm}
