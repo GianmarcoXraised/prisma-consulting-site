@@ -30,7 +30,7 @@ npm run portfolio   # rebuilds public/prisma-house-portfolio.pdf (needs Playwrig
 
 ## How the Work section is organised
 
-- `lib/categories.ts`: the five fixed categories (Website, CRM, CMS, SaaS, AI Agents). They are the
+- `lib/categories.ts`: the six fixed categories, in this order: Website, Portal, CRM, CMS, SaaS, AI Agents. They are the
   tiles on the home page and at the top of `/work`.
 - `lib/work.ts`: the examples shown inside each category's panel and at `/work/[slug]`. Titles are
   category labels, never a client's name; the live site appears only as "Live at <domain> →".

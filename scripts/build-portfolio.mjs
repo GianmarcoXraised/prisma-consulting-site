@@ -62,7 +62,11 @@ function projectPage(p) {
 
 const projects = WORK.filter((p) => p.published);
 // One page per category (typographic tile + sentence + chips), followed by that category's examples.
+// Examples that have a hero crop get their own page; text-only ones are described on the category page.
+const withPage = (c) => c.examples.map((slug) => projects.find((p) => p.slug === slug)).filter((p) => p && img(p.heroImage));
 function categoryPage(c, n) {
+  const shown = withPage(c);
+  const textOnly = c.examples.map((slug) => projects.find((p) => p.slug === slug)).filter((p) => p && !img(p.heroImage));
   return `
   <section class="page category">
     <header class="ph">${logo(14)}<span class="crumb">What we build · ${String(n).padStart(2, "0")} of ${CATEGORIES.length}</span></header>
@@ -73,13 +77,13 @@ function categoryPage(c, n) {
         <h2>${esc(c.name)}</h2>
         <p class="blurb">${esc(c.blurb)}</p>
         <div class="chips">${c.chips.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>
-        <p class="examples">${c.examples.length === 1 ? "The example on the next page" : "The examples on the next pages"}: ${c.examples.map((slug) => WORK.find((p) => p.slug === slug)).filter(Boolean).map((p) => esc(p.category)).join(" · ")}.</p>
+        ${shown.length ? `<p class="examples">${shown.length === 1 ? "The example on the next page" : "The examples on the next pages"}: ${shown.map((p) => esc(p.category)).join(" · ")}.</p>` : ""}${textOnly.map((p) => `<ul class="points">${p.features.slice(0, 4).map((f) => `<li><b>${esc(f.title)}.</b> ${esc(f.text)}</li>`).join("")}</ul><p class="examples">${esc(p.privateNote ?? "")}</p>`).join("")}
       </div>
     </div>
     <footer class="pf"><span>prisma-house.com</span><span class="beam"></span></footer>
   </section>`;
 }
-const sections = CATEGORIES.map((c, i) => categoryPage(c, i + 1) + c.examples.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean).map(projectPage).join("")).join("");
+const sections = CATEGORIES.map((c, i) => categoryPage(c, i + 1) + withPage(c).map(projectPage).join("")).join("");
 const consult = SERVICES.filter((s) => s.group === "consult"), build = SERVICES.filter((s) => s.group === "build");
 
 const html = `<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>Prisma House — Selected Work</title>
@@ -110,6 +114,7 @@ h1,h2,h3,h4,.word{font-family:"Display",sans-serif;letter-spacing:-0.02em;line-h
 .tile .orb2{position:absolute;right:-20mm;top:-20mm;width:60mm;height:60mm;border-radius:50%;filter:blur(25mm);opacity:.5;background:linear-gradient(135deg,#7C5CFF,#4ED9E1)}
 .tile .code{position:relative;font-family:"Display";font-size:52pt;letter-spacing:-0.04em;line-height:1}.tile .cname{position:relative;margin-top:4mm;font-size:10pt;color:#A7A5A0}
 .category h2{font-size:30pt;margin:4mm 0 5mm}.category .blurb{font-size:12pt;color:#A7A5A0;max-width:110mm;margin-bottom:6mm}.category .examples{font-size:9pt;color:#6E6C68;margin-top:8mm}
+.category .points{margin-top:6mm;max-width:118mm}.category .points li{list-style:none;font-size:8.5pt;color:#A7A5A0;line-height:1.4;margin-bottom:2.5mm}.category .points b{color:#F4F2EE;font-family:"Display";font-size:8.5pt}
 /* project: hero + text on top, three features below */
 .project .top{display:grid;grid-template-columns:136mm 1fr;gap:8mm;align-items:start;margin-bottom:4mm;max-height:89mm;overflow:hidden}
 figure{border:1px solid #232329;border-radius:3mm;overflow:hidden;background:#141419}figure img{width:100%;display:block}

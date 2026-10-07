@@ -7,9 +7,9 @@ import { getPublishedWork, getWork, resolveImage } from "@/lib/work";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Work — What We Build: Websites, CRM, CMS, SaaS, AI Agents",
+  title: "Work — What We Build: Websites, Portals, CRM, CMS, SaaS, AI Agents",
   description:
-    "Five things we build, each with a real example: websites, a CRM and back office, a publishing CMS, a SaaS with subscriptions and AI agents. Real screens, no invented results.",
+    "Six things we build, each with a real example: websites, client portals, a CRM and back office, a CMS, a SaaS with subscriptions and AI agents. Real screens, no invented results.",
   alternates: { canonical: "/work" },
   openGraph: {
     title: "Work | Prisma House",
@@ -73,7 +73,7 @@ export default function WorkPage() {
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
-              Five kinds of thing, each with a real example underneath: pick one to see the
+              Six kinds of thing, each with a real example underneath: pick one to see the
               screens. No invented numbers, no borrowed testimonials.
             </p>
           </Reveal>

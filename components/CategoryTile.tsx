@@ -3,7 +3,7 @@ import type { Category } from "@/lib/categories";
 
 /**
  * A typographic tile: no screenshot, just the category mark in the display font on a tonal
- * dark gradient, the extended name under it. All five tiles share one size (aspect 4:3).
+ * dark gradient, the extended name under it. All six tiles share one size (aspect 4:3).
  * `href` is where the tile leads; `active` marks the tile whose panel is open on /work.
  */
 export default function CategoryTile({
@@ -51,7 +51,7 @@ export default function CategoryTile({
   );
 }
 
-/** The 5-tile grid: 3 + 2 on desktop, two columns on phones. */
+/** The 6-tile grid: 3 + 3 on desktop, two columns on phones. */
 export function CategoryGrid({ children }: { children: React.ReactNode }) {
   return <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">{children}</div>;
 }

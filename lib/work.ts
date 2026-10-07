@@ -452,6 +452,55 @@ export const WORK: WorkProject[] = [
     images: [],
   },
   {
+    slug: "portal",
+    name: "Client portals",
+    category: "Client portal",
+    kind: "System",
+    published: true,
+    siteUrl: null,
+    privateNote: "Private system, demo on request",
+    tagline: "A private area where clients follow their work, approve it, download files and pay.",
+    summary:
+      "A client portal: sign-in by email link, progress tracking, approvals with comments, downloads and built-in payments.",
+    problem:
+      "Clients kept asking by email where their work stood, what needed approving and where the files were; the answers lived in the team's inboxes.",
+    components: ["Client login", "Progress tracking", "Approvals", "Downloads", "Payments"],
+    features: [
+      {
+        title: "Every client sees where their work stands",
+        text: "Each piece of work moves through named stages. The client follows it from their own page, without writing an email to ask.",
+        image: null,
+      },
+      {
+        title: "Approve or ask for changes in one click",
+        text: "Drafts are reviewed inside the portal, with comments and proposed edits kept next to the work they refer to.",
+        image: null,
+      },
+      {
+        title: "Files and receipts in one place",
+        text: "Deliverables, reports and invoices are downloaded from the portal instead of being hunted down in old emails.",
+        image: null,
+      },
+      {
+        title: "No passwords, payments built in",
+        text: "Clients enter with a link sent to their email and can buy, subscribe and manage their billing on their own.",
+        image: null,
+      },
+    ],
+    brief: [
+      "The same pattern, built three times: a private area where the customer of a business can see, approve, download and pay without waiting for someone to answer an email.",
+    ],
+    built: [
+      "Sign-in by email link, per-client pages with stage tracking, approvals with comments and proposed edits, downloads, one-off purchases, subscriptions and a billing portal.",
+    ],
+    featureGroups: [],
+    stack: ["Python", "FastAPI", "PostgreSQL", "Next.js", "TypeScript", "Railway"],
+    integrations: ["Stripe", "Resend"],
+    service: "custom-systems-crm",
+    heroImage: null,
+    images: [],
+  },
+  {
     slug: "cms",
     name: "Xraised interview publishing",
     category: "Content management system",

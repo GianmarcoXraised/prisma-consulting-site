@@ -27,7 +27,7 @@ const domain = (u: string) => u.replace(/^https?:\/\//, "").replace(/\/$/, "");
 const isSlug = (s: string, cats: Category[]): s is CategorySlug => cats.some((c) => c.slug === s);
 
 /**
- * The /work explorer: the five category tiles, and under them ONE open panel with that
+ * The /work explorer: the six category tiles, and under them ONE open panel with that
  * category's example(s). The open panel is the URL hash (#cms), so a deep link opens it and
  * the browser's back button closes it.
  */

@@ -1,9 +1,9 @@
 /**
- * The five fixed categories of what we build. They are the home page's "What we build" grid,
+ * The six fixed categories of what we build. They are the home page's "What we build" grid,
  * the top of /work, and the first page of each portfolio section. The examples (case studies
  * in lib/work.ts) hang off a category through `examples`.
  */
-export type CategorySlug = "website" | "crm" | "cms" | "saas" | "ai-agents";
+export type CategorySlug = "website" | "portal" | "crm" | "cms" | "saas" | "ai-agents";
 
 export type Category = {
   slug: CategorySlug;
@@ -21,6 +21,8 @@ export type Category = {
 };
 
 export const CATEGORIES: Category[] = [
+  // Order: what the client sees (Website, Portal), the tools the team works in (CRM, CMS),
+  // then product (SaaS) and automation (AI Agents).
   {
     slug: "website",
     code: "Website",
@@ -29,6 +31,15 @@ export const CATEGORIES: Category[] = [
     chips: ["Design", "Copy", "Online checkout"],
     gradient: "linear-gradient(135deg, #1a1430 0%, #2a1a4a 55%, #141419 100%)",
     examples: ["book-store", "video-platform"],
+  },
+  {
+    slug: "portal",
+    code: "Portal",
+    name: "Your clients, self-served",
+    blurb: "A private area where your clients track progress, approve work, download files and pay.",
+    chips: ["Client login", "Approvals", "Payments"],
+    gradient: "linear-gradient(135deg, #10261c 0%, #164a34 55%, #141419 100%)",
+    examples: ["portal"],
   },
   {
     slug: "crm",

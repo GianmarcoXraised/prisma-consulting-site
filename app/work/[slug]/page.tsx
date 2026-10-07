@@ -198,13 +198,7 @@ export default function CaseStudyPage({ params }: Props) {
             </Reveal>
           )}
         </section>
-      ) : (
-        <section className="mx-auto max-w-shell px-6 pt-4 lg:px-10">
-          <Reveal>
-            <div className="aspect-[16/7] rounded-[2rem] border border-ink-line bg-gradient-to-br from-prism-violet/15 via-ink-card to-prism-cyan/10" />
-          </Reveal>
-        </section>
-      )}
+      ) : null}
 
       {/* ---------- What's inside ---------- */}
       <section className="py-24 md:py-32">
@@ -218,11 +212,26 @@ export default function CaseStudyPage({ params }: Props) {
             </h2>
           </Reveal>
         </div>
-        <div className="mx-auto mt-16 max-w-[1440px] space-y-20 px-5 md:mt-20 md:space-y-28">
-          {p.features.map((f, i) => (
-            <FeatureBlock key={f.title} feature={f} index={i} />
-          ))}
-        </div>
+        {p.features.some((f) => resolveImage(f.image)) ? (
+          <div className="mx-auto mt-16 max-w-[1440px] space-y-20 px-5 md:mt-20 md:space-y-28">
+            {p.features.map((f, i) => (
+              <FeatureBlock key={f.title} feature={f} index={i} />
+            ))}
+          </div>
+        ) : (
+          // No crops yet for this example: a plain grid of cards, aligned with the heading.
+          <div className="mx-auto mt-14 grid max-w-shell gap-4 px-6 md:grid-cols-2 lg:px-10">
+            {p.features.map((f, i) => (
+              <Reveal key={f.title} delay={(i % 2) * 0.08}>
+                <div className="h-full rounded-[1.5rem] border border-ink-line bg-ink-card p-7">
+                  <p className="font-display text-sm font-bold text-prism-violet">{String(i + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-bone">{f.title}</h3>
+                  <p className="mt-3 leading-relaxed text-bone-dim">{f.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* ---------- Built with + CTA ---------- */}
