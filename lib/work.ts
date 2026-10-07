@@ -469,22 +469,26 @@ export const WORK: WorkProject[] = [
       {
         title: "Every client sees where their work stands",
         text: "Each piece of work moves through named stages. The client follows it from their own page, without writing an email to ask.",
-        image: null,
+        image: "portal/services",
+        alt: "The client's list of services with a status on every row and approve buttons where a decision is waiting (fictional demo data)",
       },
       {
         title: "Approve or ask for changes in one click",
         text: "Drafts are reviewed inside the portal, with comments and proposed edits kept next to the work they refer to.",
-        image: null,
+        image: "portal/approve",
+        alt: "The decision card with Approve and Request changes, and the box to propose an edit (fictional demo data)",
       },
       {
         title: "Files and receipts in one place",
         text: "Deliverables, reports and invoices are downloaded from the portal instead of being hunted down in old emails.",
-        image: null,
+        image: "portal/downloads",
+        alt: "A delivered piece of work with its report to download as PDF or spreadsheet and the links to open (fictional demo data)",
       },
       {
         title: "No passwords, payments built in",
         text: "Clients enter with a link sent to their email and can buy, subscribe and manage their billing on their own.",
-        image: null,
+        image: "portal/sign-in",
+        alt: "The sign-in page that emails a one-time link instead of asking for a password",
       },
     ],
     brief: [
@@ -497,7 +501,9 @@ export const WORK: WorkProject[] = [
     stack: ["Python", "FastAPI", "PostgreSQL", "Next.js", "TypeScript", "Railway"],
     integrations: ["Stripe", "Resend"],
     service: "custom-systems-crm",
-    heroImage: null,
+    heroImage: "portal/hero-overview",
+    heroAlt: "A client area: the subscription with its next renewal and payment status, and the services with what is waiting for the client (fictional demo data)",
+    provenance: "Screens from a local copy with fictional demo data: the client, the company, the outlets and the titles are invented.",
     images: [],
   },
   {

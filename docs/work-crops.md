@@ -54,3 +54,10 @@ Update 2026-10-06: `cms` and `ai-agents` now use public outputs instead of team 
 | ai-agents/hero-article | fwnbc.marketminute.com (the distributed article: outlet header, title, opening paragraphs) | 112, 0, 1216 × 760 | 12.8 px |
 | ai-agents/social | linkedin.com/company/xraised (a post with the generated slides; cookie banner rejected, login overlays removed; clip anchored to the post's measured top) | 90, post top − 4, 1120 × 840 | 12 px |
 The other CMS/AI Agents features reuse `video-platform/*` and `crm/followups`. AP News and Barchart block automated capture (403).
+
+Update 2026-10-07: `portal` crops, from a throwaway local copy of the client area (PGlite, no service keys) seeded with an invented client; names, outlets and titles checked read-only against production before capture.
+| portal/hero-overview | local client area, /portal/services (top bar, subscription, services overview) | 132, 0, 1176 × 735 | 11 px |
+| portal/services | /portal/services (the list with statuses) | 248, 474, 944 × 708 | 11 px |
+| portal/approve | /portal/services/<id> (decision card + propose an edit) | 248, 855, 944 × 708 | 13 px |
+| portal/downloads | /portal/services/<id> (delivered work: report downloads and links) | 250, 70, 940 × 705 | 11 px |
+| portal/sign-in | /site/login-link (sign in with an emailed link) | 392, 95, 656 × 492 | 13 px |

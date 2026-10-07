@@ -190,6 +190,56 @@
     "kb": 65
   },
   {
+    "project": "portal",
+    "file": "portal/approve.webp",
+    "kind": "feature",
+    "width": 1888,
+    "height": 1416,
+    "cssWidth": 944,
+    "cssHeight": 708,
+    "kb": 86
+  },
+  {
+    "project": "portal",
+    "file": "portal/downloads.webp",
+    "kind": "feature",
+    "width": 1880,
+    "height": 1410,
+    "cssWidth": 940,
+    "cssHeight": 705,
+    "kb": 77
+  },
+  {
+    "project": "portal",
+    "file": "portal/hero-overview.webp",
+    "kind": "hero",
+    "width": 2352,
+    "height": 1470,
+    "cssWidth": 1176,
+    "cssHeight": 735,
+    "kb": 88
+  },
+  {
+    "project": "portal",
+    "file": "portal/services.webp",
+    "kind": "feature",
+    "width": 1888,
+    "height": 1416,
+    "cssWidth": 944,
+    "cssHeight": 708,
+    "kb": 94
+  },
+  {
+    "project": "portal",
+    "file": "portal/sign-in.webp",
+    "kind": "feature",
+    "width": 1312,
+    "height": 984,
+    "cssWidth": 656,
+    "cssHeight": 492,
+    "kb": 32
+  },
+  {
     "project": "saas",
     "file": "saas/audit.webp",
     "kind": "feature",
