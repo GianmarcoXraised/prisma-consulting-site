@@ -16,6 +16,14 @@ const nextConfig = {
   // Case studies were renamed from the client's name to their category (2026-10). Old links keep working.
   async redirects() {
     return [
+      // One primary host: the apex. www answers a single 301 to the same path (the query string is
+      // carried over by Next). Canonical, OG url, JSON-LD and the sitemap use SITE_URL (the apex).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.prisma-house.com" }],
+        destination: "https://prisma-house.com/:path*",
+        statusCode: 301,
+      },
       { source: "/work/xraised", destination: "/work/video-platform", permanent: true },
       { source: "/work/xraised-crm", destination: "/work/crm", permanent: true },
       { source: "/work/bookspert", destination: "/work/book-store", permanent: true },
