@@ -10,6 +10,9 @@ const NEWS_TITLE = "News & Insights | Prisma House";
 const NEWS_DESCRIPTION =
   "Essays and analysis on custom CRMs, business systems, websites, marketing and growth from Prisma House, written for the people who make the decisions.";
 
+// Rendered per request so scheduled press releases appear at their time without a redeploy.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "News & Insights",
   description: NEWS_DESCRIPTION,

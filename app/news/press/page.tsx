@@ -10,6 +10,9 @@ const PRESS_TITLE = "Press Releases | Prisma House";
 const PRESS_DESCRIPTION =
   "Official announcements from Prisma House, the London-based studio that builds custom CRMs, business systems and websites. Media contact included on every release.";
 
+// Rendered per request so scheduled press releases appear at their time without a redeploy.
+export const dynamic = "force-dynamic";
+
 export function generateMetadata(): Metadata {
   // Until the first release is published the listing is empty: keep it out of search.
   const empty = getAllPressReleases().length === 0;

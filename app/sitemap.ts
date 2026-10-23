@@ -4,6 +4,9 @@ import { getAllPressReleases } from "@/lib/press";
 import { getPublishedWork } from "@/lib/work";
 import { SITE_URL } from "@/lib/site";
 
+// Rendered per request so scheduled press releases appear at their time without a redeploy.
+export const dynamic = "force-dynamic";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages take the build date as lastmod so every deploy refreshes them.
   const built = new Date();

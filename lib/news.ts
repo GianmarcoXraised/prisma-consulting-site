@@ -63,5 +63,6 @@ export function formatDate(date: string): string {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Europe/London",
   });
 }

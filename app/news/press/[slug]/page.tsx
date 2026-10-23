@@ -4,16 +4,27 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Reveal from "@/components/Reveal";
 import { formatDate } from "@/lib/news";
-import { getAllPressReleases, getPressRelease } from "@/lib/press";
+import { getPressRelease } from "@/lib/press";
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return getAllPressReleases().map((release) => ({ slug: release.slug }));
+/** The boilerplate is plain text; its links to this site become links on the page. */
+function linkify(text: string) {
+  const parts = text.split(/(https:\/\/prisma-house\.com[^\s,]*?)(?=[.,]?(?:\s|$))/);
+  return parts.map((part, i) =>
+    part.startsWith("https://prisma-house.com") ? (
+      <a key={i} href={part} className="text-bone underline decoration-ink-line underline-offset-4 hover:decoration-prism-violet">
+        {part.replace(/^https:\/\//, "")}
+      </a>
+    ) : (
+      part
+    ),
+  );
 }
+
+// Rendered per request: a scheduled release (future `date`) is a 404 until its time comes.
+export const dynamic = "force-dynamic";
 
 export function generateMetadata({ params }: Props): Metadata {
   const release = getPressRelease(params.slug);
@@ -21,6 +32,7 @@ export function generateMetadata({ params }: Props): Metadata {
   return {
     title: release.title,
     description: release.summary,
+    keywords: release.keywords.length ? release.keywords : undefined,
     alternates: { canonical: `/news/press/${release.slug}` },
     openGraph: {
       type: "article",
@@ -61,6 +73,7 @@ export default function PressReleasePage({ params }: Props) {
     dateModified: release.date,
     dateline,
     inLanguage: "en-GB",
+    keywords: release.keywords.length ? release.keywords.join(", ") : undefined,
     image: [`${SITE_URL}/opengraph-image`],
     author: organization,
     publisher: organization,
@@ -186,7 +199,7 @@ export default function PressReleasePage({ params }: Props) {
             <h2 id="about-heading" className="eyebrow mb-4">
               About {SITE_NAME}
             </h2>
-            <p className="leading-relaxed text-bone-dim">{release.boilerplate}</p>
+            <p className="leading-relaxed text-bone-dim">{linkify(release.boilerplate)}</p>
           </section>
 
           <section className="mt-10 rounded-2xl border border-ink-line bg-ink-card p-8" aria-labelledby="contact-heading">
@@ -195,6 +208,9 @@ export default function PressReleasePage({ params }: Props) {
             </h2>
             <ul className="space-y-1.5 text-sm text-bone-dim">
               {contact.name && <li className="font-semibold text-bone">{contact.name}</li>}
+              {(contact.title || contact.organization) && (
+                <li>{[contact.title, contact.organization].filter(Boolean).join(", ")}</li>
+              )}
               <li>
                 <a
                   href={`mailto:${contact.email}`}
@@ -204,6 +220,14 @@ export default function PressReleasePage({ params }: Props) {
                 </a>
               </li>
               {contact.phone && <li>{contact.phone}</li>}
+              {contact.website && (
+                <li>
+                  <a href={contact.website} className="transition-colors hover:text-bone">
+                    {contact.website.replace(/^https?:\/\//, "")}
+                  </a>
+                </li>
+              )}
+              {contact.address && <li>{contact.address}</li>}
             </ul>
           </section>
         </div>
