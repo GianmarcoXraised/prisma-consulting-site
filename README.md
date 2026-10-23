@@ -1,6 +1,6 @@
 # Prisma House
 
-Website for Prisma House — a marketing consultancy that also designs websites and builds custom CRMs and business systems.
+Website for Prisma House, a London-based studio that builds custom CRMs, business systems and websites for growing companies, with the marketing strategy built in.
 
 Built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS** and **Framer Motion**. Blog content is local MDX in `content/news`.
 

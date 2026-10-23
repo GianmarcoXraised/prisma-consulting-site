@@ -4,17 +4,27 @@ import WorkExplorer, { type ExplorerExample } from "@/components/WorkExplorer";
 import { ButtonGhost } from "@/components/Button";
 import { CATEGORIES } from "@/lib/categories";
 import { getPublishedWork, getWork, resolveImage } from "@/lib/work";
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, OG_IMAGE } from "@/lib/site";
+
+const WORK_TITLE = "What We Build: CRMs, Portals, Websites, CMS, SaaS, AI Agents | Prisma House";
+const WORK_DESCRIPTION =
+  "Six things we build, each with a real example: a CRM and back office, client portals, websites, a CMS, a SaaS with subscriptions and AI agents. Real screens, no invented results.";
 
 export const metadata: Metadata = {
-  title: "Work — What We Build: Websites, Portals, CRM, CMS, SaaS, AI Agents",
-  description:
-    "Six things we build, each with a real example: websites, client portals, a CRM and back office, a CMS, a SaaS with subscriptions and AI agents. Real screens, no invented results.",
+  title: "Work — What We Build: CRMs, Portals, Websites, CMS, SaaS, AI Agents",
+  description: WORK_DESCRIPTION,
   alternates: { canonical: "/work" },
   openGraph: {
-    title: "Work | Prisma House",
-    description: "What we build, with real examples.",
+    title: WORK_TITLE,
+    description: WORK_DESCRIPTION,
     url: "/work",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: WORK_TITLE,
+    description: WORK_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 

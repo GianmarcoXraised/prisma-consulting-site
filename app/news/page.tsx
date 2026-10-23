@@ -1,23 +1,36 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/site";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
+import NewsTabs from "@/components/NewsTabs";
 import { getAllArticles, formatDate } from "@/lib/news";
+import { getAllPressReleases } from "@/lib/press";
+
+const NEWS_TITLE = "News & Insights | Prisma House";
+const NEWS_DESCRIPTION =
+  "Essays and analysis on custom CRMs, business systems, websites, marketing and growth from Prisma House, written for the people who make the decisions.";
 
 export const metadata: Metadata = {
   title: "News & Insights",
-  description:
-    "Essays and analysis on marketing, branding and growth from the Prisma House team — written for leaders who make the decisions, not just the slides.",
+  description: NEWS_DESCRIPTION,
   alternates: { canonical: "/news" },
   openGraph: {
-    title: "News & Insights | Prisma House",
-    description:
-      "Essays and analysis on marketing, branding and growth from the Prisma House team.",
+    title: NEWS_TITLE,
+    description: NEWS_DESCRIPTION,
     url: "/news",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: NEWS_TITLE,
+    description: NEWS_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 
 export default function NewsPage() {
   const articles = getAllArticles();
+  const hasPress = getAllPressReleases().length > 0;
 
   return (
     <>
@@ -47,6 +60,7 @@ export default function NewsPage() {
 
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
+          {hasPress && <NewsTabs active="articles" />}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article, i) => (
               <Reveal key={article.slug} delay={i * 0.1}>

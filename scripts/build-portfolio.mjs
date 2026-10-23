@@ -9,6 +9,7 @@ import os from "node:os";
 import { pathToFileURL } from "node:url";
 import { WORK, resolveImage } from "../lib/work.ts";
 import { CATEGORIES } from "../lib/categories.ts";
+import { SITE_DESCRIPTION } from "../lib/site.ts";
 
 const ROOT = process.cwd();
 const OUT = path.join(ROOT, "public", "prisma-house-portfolio.pdf");
@@ -145,18 +146,18 @@ figcaption,.feats.text figcaption{display:block;padding:2mm 3mm;font-size:7pt;co
 </section>
 
 <section class="page intro">
-  <header class="ph">${logo(14)}<span class="crumb">One consultancy, two connected halves</span></header>
+  <header class="ph">${logo(14)}<span class="crumb">Build first, strategy built in</span></header>
   <div class="cols">
     <div>
-      <p class="eyebrow" style="margin-bottom:4mm">Consult + build</p>
+      <p class="eyebrow" style="margin-bottom:4mm">Custom CRM · Business systems · Websites</p>
       <h2>We shape the strategy.<br><span class="prism">Then we build it.</span></h2>
-      <p>Prisma House is a marketing consultancy with two connected halves. The first works out where your growth actually comes from — brand, demand, content, media pitching and the honest audit — and holds every recommendation to a commercial number, not a vanity metric.</p>
-      <p>The second builds the digital infrastructure that runs it: the website that sells and the systems that keep the business moving, designed and looked after by the same team that set the direction. Because advice that never ships is just opinion, we build what we recommend.</p>
+      <p>${esc(SITE_DESCRIPTION)}</p>
+      <p>We build the custom CRMs, business systems and websites growing companies run on, and we start every build from the strategy. The people who scope the work are the people who ship it.</p>
       <p style="margin-top:8mm;color:#6E6C68;font-size:9pt">The projects that follow show real screens at their real scale, cropped to the part that matters. No invented numbers, no borrowed testimonials.</p>
     </div>
     <div>
-      <div class="svc"><span class="eyebrow">Consult · Strategy &amp; growth</span><ul>${consult.map((s) => `<li>${esc(s.title)}</li>`).join("")}</ul></div>
       <div class="svc"><span class="eyebrow">Build · Digital infrastructure</span><ul>${build.map((s) => `<li>${esc(s.title)}</li>`).join("")}</ul></div>
+      <div class="svc"><span class="eyebrow">Consult · Marketing &amp; growth</span><ul>${consult.map((s) => `<li>${esc(s.title)}</li>`).join("")}</ul></div>
     </div>
   </div>
   <footer class="pf"><span>prisma-house.com</span><span class="beam"></span></footer>
@@ -169,7 +170,7 @@ ${sections}
   <div style="position:relative">${logo(18)}
   <p class="eyebrow" style="margin-top:16mm">Ready when you are</p>
   <h2>Book a <span class="prism">30-minute call.</span></h2>
-  <p>No pitch deck, no pressure — a straight conversation about where your growth is hiding, and whether the answer is a strategy, a website, a system, or all three.</p>
+  <p>Tell us what you&rsquo;re trying to run, sell or replace, and we&rsquo;ll tell you honestly whether it&rsquo;s a website, a system, or both.</p>
   <div class="contact">
     <div><b>Web</b><span>prisma-house.com</span></div>
     <div><b>Email</b><span>info@prisma-house.com</span></div>

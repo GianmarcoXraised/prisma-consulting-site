@@ -1,6 +1,10 @@
 // How we hold ourselves to account — principles, not performance claims.
 const COMMITMENTS = [
   {
+    label: "You own it",
+    copy: "You own what we build — code, data, hosting and documentation stay with you.",
+  },
+  {
     label: "One number",
     copy: "Every engagement is scoped to a commercial result — pipeline, revenue, margin — agreed before the work starts.",
   },
@@ -11,10 +15,6 @@ const COMMITMENTS = [
   {
     label: "Board-ready",
     copy: "Reporting a finance director can interrogate: what was spent, what it produced, and what we would do next.",
-  },
-  {
-    label: "You own it",
-    copy: "You own what we build — code, data, hosting and documentation stay with you.",
   },
 ] as const;
 

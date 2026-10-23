@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import { ButtonGhost } from "@/components/Button";
 import { getAllArticles, getArticle, formatDate } from "@/lib/news";
 import { SERVICES } from "@/lib/services";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, OG_IMAGE } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -28,11 +28,13 @@ export function generateMetadata({ params }: Props): Metadata {
       url: `/news/${article.slug}`,
       publishedTime: article.date,
       modifiedTime: article.date,
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: article.metaTitle,
       description: article.excerpt,
+      images: [OG_IMAGE.url],
     },
   };
 }
@@ -203,7 +205,7 @@ export default function ArticlePage({ params }: Props) {
                   : "Prefer to talk it through?"}
               </p>
               <p className="mt-2 text-sm text-bone-dim">
-                We help ambitious brands turn strategy into measurable growth.
+                {SITE_DESCRIPTION}
               </p>
             </div>
             <ButtonGhost href={service ? `/services#${service.slug}` : "/contact"}>

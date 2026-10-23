@@ -42,6 +42,12 @@ export function generateMetadata({ params }: Props): Metadata {
       url: `/work/${p.slug}`,
       images: hero ? [{ url: hero.src, width: hero.width, height: hero.height }] : undefined,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.category} | Work | ${SITE_NAME}`,
+      description: p.summary,
+      images: hero ? [hero.src] : undefined,
+    },
   };
 }
 

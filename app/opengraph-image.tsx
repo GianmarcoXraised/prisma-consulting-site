@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import fs from "fs/promises";
 import path from "path";
 
-export const alt = "Prisma House — Marketing that refracts into results";
+export const alt = "Prisma House — We shape the strategy. Then we build it.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -109,7 +109,7 @@ export default async function OpenGraphImage() {
             display: "flex",
           }}
         >
-          Marketing that refracts into results
+          We shape the strategy. Then we build it.
         </div>
       </div>
     ),

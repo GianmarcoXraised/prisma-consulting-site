@@ -5,6 +5,7 @@ import type { Category } from "@/lib/categories";
  * A typographic tile: no screenshot, just the category mark in the display font on a tonal
  * dark gradient, the extended name under it. All six tiles share one size (aspect 4:3).
  * `href` is where the tile leads; `active` marks the tile whose panel is open on /work.
+ * `price` ("From £X", home page only) is shown under the name when set.
  */
 export default function CategoryTile({
   category,
@@ -12,8 +13,10 @@ export default function CategoryTile({
   active = false,
   onClick,
   as = "link",
+  price,
 }: {
   category: Category;
+  price?: string | null;
   href: string;
   active?: boolean;
   onClick?: () => void;
@@ -30,6 +33,9 @@ export default function CategoryTile({
         {category.code}
       </span>
       <span className="relative mt-3 block text-xs font-semibold text-bone-dim md:mt-4 md:text-base">{category.name}</span>
+      {price && (
+        <span className="relative mt-1.5 block text-xs font-semibold text-prism-violet md:text-sm">{price}</span>
+      )}
     </>
   );
   const className = `group relative flex aspect-square md:aspect-[4/3] w-full flex-col justify-end overflow-hidden rounded-[2rem] border p-4 text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_-30px_rgba(124,92,255,0.45)] md:p-8 ${

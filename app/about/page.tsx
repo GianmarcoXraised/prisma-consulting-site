@@ -1,18 +1,28 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/site";
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import { ButtonPrimary } from "@/components/Button";
 
+const ABOUT_TITLE = "About Prisma House — Founded by Gianmarco Giordaniello";
+const ABOUT_DESCRIPTION =
+  "Why Prisma House builds custom CRMs, business systems and websites with the strategy built in: the founder's story, Gianmarco Giordaniello, and the values behind the work.";
+
 export const metadata: Metadata = {
   title: "About Us",
-  description:
-    "Prisma House is a marketing consultancy founded by Gianmarco Giordaniello. Our story, our mission, and the values we refuse to compromise on.",
+  description: ABOUT_DESCRIPTION,
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Us | Prisma House",
-    description:
-      "The story, mission and values behind Prisma House — a marketing consultancy for ambitious brands.",
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
     url: "/about",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 
@@ -23,15 +33,15 @@ const VALUES = [
   },
   {
     title: "Fewer things, done properly",
-    copy: "Marketing plans fail from excess, not absence. We put weight behind the handful of moves that change a trajectory, and we say no to everything else.",
+    copy: "Plans and software both fail from excess, not absence. We put weight behind the handful of moves and features that change a trajectory, and we say no to everything else.",
   },
   {
     title: "Numbers you can defend",
-    copy: "Every recommendation must survive a finance director's scrutiny. If we can't connect the work to pipeline or revenue, we don't put it in the plan.",
+    copy: "Every recommendation and every build must survive a finance director's scrutiny. If we can't connect the work to pipeline, revenue or time saved, we don't put it in the plan.",
   },
   {
     title: "Craft is the strategy",
-    copy: "A brilliant plan executed carelessly is a mediocre plan. We sweat headlines, decks and details, because your audience only ever sees the execution.",
+    copy: "A brilliant plan executed carelessly is a mediocre plan. We sweat headlines, screens and details, because your clients and your team only ever see the execution.",
   },
 ];
 
@@ -50,8 +60,8 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-5xl">
-              We started Prisma because marketing had stopped{" "}
-              <span className="text-prism">meaning anything.</span>
+              We started Prisma because good strategy kept dying in{" "}
+              <span className="text-prism">the wrong software.</span>
             </h1>
           </Reveal>
         </div>
@@ -91,9 +101,9 @@ export default function AboutPage() {
                 re-finding their edge. And because advice that never ships is
                 just opinion, we also build what we recommend: the websites,
                 CRMs and internal systems that turn a strategy into a running
-                business. We stay deliberately small, take on a
-                limited number of clients at a time, and work directly with
-                founders and leadership teams. No account-manager relay race,
+                business. We take on a limited number of clients
+                at a time and work directly with founders and leadership
+                teams. No account-manager relay race,
                 no juniors learning on your budget.
               </p>
             </Reveal>
@@ -214,30 +224,23 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <h2 className="display-lg">
-                &ldquo;I built the consultancy I kept wishing existed on the
+                &ldquo;I built the studio I kept wishing existed on the
                 other side of the table.&rdquo;
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
               <div className="mt-6 space-y-5 leading-relaxed text-bone-dim">
                 <p>
-                  Gianmarco Giordaniello founded Prisma having worked on both
-                  sides of the marketing divide — building brands in-house and
-                  advising them from the outside. He watched too many
-                  capable companies pour money into marketing that looked
-                  impressive and moved nothing, and decided the fix
-                  wasn&rsquo;t another agency. It was a different kind of
-                  counsel.
+                  Gianmarco Giordaniello founded Prisma House after building
+                  and running his own media and publishing businesses, along
+                  with the CRM, platforms and websites they run on. He saw the
+                  same pattern everywhere: a sound strategy, then software
+                  that fought it. Prisma exists to build both together. He
+                  stays personally involved in every project, from the first
+                  call to launch.
                 </p>
                 <p>
-                  As CEO, he leads Prisma&rsquo;s team of senior strategists
-                  and stays personally close to every engagement — from the
-                  first diagnostic to the board presentation. Nothing carries
-                  the Prisma name without being shaped, and challenged, at the
-                  top.
-                </p>
-                <p>
-                  He also leads the build side. The platforms and internal
+                  He leads the build side himself. The platforms and internal
                   systems shown in our work — a media platform with its own
                   client portal, a tailored CRM, a multilingual publishing site
                   and our own AI visibility product — were designed and shipped
@@ -255,8 +258,8 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.3}>
               <div className="mt-8">
-                <ButtonPrimary href="/contact">
-                  Talk to our team
+                <ButtonPrimary href="/contact?need=system">
+                  Book a call
                 </ButtonPrimary>
               </div>
             </Reveal>

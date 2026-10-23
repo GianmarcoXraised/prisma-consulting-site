@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Manrope } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, SITE_TAGLINE } from "@/lib/site";
+import { SITE_LD } from "@/lib/structured-data";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -20,36 +21,33 @@ const sans = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Marketing that refracts into results`,
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    "marketing consultancy",
-    "brand strategy",
-    "growth marketing",
-    "thought leadership",
-    "media pitching",
-    "TV and radio pitching agency",
-    "podcast guest booking",
-    "get featured in the press UK",
-    "marketing audit",
-    "website design",
-    "website redesign",
     "custom CRM development",
+    "bespoke business systems",
+    "website redesign",
     "bespoke business management system",
+    "client portal development",
+    "website design",
+    "AI agents for business",
+    "marketing strategy",
+    "brand strategy",
+    "media pitching",
   ],
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Marketing that refracts into results`,
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Marketing that refracts into results`,
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -66,6 +64,10 @@ export default function RootLayout({
   return (
     <html lang="en-GB" className={`${display.variable} ${sans.variable}`}>
       <body className="font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_LD) }}
+        />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -1,22 +1,53 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/site";
 import Reveal from "@/components/Reveal";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES, SERVICE_GROUPS } from "@/lib/services";
 import LegacyAnchorRedirect from "@/components/LegacyAnchorRedirect";
 import Link from "next/link";
 import { getWorkByService } from "@/lib/work";
+import { SERVICE_PRICE, fromPrice } from "@/lib/pricing";
+
+const SERVICES_TITLE =
+  "Custom CRM Development, Business Systems & Websites | Prisma House";
+const SERVICES_DESCRIPTION =
+  "Custom CRM development, bespoke business systems, client portals and website redesign, scoped from the strategy and built by the people who scope them. Plus a two-week Strategy & Scoping Sprint and marketing & growth consulting.";
 
 export const metadata: Metadata = {
-  title: "Marketing Consultancy, Media Pitching, Web & CRM Services",
-  description:
-    "UK marketing consultancy: brand strategy, growth, TV, radio, press and podcast pitching for expert guests, website redesign and custom CRM development.",
+  title: { absolute: SERVICES_TITLE },
+  description: SERVICES_DESCRIPTION,
+  keywords: [
+    "custom CRM development",
+    "bespoke business systems",
+    "website redesign",
+    "bespoke business management system",
+    "client portal development",
+    "web design and development",
+    "strategy and scoping sprint",
+    "marketing strategy",
+    "media pitching",
+  ],
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Marketing Consultancy, Media Pitching, Web & CRM Services | Prisma House",
-    description:
-      "Brand strategy, growth, content, editorial media pitching and audits — plus the websites and custom systems that run them.",
+    title: SERVICES_TITLE,
+    description: SERVICES_DESCRIPTION,
     url: "/services",
+    images: [OG_IMAGE],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: SERVICES_TITLE,
+    description: SERVICES_DESCRIPTION,
+    images: [OG_IMAGE.url],
+  },
+};
+
+// Where each service's "Discuss this service" button leads (the contact form's ?need=).
+const SERVICE_NEED: Record<string, string> = {
+  "custom-systems-crm": "system",
+  "web-design-development": "website",
+  "strategy-scoping-sprint": "unsure",
+  "media-pitching": "media",
 };
 
 const serviceQuestions = SERVICES.flatMap((s) => s.questions ?? []);
@@ -58,13 +89,9 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
-              Prisma House is one consultancy with two connected halves. The
-              first works out where your growth comes from — brand, demand,
-              content, media pitching, the honest audit. The second builds the
-              digital infrastructure that runs it: the website that sells and
-              the systems that keep the business moving. Every service is
-              scoped around the commercial result it must produce, and the
-              people who set the direction are the people who ship it.
+              We build the custom CRMs, business systems and websites growing
+              companies run on, and we start every build from the strategy.
+              The people who scope the work are the people who ship it.
             </p>
           </Reveal>
         </div>
@@ -78,6 +105,8 @@ export default function ServicesPage() {
             const startsGroup =
               i === 0 || SERVICES[i - 1].group !== service.group;
             const group = SERVICE_GROUPS[service.group];
+            const price = fromPrice(SERVICE_PRICE[service.slug]);
+            const need = SERVICE_NEED[service.slug] ?? service.group;
             return (
               <article
                 key={service.slug}
@@ -86,7 +115,10 @@ export default function ServicesPage() {
               >
                 {startsGroup && (
                   <Reveal>
-                    <div className="mb-20 flex flex-wrap items-end justify-between gap-6 border-b border-ink-line pb-8">
+                    <div
+                      id={service.group}
+                      className="mb-20 flex scroll-mt-28 flex-wrap items-end justify-between gap-6 border-b border-ink-line pb-8"
+                    >
                       <div>
                         <p className="eyebrow mb-3 !text-prism-violet">
                           {group.eyebrow}
@@ -115,6 +147,11 @@ export default function ServicesPage() {
                       <p className="mt-4 font-display text-lg font-semibold text-prism-violet">
                         {service.tagline}
                       </p>
+                      {price && (
+                        <p className="mt-2 text-sm font-semibold text-bone">
+                          {price}
+                        </p>
+                      )}
                       <p className="mt-5 leading-relaxed text-bone-dim">
                         {service.description}
                       </p>
@@ -153,7 +190,7 @@ export default function ServicesPage() {
                       )}
 
                       <div className="mt-8">
-                        <ButtonPrimary href="/contact">
+                        <ButtonPrimary href={`/contact?need=${need}`}>
                           Discuss this service
                         </ButtonPrimary>
                       </div>

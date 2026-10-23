@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useSearchParams } from "next/navigation";
-import { CONTACT_NEEDS, isContactNeed } from "@/lib/contact-needs";
+import { CONTACT_NEEDS, normalizeContactNeed } from "@/lib/contact-needs";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -16,10 +16,10 @@ export default function ContactForm() {
   const [need, setNeed] = useState("");
   const searchParams = useSearchParams();
 
-  // Pre-select from /contact?need=build|system|consult|media|unsure
+  // Pre-select from /contact?need=system|website|consult|media|unsure (build = website)
   useEffect(() => {
-    const fromUrl = searchParams.get("need");
-    if (isContactNeed(fromUrl)) setNeed(fromUrl);
+    const fromUrl = normalizeContactNeed(searchParams.get("need"));
+    if (fromUrl) setNeed(fromUrl);
   }, [searchParams]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -32,7 +32,7 @@ export default function ContactForm() {
 
     const errors: Record<string, string> = {};
     if (!data.name?.trim()) errors.name = "Please tell us your name.";
-    if (!isContactNeed(data.need)) errors.need = "Please tell us what you need.";
+    if (!normalizeContactNeed(data.need)) errors.need = "Please tell us what you need.";
     if (!data.email?.trim() || !/^\S+@\S+\.\S+$/.test(data.email)) {
       errors.email = "Please enter a valid email address.";
     }

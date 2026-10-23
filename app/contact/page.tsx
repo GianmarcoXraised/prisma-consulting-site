@@ -3,18 +3,27 @@ import { Suspense } from "react";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import CalendlyEmbed from "@/components/CalendlyEmbed";
-import { CALENDLY_URL } from "@/lib/site";
+import { CALENDLY_URL, OG_IMAGE } from "@/lib/site";
+
+const CONTACT_TITLE = "Contact Prisma House — Book a 30-minute call";
+const CONTACT_DESCRIPTION =
+  "Tell us what you're trying to run, sell or replace. Book a 30-minute call or send a message about a custom CRM, a business system, a website or marketing strategy. We reply within one working day.";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Book a call with our team or send us a message. We read every enquiry personally and reply within one working day.",
+  description: CONTACT_DESCRIPTION,
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact | Prisma House",
-    description:
-      "Book a call or send us a message. We reply within one working day.",
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
     url: "/contact",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 
@@ -38,9 +47,9 @@ export default function ContactPage() {
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
-              Whether you have a brief ready or just a hunch that your
-              marketing could be working harder, we&rsquo;d like to hear it.
-              Write to us, or go straight to the diary and book a call.
+              Whether you have a spec ready or a business held together by
+              spreadsheets, we&rsquo;d like to hear it. Write to us, or book a
+              call directly.
             </p>
           </Reveal>
         </div>
@@ -69,8 +78,8 @@ export default function ContactPage() {
             <div>
               <h2 className="display-lg">Or book a call directly</h2>
               <p className="mt-4 text-bone-dim">
-                Thirty minutes with our team. No pitch, no obligation — just a
-                straight conversation about your growth.
+                Thirty minutes, no pitch, no obligation: a straight
+                conversation about what you need to build.
               </p>
               <div className="mt-10">
                 <CalendlyEmbed url={CALENDLY_URL} />

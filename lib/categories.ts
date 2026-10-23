@@ -21,16 +21,16 @@ export type Category = {
 };
 
 export const CATEGORIES: Category[] = [
-  // Order: what the client sees (Website, Portal), the tools the team works in (CRM, CMS),
-  // then product (SaaS) and automation (AI Agents).
+  // Order: build-first. The systems a business runs on (CRM, Portal), then the website, the
+  // content back office (CMS), product (SaaS) and automation (AI Agents).
   {
-    slug: "website",
-    code: "Website",
-    name: "Sites that sell",
-    blurb: "Marketing sites and stores, designed and built in-house.",
-    chips: ["Design", "Copy", "Online checkout"],
-    gradient: "linear-gradient(135deg, #1a1430 0%, #2a1a4a 55%, #141419 100%)",
-    examples: ["book-store", "video-platform"],
+    slug: "crm",
+    code: "CRM",
+    name: "Your back office, in one place",
+    blurb: "Inbox, pipeline, follow-ups and invoices built around how your team works.",
+    chips: ["Pipeline", "Invoicing", "Email"],
+    gradient: "linear-gradient(135deg, #0f1f2e 0%, #12304a 55%, #141419 100%)",
+    examples: ["crm"],
   },
   {
     slug: "portal",
@@ -42,13 +42,13 @@ export const CATEGORIES: Category[] = [
     examples: ["portal"],
   },
   {
-    slug: "crm",
-    code: "CRM",
-    name: "Your back office, in one place",
-    blurb: "Inbox, pipeline, follow-ups and invoices built around how your team works.",
-    chips: ["Pipeline", "Invoicing", "Email"],
-    gradient: "linear-gradient(135deg, #0f1f2e 0%, #12304a 55%, #141419 100%)",
-    examples: ["crm"],
+    slug: "website",
+    code: "Website",
+    name: "Sites that sell",
+    blurb: "Marketing sites and stores, designed and built in-house.",
+    chips: ["Design", "Copy", "Online checkout"],
+    gradient: "linear-gradient(135deg, #1a1430 0%, #2a1a4a 55%, #141419 100%)",
+    examples: ["book-store", "video-platform"],
   },
   {
     slug: "cms",

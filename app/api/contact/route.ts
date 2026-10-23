@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { contactNeedLabel, isContactNeed } from "@/lib/contact-needs";
+import { contactNeedLabel, normalizeContactNeed } from "@/lib/contact-needs";
 
 export const runtime = "nodejs";
 
@@ -35,9 +35,9 @@ export async function POST(request: Request) {
   const email = payload.email?.trim() ?? "";
   const company = payload.company?.trim() ?? "";
   const message = payload.message?.trim() ?? "";
-  const need = payload.need?.trim() ?? "";
+  const need = normalizeContactNeed(payload.need);
 
-  if (!isContactNeed(need)) {
+  if (!need) {
     return NextResponse.json(
       { error: "Please tell us what you need." },
       { status: 400 },

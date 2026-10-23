@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/news";
+import { getAllPressReleases } from "@/lib/press";
 import { getPublishedWork } from "@/lib/work";
 import { SITE_URL } from "@/lib/site";
 
@@ -29,5 +30,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...work, ...articles];
+  // The press listing goes in only once there is a release to list.
+  const releases = getAllPressReleases();
+  const press: MetadataRoute.Sitemap = releases.length
+    ? [
+        { url: `${SITE_URL}/news/press`, lastModified: new Date(releases[0].date), changeFrequency: "monthly", priority: 0.7 },
+        ...releases.map((release) => ({
+          url: `${SITE_URL}/news/press/${release.slug}`,
+          lastModified: new Date(release.date),
+          changeFrequency: "yearly" as const,
+          priority: 0.6,
+        })),
+      ]
+    : [];
+
+  return [...staticPages, ...work, ...articles, ...press];
 }

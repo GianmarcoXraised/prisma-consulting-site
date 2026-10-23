@@ -2,7 +2,7 @@
   "name": "prisma-house",
   "version": "1.0.0",
   "private": true,
-  "description": "Prisma House — marketing consultancy, web design and custom systems website",
+  "description": "Prisma House — custom CRMs, business systems and websites, with the marketing strategy built in",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

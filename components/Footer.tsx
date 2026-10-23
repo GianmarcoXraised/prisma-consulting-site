@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 import Reveal from "./Reveal";
 import { ButtonPrimary, ButtonGhost } from "./Button";
-import { NAV_LINKS } from "@/lib/site";
+import { NAV_LINKS, SITE_DESCRIPTION } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -22,25 +22,34 @@ export default function Footer() {
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="display-xl mx-auto max-w-4xl">
-              Let&rsquo;s make your marketing{" "}
-              <span className="text-prism">impossible to ignore.</span>
+              Let&rsquo;s build the system{" "}
+              <span className="text-prism">your business runs on.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mx-auto mt-6 max-w-xl text-lg text-bone-dim">
-              A 30-minute call. No pitch deck, no pressure — just a straight
-              conversation about where your growth is hiding.
+              A 30-minute call. Tell us what you&rsquo;re trying to run, sell
+              or replace, and we&rsquo;ll tell you honestly whether it&rsquo;s
+              a website, a system, or both.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <ButtonPrimary href="/contact?need=build">
-                I need a website or system
+              <ButtonPrimary href="/contact?need=system">
+                I need a CRM or system
               </ButtonPrimary>
-              <ButtonGhost href="/contact?need=consult">
-                I need marketing strategy
+              <ButtonGhost href="/contact?need=website">
+                I need a website
               </ButtonGhost>
             </div>
+            <p className="mt-6 text-sm text-bone-dim">
+              <Link
+                href="/contact?need=consult"
+                className="underline decoration-ink-line underline-offset-4 transition-colors hover:text-bone hover:decoration-prism-violet"
+              >
+                Looking for marketing strategy? Start here
+              </Link>
+            </p>
           </Reveal>
         </div>
       </div>
@@ -51,8 +60,7 @@ export default function Footer() {
           <div>
             <Logo />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-bone-dim">
-              A marketing consultancy working with ambitious brands worldwide.
-              Strategy first, vanity metrics never.
+              {SITE_DESCRIPTION}
             </p>
           </div>
           <nav aria-label="Footer navigation">
