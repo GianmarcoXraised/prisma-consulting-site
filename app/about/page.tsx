@@ -77,34 +77,33 @@ export default function AboutPage() {
           <div className="space-y-6 text-lg leading-relaxed text-bone-dim">
             <Reveal>
               <p>
-                Prisma House was founded on a simple
-                observation: the marketing industry had become extraordinarily
-                good at producing activity, and extraordinarily bad at
-                producing outcomes. Dashboards multiplied. Channels multiplied.
-                Agencies multiplied. Results didn&rsquo;t.
+                Prisma House was founded on a simple observation: companies
+                rarely fail for lack of strategy. They fail where the strategy
+                meets the software. The positioning is sound, the sales process
+                is clear, and then the team spends its days working around a
+                CRM built for someone else&rsquo;s business, a website that
+                can&rsquo;t say what the company actually does, and the
+                spreadsheets holding everything else together.
               </p>
             </Reveal>
             <Reveal delay={0.05}>
               <p>
                 We chose the name deliberately. A prism doesn&rsquo;t create
                 light — it takes what&rsquo;s already there and reveals what
-                it&rsquo;s made of. That&rsquo;s our job. Every brand we work
-                with already has something true and valuable at its core. Our
-                work is to refract that single beam of ambition into its full
-                spectrum: positioning, story, content, media presence, demand.
+                it&rsquo;s made of. Every good business already has a way of
+                working that makes it good at what it does. Our job is to see
+                it clearly, then build the systems that carry it: the CRM, the
+                client portal, the website, shaped by a strategy that sells.
               </p>
             </Reveal>
             <Reveal delay={0.1}>
               <p>
-                We are built for ambitious companies of every stripe —
-                from venture-backed challengers to established firms
-                re-finding their edge. And because advice that never ships is
-                just opinion, we also build what we recommend: the websites,
-                CRMs and internal systems that turn a strategy into a running
-                business. We take on a limited number of clients
-                at a time and work directly with founders and leadership
-                teams. No account-manager relay race,
-                no juniors learning on your budget.
+                We work with growing companies that have outgrown
+                off-the-shelf tools, or are about to. We take on a limited
+                number of clients at a time, work directly with founders and
+                leadership teams, and the people who scope the work are the
+                people who ship it. If a standard tool fits, we&rsquo;ll tell
+                you before we quote anything.
               </p>
             </Reveal>
           </div>
@@ -123,9 +122,10 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="display-xl mx-auto max-w-4xl">
-              To make marketing a source of{" "}
-              <span className="text-prism">competitive advantage</span> again —
-              measured in revenue, defended in boardrooms, felt in markets.
+              To build software that{" "}
+              <span className="text-prism">fits the business</span>, not the
+              other way round: owned by the company that runs on it, and
+              shaped by a strategy that sells.
             </p>
           </Reveal>
         </div>
@@ -249,10 +249,11 @@ export default function AboutPage() {
                   else.
                 </p>
                 <p>
-                  His standard for the work is simple: find the one true thing
-                  a brand can say better than anyone, then cut everything that
-                  dilutes it. If a recommendation can&rsquo;t survive a
-                  board&rsquo;s scrutiny, it doesn&rsquo;t leave the building.
+                  His standard for the work is simple: build what the business
+                  actually needs, cut everything that dilutes it, and hand over
+                  something the client owns outright. If a recommendation
+                  can&rsquo;t survive a board&rsquo;s scrutiny, it doesn&rsquo;t
+                  leave the building.
                 </p>
               </div>
             </Reveal>
