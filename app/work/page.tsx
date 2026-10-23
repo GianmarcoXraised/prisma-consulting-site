@@ -6,12 +6,12 @@ import { CATEGORIES } from "@/lib/categories";
 import { getPublishedWork, getWork, resolveImage } from "@/lib/work";
 import { SITE_URL, OG_IMAGE } from "@/lib/site";
 
-const WORK_TITLE = "What We Build: CRMs, Portals, Websites, CMS, SaaS, AI Agents | Prisma House";
+const WORK_TITLE = "Case Studies: CRMs, Portals, Websites, CMS, SaaS, AI Agents | Prisma House";
 const WORK_DESCRIPTION =
   "Six things we build, each with a real example: a CRM and back office, client portals, websites, a CMS, a SaaS with subscriptions and AI agents. Real screens, no invented results.";
 
 export const metadata: Metadata = {
-  title: "Work — What We Build: CRMs, Portals, Websites, CMS, SaaS, AI Agents",
+  title: "Case Studies — What We Build: CRMs, Portals, Websites, CMS, SaaS, AI Agents",
   description: WORK_DESCRIPTION,
   alternates: { canonical: "/work" },
   openGraph: {
@@ -55,7 +55,7 @@ export default function WorkPage() {
   const listLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Prisma House — selected work",
+    name: "Prisma House — case studies",
     itemListElement: projects.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
@@ -74,7 +74,7 @@ export default function WorkPage() {
         />
         <div className="relative mx-auto max-w-shell px-6 pb-16 pt-44 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-6">Work</p>
+            <p className="eyebrow mb-6">Case Studies</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-4xl">

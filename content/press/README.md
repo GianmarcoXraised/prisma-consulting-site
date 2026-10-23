@@ -12,6 +12,7 @@ title: "Prisma House launches …"
 summary: "One or two sentences: the news, for the listing, meta description and social cards."
 date: "2026-11-03T14:00:00Z"            # publish time, ISO 8601 with offset (Z = UTC)
 keywords: "custom CRM, business systems"   # optional, page meta + JSON-LD
+mmReleaseId: 89207162                 # optional, the Marketersmedia release id: "Where to read it" block
 location: "London, United Kingdom"   # optional, this is the default
 faq:                                  # optional, also output as FAQPage JSON-LD
   - q: "Question?"

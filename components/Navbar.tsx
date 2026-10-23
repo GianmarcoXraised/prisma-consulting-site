@@ -39,7 +39,7 @@ export default function Navbar() {
       >
         <Logo />
 
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-8 xl:flex">
           {NAV_LINKS.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(link.href + "/");
@@ -47,7 +47,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group relative text-sm font-medium transition-colors ${
+                className={`group relative whitespace-nowrap text-sm font-medium transition-colors ${
                   active ? "text-bone" : "text-bone-dim hover:text-bone"
                 }`}
               >
@@ -62,7 +62,7 @@ export default function Navbar() {
           })}
           <Link
             href="/contact"
-            className="group relative overflow-hidden rounded-full bg-bone px-5 py-2.5 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98]"
+            className="group relative overflow-hidden whitespace-nowrap rounded-full bg-bone px-5 py-2.5 text-sm font-semibold text-ink transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98]"
           >
             <span className="relative z-10 transition-colors duration-300 group-hover:text-bone">
               Book a call
@@ -74,7 +74,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex h-10 w-10 items-center justify-center md:hidden"
+          className="flex h-10 w-10 items-center justify-center xl:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -105,7 +105,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-b border-ink-line bg-ink/95 backdrop-blur-xl md:hidden"
+            className="overflow-hidden border-b border-ink-line bg-ink/95 backdrop-blur-xl xl:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-6">
               {NAV_LINKS.map((link) => (

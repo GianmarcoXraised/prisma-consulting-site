@@ -266,3 +266,23 @@ export const SERVICES: Service[] = [
     ),
   },
 ];
+
+/** Where a service is described: the build services on /services, the consulting ones on /marketing-consulting. */
+export function serviceHref(service: Pick<Service, "slug" | "group">): string {
+  return service.group === "consult"
+    ? `/marketing-consulting#${service.slug}`
+    : `/services#${service.slug}`;
+}
+
+// What the "Discuss this service" button preselects on the contact form (?need=).
+const SERVICE_NEED: Record<string, string> = {
+  "custom-systems-crm": "system",
+  "web-design-development": "website",
+  "strategy-scoping-sprint": "unsure",
+  "media-pitching": "media",
+};
+
+export function contactNeedFor(service: Pick<Service, "slug" | "group">): string {
+  return SERVICE_NEED[service.slug] ?? service.group;
+}
+

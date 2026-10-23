@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Reveal from "@/components/Reveal";
+import WhereToRead from "@/components/WhereToRead";
 import { formatDate } from "@/lib/news";
 import { getPressRelease } from "@/lib/press";
 import { SITE_URL, SITE_NAME, OG_IMAGE } from "@/lib/site";
@@ -86,7 +88,7 @@ export default function PressReleasePage({ params }: Props) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "News", item: `${SITE_URL}/news` },
+      { "@type": "ListItem", position: 2, name: "News & Press", item: `${SITE_URL}/news` },
       { "@type": "ListItem", position: 3, name: "Press", item: `${SITE_URL}/news/press` },
       { "@type": "ListItem", position: 4, name: release.title, item: url },
     ],
@@ -140,7 +142,7 @@ export default function PressReleasePage({ params }: Props) {
               </Link>
               <span aria-hidden="true">/</span>
               <Link href="/news" className="transition-colors hover:text-bone">
-                News
+                News &amp; Press
               </Link>
               <span aria-hidden="true">/</span>
               <Link href="/news/press" className="transition-colors hover:text-bone">
@@ -173,6 +175,10 @@ export default function PressReleasePage({ params }: Props) {
           <div className="prose-prisma">
             <MDXRemote source={release.body} />
           </div>
+
+          <Suspense fallback={null}>
+            <WhereToRead mmReleaseId={release.mmReleaseId} />
+          </Suspense>
 
           {release.faq.length > 0 && (
             <section className="mt-16" aria-labelledby="faq-heading">

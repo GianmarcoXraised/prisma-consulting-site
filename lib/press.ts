@@ -30,6 +30,8 @@ export type PressRelease = {
   boilerplate: string;
   mediaContact: MediaContact;
   keywords: string[];
+  /** The Marketersmedia release id: its distribution report feeds "Where to read it". */
+  mmReleaseId?: number;
   body: string;
 };
 
@@ -55,6 +57,7 @@ function readAllPressReleases(): PressRelease[] {
         .split(",")
         .map((k) => k.trim())
         .filter(Boolean),
+      mmReleaseId: Number(data.mmReleaseId) || undefined,
       body: content,
     };
   });

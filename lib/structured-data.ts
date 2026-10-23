@@ -1,4 +1,4 @@
-import { SERVICES } from "@/lib/services";
+import { SERVICES, serviceHref } from "@/lib/services";
 import {
   SITE_URL,
   SITE_NAME,
@@ -53,7 +53,7 @@ export const SITE_LD = {
             "@type": "Service",
             name: service.title,
             description: service.tagline,
-            url: `${SITE_URL}/services#${service.slug}`,
+            url: `${SITE_URL}${serviceHref(service)}`,
             provider: { "@id": ORGANIZATION_ID },
           },
         })),

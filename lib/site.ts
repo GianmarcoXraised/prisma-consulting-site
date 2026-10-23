@@ -22,9 +22,10 @@ export const FOUNDER_LINKEDIN =
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
+  { href: "/work", label: "Case Studies" },
+  { href: "/marketing-consulting", label: "Marketing Consulting" },
   { href: "/about", label: "About" },
-  { href: "/news", label: "News" },
+  { href: "/news", label: "News & Press" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

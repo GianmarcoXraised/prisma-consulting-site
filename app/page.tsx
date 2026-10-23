@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
-import Commitments from "@/components/Commitments";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
 import { SITE_NAME, SITE_DESCRIPTION, SITE_TAGLINE, OG_IMAGE } from "@/lib/site";
@@ -195,33 +194,19 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ---------- 5. Proof, not promises ---------- */}
-      <section className="relative overflow-hidden border-y border-ink-line bg-ink-soft py-28 md:py-36">
-        <div
-          className="prism-orb -right-24 bottom-0 h-96 w-96"
-          style={{ background: "linear-gradient(45deg, #FFB347, #E14ECA)" }}
-        />
-        <div className="relative mx-auto max-w-shell px-6 lg:px-10">
-          <Reveal>
-            <p className="eyebrow mb-4">Proof, not promises</p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2 className="display-xl mb-16 max-w-3xl">
-              We measure ourselves in{" "}
-              <span className="text-prism">revenue</span>, not impressions.
-            </h2>
-          </Reveal>
           <Reveal delay={0.2}>
-            <Commitments />
+            <p className="mt-14 border-t border-ink-line pt-8 text-lg text-bone-dim">
+              <span className="font-display font-extrabold text-bone">
+                You own it<span className="text-prism">.</span>
+              </span>{" "}
+              Code, data, hosting and documentation stay with you.
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------- 6. Strategy built in ---------- */}
-      <section className="py-28 md:py-36">
+      {/* ---------- 5. Strategy built in ---------- */}
+      <section className="border-t border-ink-line py-28 md:py-36">
         <div className="mx-auto grid max-w-shell gap-12 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
           <div>
             <Reveal>
@@ -267,7 +252,7 @@ export default function HomePage() {
               </ul>
               <div className="mt-8 border-t border-ink-line pt-6">
                 <Link
-                  href="/services#consult"
+                  href="/marketing-consulting"
                   className="group inline-flex items-center gap-1.5 text-sm font-semibold text-prism-violet transition-colors hover:text-bone"
                 >
                   Explore marketing &amp; growth

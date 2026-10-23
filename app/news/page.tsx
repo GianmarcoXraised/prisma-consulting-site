@@ -6,7 +6,7 @@ import NewsTabs from "@/components/NewsTabs";
 import { getAllArticles, formatDate } from "@/lib/news";
 import { getAllPressReleases } from "@/lib/press";
 
-const NEWS_TITLE = "News & Insights | Prisma House";
+const NEWS_TITLE = "News & Press | Prisma House";
 const NEWS_DESCRIPTION =
   "Essays and analysis on custom CRMs, business systems, websites, marketing and growth from Prisma House, written for the people who make the decisions.";
 
@@ -14,7 +14,7 @@ const NEWS_DESCRIPTION =
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "News & Insights",
+  title: "News & Press",
   description: NEWS_DESCRIPTION,
   alternates: { canonical: "/news" },
   openGraph: {
@@ -44,7 +44,7 @@ export default function NewsPage() {
         />
         <div className="relative mx-auto max-w-shell px-6 pb-20 pt-44 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-6">News &amp; insights</p>
+            <p className="eyebrow mb-6">News &amp; Press</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-4xl">

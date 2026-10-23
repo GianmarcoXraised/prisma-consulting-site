@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
             <p className="mt-6 text-sm text-bone-dim">
               <Link
-                href="/contact?need=consult"
+                href="/marketing-consulting"
                 className="underline decoration-ink-line underline-offset-4 transition-colors hover:text-bone hover:decoration-prism-violet"
               >
                 Looking for marketing strategy? Start here

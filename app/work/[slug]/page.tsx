@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { WORK, getWork, resolveImage, type WorkFeature } from "@/lib/work";
-import { SERVICES } from "@/lib/services";
+import { SERVICES, serviceHref } from "@/lib/services";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 type Props = { params: { slug: string } };
@@ -37,14 +37,14 @@ export function generateMetadata({ params }: Props): Metadata {
     alternates: { canonical: `/work/${p.slug}` },
     robots: p.published ? undefined : { index: false, follow: false },
     openGraph: {
-      title: `${p.category} | Work | ${SITE_NAME}`,
+      title: `${p.category} | Case Studies | ${SITE_NAME}`,
       description: p.summary,
       url: `/work/${p.slug}`,
       images: hero ? [{ url: hero.src, width: hero.width, height: hero.height }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${p.category} | Work | ${SITE_NAME}`,
+      title: `${p.category} | Case Studies | ${SITE_NAME}`,
       description: p.summary,
       images: hero ? [hero.src] : undefined,
     },
@@ -117,7 +117,7 @@ export default function CaseStudyPage({ params }: Props) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/work` },
+      { "@type": "ListItem", position: 2, name: "Case Studies", item: `${SITE_URL}/work` },
       { "@type": "ListItem", position: 3, name: p.category, item: url },
     ],
   };
@@ -129,7 +129,7 @@ export default function CaseStudyPage({ params }: Props) {
 
       {!p.published && (
         <div className="fixed inset-x-0 top-16 z-40 border-b border-prism-amber/40 bg-prism-amber/10 px-6 py-2 text-center text-xs font-semibold text-prism-amber backdrop-blur">
-          Preview — not yet published. Hidden from the Work page, sitemap and search engines.
+          Preview — not yet published. Hidden from the Case Studies page, sitemap and search engines.
         </div>
       )}
 
@@ -144,7 +144,7 @@ export default function CaseStudyPage({ params }: Props) {
             <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-xs text-bone-faint">
               <Link href="/" className="transition-colors hover:text-bone">Home</Link>
               <span aria-hidden="true">/</span>
-              <Link href="/work" className="transition-colors hover:text-bone">Work</Link>
+              <Link href="/work" className="transition-colors hover:text-bone">Case Studies</Link>
               <span aria-hidden="true">/</span>
               <span className="text-bone-dim">{p.category}</span>
             </nav>
@@ -272,7 +272,7 @@ export default function CaseStudyPage({ params }: Props) {
             <Reveal delay={0.2}>
               <div className="flex flex-wrap gap-4">
                 <ButtonPrimary href="/contact">Book a call</ButtonPrimary>
-                {service && <ButtonGhost href={`/services#${service.slug}`}>See the service</ButtonGhost>}
+                {service && <ButtonGhost href={serviceHref(service)}>See the service</ButtonGhost>}
               </div>
             </Reveal>
           </div>

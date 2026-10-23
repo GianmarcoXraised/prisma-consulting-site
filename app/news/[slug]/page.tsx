@@ -5,7 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Reveal from "@/components/Reveal";
 import { ButtonGhost } from "@/components/Button";
 import { getAllArticles, getArticle, formatDate } from "@/lib/news";
-import { SERVICES } from "@/lib/services";
+import { SERVICES, serviceHref } from "@/lib/services";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, OG_IMAGE } from "@/lib/site";
 
 type Props = { params: { slug: string } };
@@ -85,7 +85,7 @@ export default function ArticlePage({ params }: Props) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "News",
+        name: "News & Press",
         item: `${SITE_URL}/news`,
       },
       {
@@ -144,7 +144,7 @@ export default function ArticlePage({ params }: Props) {
               </Link>
               <span aria-hidden="true">/</span>
               <Link href="/news" className="transition-colors hover:text-bone">
-                News
+                News &amp; Press
               </Link>
               <span aria-hidden="true">/</span>
               <span className="text-bone-dim">{article.category}</span>
@@ -208,7 +208,7 @@ export default function ArticlePage({ params }: Props) {
                 {SITE_DESCRIPTION}
               </p>
             </div>
-            <ButtonGhost href={service ? `/services#${service.slug}` : "/contact"}>
+            <ButtonGhost href={service ? serviceHref(service) : "/contact"}>
               {service ? "View the service" : "Book a call"}
             </ButtonGhost>
           </div>

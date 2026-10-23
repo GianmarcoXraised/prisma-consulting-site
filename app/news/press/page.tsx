@@ -48,7 +48,7 @@ export default function PressPage() {
         />
         <div className="relative mx-auto max-w-shell px-6 pb-20 pt-44 lg:px-10">
           <Reveal>
-            <p className="eyebrow mb-6">News &amp; insights · Press</p>
+            <p className="eyebrow mb-6">News &amp; Press · Press releases</p>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="display-hero max-w-4xl">
