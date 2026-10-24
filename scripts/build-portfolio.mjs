@@ -146,13 +146,14 @@ figcaption,.feats.text figcaption{display:block;padding:2mm 3mm;font-size:7pt;co
 </section>
 
 <section class="page intro">
-  <header class="ph">${logo(14)}<span class="crumb">Build first, strategy built in</span></header>
+  <header class="ph">${logo(14)}<span class="crumb">One system, not five suppliers</span></header>
   <div class="cols">
     <div>
-      <p class="eyebrow" style="margin-bottom:4mm">Custom CRM · Business systems · Websites</p>
+      <p class="eyebrow" style="margin-bottom:4mm">Websites · CRM · Lead generation · AI automation</p>
       <h2>We shape the strategy.<br><span class="prism">Then we build it.</span></h2>
       <p>${esc(SITE_DESCRIPTION)}</p>
-      <p>We build the custom CRMs, business systems and websites growing companies run on, and we start every build from the strategy. The people who scope the work are the people who ship it.</p>
+      <p>We build the websites, CRMs, lead generation and AI automations growing companies run on — one piece at a time or as one connected system — and we start every build from the strategy. The people who scope the work are the people who ship it.</p>
+      <p>Most companies buy a website from one supplier, a CRM from another and a few automation tools from a third, then hold it all together with spreadsheets. We design the whole thing as one system, and connect it with AI so work moves from first visit to paid invoice without anyone copying data between tools.</p>
       <p style="margin-top:8mm;color:#6E6C68;font-size:9pt">The projects that follow show real screens at their real scale, cropped to the part that matters. No invented numbers, no borrowed testimonials.</p>
     </div>
     <div>

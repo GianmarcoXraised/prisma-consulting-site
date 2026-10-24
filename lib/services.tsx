@@ -12,6 +12,8 @@ export type Service = {
   description: string;
   deliverables: string[];
   questions?: ServiceQuestion[];
+  /** Work slugs shown under "See it in practice" besides those tagged with this service in lib/work.ts. */
+  practice?: string[];
   icon: ReactNode;
 };
 
@@ -45,6 +47,32 @@ const iconProps = {
 } as const;
 
 export const SERVICES: Service[] = [
+  {
+    slug: "connected-growth-system",
+    group: "build",
+    title: "Connected Growth System",
+    tagline: "Everything your growth runs on, designed as one system.",
+    description:
+      "For companies that want more than a new website or a new CRM. We map how you attract, convert and serve clients, then design and build the whole chain — website, lead generation, CRM, client portal and the AI automations that connect them — as one system you own. You can build it in stages; every stage is designed to plug into the next.",
+    deliverables: [
+      "Strategy and system map: how leads, clients and data should flow",
+      "Website and lead-capture tools built to feed the CRM",
+      "CRM, portal and back office around your real process",
+      "AI agents and automations connecting every step, with human approval where it matters",
+      "One view of the business, from first visit to paid invoice",
+      "Staged roadmap, hosting and ongoing evolution",
+    ],
+    icon: (
+      <svg {...iconProps}>
+        <circle cx="5" cy="6" r="2.2" />
+        <circle cx="19" cy="6" r="2.2" />
+        <circle cx="5" cy="18" r="2.2" />
+        <circle cx="19" cy="18" r="2.2" />
+        <circle cx="12" cy="12" r="2.6" />
+        <path d="M7 7.2l3 3M17 7.2l-3 3M7 16.8l3-3M17 16.8l-3-3" />
+      </svg>
+    ),
+  },
   {
     slug: "custom-systems-crm",
     group: "build",
@@ -118,6 +146,51 @@ export const SERVICES: Service[] = [
         <path d="M3 9h18" />
         <path d="M7 6.5h.01M10 6.5h.01" />
         <path d="M7 13h5M7 16h9" />
+      </svg>
+    ),
+  },
+  {
+    slug: "ai-automation-agents",
+    group: "build",
+    title: "AI Automation & Agents",
+    tagline: "AI that takes over the repetitive chains of work, not just single tasks.",
+    description:
+      "We find the chain of repetitive tasks that caps how much your team can deliver — writing up, distributing, posting, following up, reporting — and build AI agents that run it end to end inside your own tools. Anything with client impact waits for a human to approve it.",
+    deliverables: [
+      "Workflow audit: which chains to automate first",
+      "AI agents built into your CRM, website and tools",
+      "Human approval steps where judgement matters",
+      "Integrations with email, calendars, social channels and distribution platforms",
+      "Monitoring and evolution as the work changes",
+    ],
+    practice: ["ai-agents"],
+    icon: (
+      <svg {...iconProps}>
+        <rect x="5" y="7" width="14" height="11" rx="3" />
+        <path d="M12 7V4M9 3.5h6" />
+        <circle cx="9.5" cy="12.5" r="1" />
+        <circle cx="14.5" cy="12.5" r="1" />
+        <path d="M2.5 11.5v3M21.5 11.5v3" />
+      </svg>
+    ),
+  },
+  {
+    slug: "lead-generation-systems",
+    group: "build",
+    title: "Lead Generation Systems",
+    tagline: "A pipeline that fills itself, built on infrastructure you own.",
+    description:
+      "We build the machinery behind a predictable pipeline: lead-capture tools and assessments on your website, outbound email and LinkedIn campaigns on properly authenticated sending domains, and follow-ups that land in your CRM automatically. You own the data, the domains and the system.",
+    deliverables: [
+      "Lead magnets and interactive assessments on your site",
+      "Outbound email infrastructure: domains, authentication, warm-up",
+      "LinkedIn and email sequences connected to the CRM",
+      "Automatic follow-ups with human approval",
+      "Pipeline reporting tied to meetings booked and revenue",
+    ],
+    icon: (
+      <svg {...iconProps}>
+        <path d="M3 4h18l-7 8.5V19l-4 1.5v-8L3 4z" />
       </svg>
     ),
   },
@@ -279,6 +352,9 @@ const SERVICE_NEED: Record<string, string> = {
   "custom-systems-crm": "system",
   "web-design-development": "website",
   "strategy-scoping-sprint": "unsure",
+  "connected-growth-system": "full-system",
+  "ai-automation-agents": "automation",
+  "lead-generation-systems": "leadgen",
   "media-pitching": "media",
 };
 

@@ -28,6 +28,16 @@ export const metadata: Metadata = {
   },
 };
 
+// One connected system, in the order work moves through it; a step links to its case category.
+const FLOW: { label: string; href?: string }[] = [
+  { label: "Website", href: "#website" },
+  { label: "Lead capture" },
+  { label: "CRM", href: "#crm" },
+  { label: "AI agents", href: "#ai-agents" },
+  { label: "Content & distribution", href: "#cms" },
+  { label: "Invoices" },
+];
+
 export default function WorkPage() {
   const projects = getPublishedWork();
   const examples: Record<string, ExplorerExample> = {};
@@ -81,7 +91,35 @@ export default function WorkPage() {
               What we <span className="text-prism">build.</span>
             </h1>
           </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-bone">
+              These aren&rsquo;t six separate projects. They&rsquo;re the parts of one connected
+              system we designed and built: the website captures the lead, the CRM manages it, AI
+              agents write, publish and follow up, and invoices close the loop.
+            </p>
+          </Reveal>
           <Reveal delay={0.25}>
+            <ol aria-label="How the parts connect" className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-3 text-sm font-semibold">
+              {FLOW.map((step, i) => (
+                <li key={step.label} className="flex items-center gap-2">
+                  {step.href ? (
+                    <a
+                      href={step.href}
+                      className="rounded-full border border-ink-line px-4 py-1.5 text-bone transition-colors hover:border-prism-violet hover:text-prism-violet"
+                    >
+                      {step.label}
+                    </a>
+                  ) : (
+                    <span className="rounded-full border border-ink-line px-4 py-1.5 text-bone-dim">{step.label}</span>
+                  )}
+                  {i < FLOW.length - 1 && (
+                    <span aria-hidden="true" className="text-prism-violet">→</span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+          <Reveal delay={0.3}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
               Six kinds of thing, each with a real example underneath: pick one to see the
               screens. No invented numbers, no borrowed testimonials.

@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 import { ButtonPrimary } from "@/components/Button";
 import { contactNeedFor, type Service } from "@/lib/services";
 import { SERVICE_PRICE, fromPrice } from "@/lib/pricing";
-import { getWorkByService } from "@/lib/work";
+import { getWork, getWorkByService } from "@/lib/work";
 
 /**
  * The services in full, one block each (icon, number, title, tagline, optional "From £X",
@@ -15,7 +15,12 @@ export default function ServiceList({ services }: { services: Service[] }) {
     <div className="space-y-28">
       {services.map((service, i) => {
         const price = fromPrice(SERVICE_PRICE[service.slug]);
-        const examples = getWorkByService(service.slug);
+        const examples = [
+          ...getWorkByService(service.slug),
+          ...(service.practice ?? []).map((slug) => getWork(slug)).filter(
+            (w): w is NonNullable<typeof w> => Boolean(w && w.published),
+          ),
+        ].filter((w, j, all) => all.findIndex((x) => x.slug === w.slug) === j);
         return (
           <article key={service.slug} id={service.slug} className="scroll-mt-28">
             <div

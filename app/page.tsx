@@ -3,27 +3,30 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { ButtonPrimary, ButtonGhost } from "@/components/Button";
 import { SERVICES } from "@/lib/services";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_TAGLINE, OG_IMAGE } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, OG_IMAGE } from "@/lib/site";
 import { CATEGORIES } from "@/lib/categories";
 import { CATEGORY_PRICE, fromPrice } from "@/lib/pricing";
 import CategoryTile, { CategoryGrid } from "@/components/CategoryTile";
+import SystemDiagram from "@/components/SystemDiagram";
 
 const HOME_TITLE = `${SITE_NAME} — ${SITE_TAGLINE}`;
+const HOME_DESCRIPTION =
+  "Websites, CRMs, lead generation and AI automation, designed and built as one connected system around how your company works. London studio.";
 
 export const metadata: Metadata = {
   title: { absolute: HOME_TITLE },
-  description: SITE_DESCRIPTION,
+  description: HOME_DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
     title: HOME_TITLE,
-    description: SITE_DESCRIPTION,
+    description: HOME_DESCRIPTION,
     url: "/",
     images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: HOME_TITLE,
-    description: SITE_DESCRIPTION,
+    description: HOME_DESCRIPTION,
     images: [OG_IMAGE.url],
   },
 };
@@ -73,7 +76,7 @@ export default function HomePage() {
         <div className="relative mx-auto flex min-h-screen max-w-shell flex-col justify-center px-6 pb-24 pt-40 lg:px-10">
           <Reveal>
             <p className="eyebrow mb-8">
-              Custom CRM · Business systems · Websites
+              Websites · CRM · Lead generation · AI automation
             </p>
           </Reveal>
           <Reveal delay={0.1}>
@@ -84,8 +87,9 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim md:text-xl">
-              Custom CRMs, business systems and websites, built around how
-              your company actually works. You own every line of it.
+              Websites, CRMs, lead generation and AI automations, designed as
+              one connected system around how your company works. You own
+              every line of it.
             </p>
           </Reveal>
           <Reveal delay={0.4}>
@@ -98,8 +102,46 @@ export default function HomePage() {
         <div className="beam absolute bottom-0 left-0 h-px w-full opacity-60" />
       </section>
 
-      {/* ---------- 2. What we build ---------- */}
+      {/* ---------- 2. How it fits together ---------- */}
       <section className="py-28 md:py-36">
+        <div className="mx-auto max-w-shell px-6 lg:px-10">
+          <Reveal>
+            <p className="eyebrow mb-4">How it fits together</p>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <h2 className="display-xl max-w-3xl">
+              One system, <span className="text-prism">not five suppliers.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-bone-dim">
+              Most companies buy a website from one supplier, a CRM from
+              another and a few automation tools from a third, then hold it
+              all together with spreadsheets. We design the whole thing as one
+              system, and connect it with AI so work moves from first visit to
+              paid invoice without anyone copying data between tools.
+            </p>
+          </Reveal>
+          <div className="mt-14">
+            <SystemDiagram />
+          </div>
+          <Reveal delay={0.2}>
+            <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-ink-line pt-10">
+              <p className="max-w-xl text-lg leading-relaxed text-bone">
+                Start with one piece, or build the whole system. Everything we
+                build is designed to connect to the rest.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <ButtonPrimary href="/contact?need=full-system">Build the whole system</ButtonPrimary>
+                <ButtonGhost href="/work">See how our systems connect</ButtonGhost>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- 3. What we build ---------- */}
+      <section className="border-t border-ink-line py-28 md:py-36">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -131,7 +173,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- 3. Is a custom CRM right for you? ---------- */}
+      {/* ---------- 4. Is a custom CRM right for you? ---------- */}
       <section className="border-t border-ink-line py-28 md:py-36">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
@@ -165,7 +207,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- 4. How we work ---------- */}
+      {/* ---------- 5. How we work ---------- */}
       <section className="border-t border-ink-line py-28 md:py-36">
         <div className="mx-auto max-w-shell px-6 lg:px-10">
           <Reveal>
@@ -205,7 +247,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- 5. Strategy built in ---------- */}
+      {/* ---------- 6. Strategy built in ---------- */}
       <section className="border-t border-ink-line py-28 md:py-36">
         <div className="mx-auto grid max-w-shell gap-12 px-6 lg:grid-cols-2 lg:gap-20 lg:px-10">
           <div>

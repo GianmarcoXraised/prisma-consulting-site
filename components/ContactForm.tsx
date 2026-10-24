@@ -16,7 +16,7 @@ export default function ContactForm() {
   const [need, setNeed] = useState("");
   const searchParams = useSearchParams();
 
-  // Pre-select from /contact?need=system|website|consult|media|unsure (build = website)
+  // Pre-select from /contact?need=full-system|system|website|automation|leadgen|consult|media|unsure (build = website)
   useEffect(() => {
     const fromUrl = normalizeContactNeed(searchParams.get("need"));
     if (fromUrl) setNeed(fromUrl);

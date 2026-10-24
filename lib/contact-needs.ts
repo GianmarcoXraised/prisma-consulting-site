@@ -1,8 +1,11 @@
 // The "What do you need?" options on the contact form. The key is what the
 // ?need= query parameter and the API accept; the label is what people see.
 export const CONTACT_NEEDS = [
+  { key: "full-system", label: "The whole connected system" },
   { key: "system", label: "Custom CRM or business system" },
   { key: "website", label: "Website or redesign" },
+  { key: "automation", label: "AI automation" },
+  { key: "leadgen", label: "Lead generation" },
   { key: "consult", label: "Marketing strategy" },
   { key: "media", label: "Media pitching" },
   { key: "unsure", label: "Not sure yet" },

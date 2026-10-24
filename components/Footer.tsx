@@ -35,9 +35,12 @@ export default function Footer() {
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <ButtonPrimary href="/contact?need=system">
-                I need a CRM or system
+              <ButtonPrimary href="/contact?need=full-system">
+                Build the whole system
               </ButtonPrimary>
+              <ButtonGhost href="/contact?need=system">
+                I need a CRM or system
+              </ButtonGhost>
               <ButtonGhost href="/contact?need=website">
                 I need a website
               </ButtonGhost>

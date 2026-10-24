@@ -9,6 +9,12 @@ export const PRICES = {
   website: null as number | null,
   /** Strategy & Scoping Sprint. */
   sprint: null as number | null,
+  /** Connected Growth System. */
+  connected: null as number | null,
+  /** AI Automation & Agents. */
+  automation: null as number | null,
+  /** Lead Generation Systems. */
+  leadgen: null as number | null,
 };
 
 export type PriceKey = keyof typeof PRICES;
@@ -18,6 +24,9 @@ export const SERVICE_PRICE: Record<string, PriceKey> = {
   "custom-systems-crm": "system",
   "web-design-development": "website",
   "strategy-scoping-sprint": "sprint",
+  "connected-growth-system": "connected",
+  "ai-automation-agents": "automation",
+  "lead-generation-systems": "leadgen",
 };
 
 /** Which price belongs to which category tile on the home page (lib/categories.ts slug). */

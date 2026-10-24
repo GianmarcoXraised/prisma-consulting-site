@@ -10,7 +10,7 @@ import LegacyAnchorRedirect from "@/components/LegacyAnchorRedirect";
 const SERVICES_TITLE =
   "Custom CRM Development, Business Systems & Websites | Prisma House";
 const SERVICES_DESCRIPTION =
-  "Custom CRM development, bespoke business systems, client portals and website redesign, scoped from the strategy and built by the people who scope them, plus a two-week, fixed-price Strategy & Scoping Sprint.";
+  "Websites, custom CRMs, lead generation and AI automation: built one piece at a time or as one connected system you own.";
 
 export const metadata: Metadata = {
   title: { absolute: SERVICES_TITLE },
@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "client portal development",
     "web design and development",
     "strategy and scoping sprint",
+    "AI automation for business",
+    "lead generation systems",
+    "connected business systems",
   ],
   alternates: { canonical: "/services" },
   openGraph: {
@@ -91,8 +94,9 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal delay={0.25}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-bone-dim">
-              We build the custom CRMs, business systems and websites growing
-              companies run on, and we start every build from the strategy.
+              We build the websites, CRMs, lead generation and AI automations
+              growing companies run on — one piece at a time or as one
+              connected system — and we start every build from the strategy.
               The people who scope the work are the people who ship it.
             </p>
           </Reveal>
