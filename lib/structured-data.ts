@@ -4,6 +4,7 @@ import {
   SITE_NAME,
   SITE_DESCRIPTION,
   CONTACT_EMAIL,
+  COMPANY_LINKEDIN,
   FOUNDER_LINKEDIN,
 } from "@/lib/site";
 
@@ -36,7 +37,7 @@ export const SITE_LD = {
         jobTitle: "Founder & CEO",
         sameAs: FOUNDER_LINKEDIN,
       },
-      sameAs: [FOUNDER_LINKEDIN],
+      sameAs: [COMPANY_LINKEDIN],
       knowsAbout: [
         "custom CRM development",
         "business management systems",

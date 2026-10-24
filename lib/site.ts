@@ -16,6 +16,8 @@ export const OG_IMAGE = { url: "/opengraph-image", width: 1200, height: 630 };
 
 export const CONTACT_EMAIL = "info@prisma-house.com";
 
+export const COMPANY_LINKEDIN = "https://www.linkedin.com/company/prisma-house";
+
 export const FOUNDER_LINKEDIN =
   "https://www.linkedin.com/in/gianmarco-giordaniello-6563b725a/";
 
