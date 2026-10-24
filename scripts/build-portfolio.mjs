@@ -20,6 +20,30 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 const servicesSrc = fs.readFileSync(path.join(ROOT, "lib", "services.tsx"), "utf8");
 const SERVICES = [...servicesSrc.matchAll(/slug: "[^"]+",\s*group: "(consult|build)",\s*title: "([^"]+)"/g)].map((m) => ({ group: m[1], title: m[2] }));
 
+// Gradient text, one colour per letter. CSS gradient text (background-clip: text) prints as a
+// text clip that macOS Preview (PDFKit) cannot draw past the first few letters — it shows a solid
+// block instead. Solid colours sampled along the same gradient look the same and open everywhere.
+const PRISM_STOPS = [[0, [0x7c, 0x5c, 0xff]], [0.38, [0xe1, 0x4e, 0xca]], [0.72, [0xff, 0xb3, 0x47]], [1, [0x4e, 0xd9, 0xe1]]];
+function prismAt(t) {
+  for (let i = 1; i < PRISM_STOPS.length; i++) {
+    const [t1, c1] = PRISM_STOPS[i];
+    const [t0, c0] = PRISM_STOPS[i - 1];
+    if (t <= t1) {
+      const k = (t - t0) / (t1 - t0);
+      return "#" + c0.map((v, j) => Math.round(v + (c1[j] - v) * k).toString(16).padStart(2, "0")).join("");
+    }
+  }
+  return "#4ed9e1";
+}
+// `from`/`to`: the part of the gradient to use (a short word gets a narrower band, so it does not jump colour per letter).
+const prism = (text, from = 0, to = 1) => {
+  const chars = [...text];
+  const n = Math.max(chars.length - 1, 1);
+  return chars
+    .map((ch, i) => (ch === " " ? " " : `<span style="color:${prismAt(from + (to - from) * (i / n))}">${esc(ch)}</span>`))
+    .join("");
+};
+
 const PRISM = `<svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="pg" x1="0" y1="28" x2="28" y2="0"><stop offset="0%" stop-color="#7C5CFF"/><stop offset="40%" stop-color="#E14ECA"/><stop offset="75%" stop-color="#FFB347"/><stop offset="100%" stop-color="#4ED9E1"/></linearGradient></defs><path d="M14 2L26 24H2L14 2Z" stroke="url(#pg)" stroke-width="2.4" stroke-linejoin="round"/><path d="M14 9L20.5 21H7.5L14 9Z" fill="url(#pg)" opacity="0.45"/></svg>`;
 
 const logo = (size = 22) => `<span class="logo" style="--s:${size}px"><span class="mark">${PRISM}</span><span class="word">Prisma<span class="dim"> House</span></span></span>`;
@@ -140,7 +164,7 @@ figcaption,.feats.text figcaption{display:block;padding:2mm 3mm;font-size:7pt;co
   <div class="orb" style="right:-50mm;bottom:-50mm;width:170mm;height:170mm;background:linear-gradient(225deg,#4ED9E1,#7C5CFF)"></div>
   <div style="position:relative">${logo(28)}
   <p class="eyebrow" style="margin-top:22mm">Portfolio · ${new Date().getFullYear()}</p>
-  <h1>Selected <span class="prism">Work</span></h1>
+  <h1>Selected ${prism("Work", 0.42, 0.72)}</h1>
   <p class="tag">We shape the strategy. Then we build it.</p></div>
   <footer class="pf" style="position:absolute;left:16mm;right:16mm;bottom:12mm"><span>prisma-house.com</span><span class="beam"></span></footer>
 </section>
@@ -150,7 +174,7 @@ figcaption,.feats.text figcaption{display:block;padding:2mm 3mm;font-size:7pt;co
   <div class="cols">
     <div>
       <p class="eyebrow" style="margin-bottom:4mm">Websites · CRM · Lead generation · AI automation</p>
-      <h2>We shape the strategy.<br><span class="prism">Then we build it.</span></h2>
+      <h2>We shape the strategy.<br>${prism("Then we build it.")}</h2>
       <p>${esc(SITE_DESCRIPTION)}</p>
       <p>We build the websites, CRMs, lead generation and AI automations growing companies run on — one piece at a time or as one connected system — and we start every build from the strategy. The people who scope the work are the people who ship it.</p>
       <p>Most companies buy a website from one supplier, a CRM from another and a few automation tools from a third, then hold it all together with spreadsheets. We design the whole thing as one system, and connect it with AI so work moves from first visit to paid invoice without anyone copying data between tools.</p>
@@ -170,7 +194,7 @@ ${sections}
   <div class="orb" style="position:absolute;right:-40mm;top:-40mm;width:150mm;height:150mm;border-radius:50%;filter:blur(70px);opacity:.25;background:linear-gradient(135deg,#E14ECA,#FFB347)"></div>
   <div style="position:relative">${logo(18)}
   <p class="eyebrow" style="margin-top:16mm">Ready when you are</p>
-  <h2>Book a <span class="prism">30-minute call.</span></h2>
+  <h2>Book a ${prism("30-minute call.")}</h2>
   <p>Tell us what you&rsquo;re trying to run, sell or replace, and we&rsquo;ll tell you honestly whether it&rsquo;s a website, a system, or both.</p>
   <div class="contact">
     <div><b>Web</b><span>prisma-house.com</span></div>
