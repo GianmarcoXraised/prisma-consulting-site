@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // instrumentation.ts (IndexNow submissions at server start) needs this flag on Next 14.
+  experimental: { instrumentationHook: true },
   // HTML must never be held by a shared cache (Cloudflare, proxies): by default Next sends
   // "s-maxage=31536000" on prerendered pages, which would let any CDN keep an old home page for a
   // year after a deploy. Static files under /_next keep their own immutable headers.
