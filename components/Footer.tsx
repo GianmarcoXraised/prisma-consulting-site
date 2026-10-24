@@ -93,9 +93,9 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                950 Great West Rd, Suite 2, Floor 1,
+                London, UK
                 <br />
-                Profile West, TW8 9ES Brentford, UK
+                Rome, Italy
               </li>
             </ul>
             <a
@@ -119,7 +119,6 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Prisma House. All rights
             reserved.
           </p>
-          <p>Registered in England &amp; Wales.</p>
         </div>
       </div>
 

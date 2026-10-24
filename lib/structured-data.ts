@@ -23,13 +23,11 @@ export const SITE_LD = {
       image: `${SITE_URL}/opengraph-image`,
       description: SITE_DESCRIPTION,
       email: CONTACT_EMAIL,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "950 Great West Rd, Suite 2, Floor 1, Profile West",
-        addressLocality: "Brentford",
-        postalCode: "TW8 9ES",
-        addressCountry: "GB",
-      },
+      // Offices in London and Rome (cities only, no street address).
+      address: [
+        { "@type": "PostalAddress", addressLocality: "London", addressCountry: "GB" },
+        { "@type": "PostalAddress", addressLocality: "Rome", addressCountry: "IT" },
+      ],
       areaServed: ["GB", "US", "EU"],
       founder: {
         "@type": "Person",

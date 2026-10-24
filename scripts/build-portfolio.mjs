@@ -199,7 +199,7 @@ ${sections}
   <div class="contact">
     <div><b>Web</b><span>prisma-house.com</span></div>
     <div><b>Email</b><span>info@prisma-house.com</span></div>
-    <div><b>Address</b><span>950 Great West Rd, Suite 2, Floor 1,<br>Profile West, TW8 9ES Brentford, UK</span></div>
+    <div><b>Offices</b><span>London, UK · Rome, Italy</span></div>
   </div></div>
   <footer class="pf" style="position:absolute;left:16mm;right:16mm;bottom:12mm"><span>© ${new Date().getFullYear()} Prisma House. All rights reserved.</span><span class="beam"></span></footer>
 </section>
