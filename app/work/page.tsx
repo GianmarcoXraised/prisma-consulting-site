@@ -35,7 +35,6 @@ const FLOW: { label: string; href?: string }[] = [
   { label: "CRM", href: "#crm" },
   { label: "AI agents", href: "#ai-agents" },
   { label: "Content & distribution", href: "#cms" },
-  { label: "Invoices" },
 ];
 
 export default function WorkPage() {
@@ -110,7 +109,7 @@ export default function WorkPage() {
                       {step.label}
                     </a>
                   ) : (
-                    <span className="rounded-full border border-ink-line px-4 py-1.5 text-bone-dim">{step.label}</span>
+                    <span className="rounded-full border border-ink-line px-4 py-1.5 text-bone">{step.label}</span>
                   )}
                   {i < FLOW.length - 1 && (
                     <span aria-hidden="true" className="text-prism-violet">→</span>
