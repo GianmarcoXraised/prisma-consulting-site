@@ -18,15 +18,14 @@ The site runs at http://localhost:3000.
 
 | Variable | Purpose |
 | --- | --- |
-| `SMTP_HOST` | SMTP server for the contact form |
-| `SMTP_PORT` | SMTP port (465 uses implicit TLS, anything else uses STARTTLS) |
-| `SMTP_USER` | SMTP username / from address |
-| `SMTP_PASS` | SMTP password |
+| `MS_TENANT_ID`, `MS_CLIENT_ID`, `MS_CLIENT_SECRET` | Microsoft Graph app registration that sends the contact form (client credentials) |
+| `CONTACT_SENDER_MAILBOX` | The Microsoft 365 mailbox the app may send from (gianmarco@prisma-house.com; Exchange RBAC limits the app to it) |
+| `CONTACT_FROM_EMAIL` | The From address shown (info@prisma-house.com, an alias of that mailbox) |
 | `CONTACT_TO_EMAIL` | Where contact-form enquiries are delivered |
 | `NEXT_PUBLIC_CALENDLY_URL` | Calendly event URL embedded on /contact |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL used in metadata, sitemap and robots.txt |
 
-Without SMTP variables set, the contact form API returns a friendly configuration error; the rest of the site works normally.
+Without the Graph variables set, the contact form API returns a friendly configuration error; the rest of the site works normally. Reply-To on each enquiry is the visitor's address.
 
 ## Deploying on Railway
 

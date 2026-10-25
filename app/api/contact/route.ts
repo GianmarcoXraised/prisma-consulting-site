@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { graphConfigured, sendGraphMail } from "@/lib/graph-mail";
 import { contactNeedLabel, normalizeContactNeed } from "@/lib/contact-needs";
 
 export const runtime = "nodejs";
@@ -64,40 +64,21 @@ export async function POST(request: Request) {
     );
   }
 
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_TO_EMAIL } =
-    process.env;
+  const { CONTACT_TO_EMAIL } = process.env;
 
-  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !CONTACT_TO_EMAIL) {
-    console.error("Contact form: missing SMTP environment variables.");
+  if (!graphConfigured() || !CONTACT_TO_EMAIL) {
+    console.error("Contact form: missing Microsoft Graph or CONTACT_TO_EMAIL environment variables.");
     return NextResponse.json(
       { error: "The contact form is not configured yet. Please email us directly." },
       { status: 500 },
     );
   }
 
-  const port = Number(SMTP_PORT);
-  const transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port,
-    secure: port === 465,
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
-  });
-
   try {
-    await transporter.sendMail({
-      from: `"Prisma House Website" <${SMTP_USER}>`,
+    await sendGraphMail({
       to: CONTACT_TO_EMAIL,
-      replyTo: email,
+      replyTo: { address: email, name },
       subject: `New enquiry — ${needLabel} — from ${name}${company ? ` (${company})` : ""}`,
-      text: [
-        `Need: ${needLabel}`,
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Company: ${company || "—"}`,
-        "",
-        "Message:",
-        message,
-      ].join("\n"),
       html: `
         <h2 style="font-family:sans-serif">New website enquiry</h2>
         <table style="font-family:sans-serif;font-size:14px" cellpadding="6">
